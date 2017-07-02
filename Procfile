@@ -1,1 +1,1 @@
-web: gunicorn proconduck.wsgi --log-file -
+web: gunicorn ProConDuck.wsgi.application --log-file -
