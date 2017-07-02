@@ -1,0 +1,15 @@
+{
+  "name": "ProConDuck",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
