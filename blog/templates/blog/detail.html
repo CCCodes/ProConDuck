@@ -5,6 +5,10 @@
     <title>{{ review.title }}</title>
 </head>
 <body>
-    Product: {{ review.product }}
+    {{ review.product }} by {{ review.product.company }} <br/>
+    <h2>{{ review.title }}</h2>
+    {{ review.date }}<br/>
+    Review by {{ review.reviewer_name }} <br/><br/>
+    {{ review.review }}
 </body>
 </html>
