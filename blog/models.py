@@ -32,10 +32,10 @@ class Review(models.Model):
 
     title = models.CharField(max_length=100)
     reviewer_name = models.CharField(max_length=50)
-    date = models.DateField()
+    date = models.DateField(auto_now=True)
     score = models.IntegerField()
-    image = models.ImageField()
-    video_link = models.URLField()
+    image = models.ImageField(blank=True)
+    video_link = models.URLField(blank=True)
     review = models.TextField()
 
     def __str__(self):
