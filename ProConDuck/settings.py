@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import os.path
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +28,8 @@ SECRET_KEY = 'asi204)thkj^1ec)etut*n3bpuh58p2d7xys^9b17u()7!%a*x'
 DEBUG = True
 
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
-                 'www.proconduck.com']
+                 'www.proconduck.com',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -120,4 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
