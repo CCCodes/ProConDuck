@@ -51,11 +51,20 @@ class Review(models.Model):
         return now - datetime.timedelta(days=1) <= self.date <= now
 
 
+class AdSlot(models.Model):
+    image_width = models.IntegerField()
+    image_height = models.IntegerField()
+
+    def __str__(self):
+        return "%d - %d x %d" % (self.pk, self.image_width, self.image_height)
+
+
 class Advertisement(models.Model):
 
-    selected = models.BooleanField(default=False)
+    selected = models.BooleanField(default=True)
+    slot = models.ForeignKey(AdSlot, on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=100)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="blog/static/blog/images")
     link = models.URLField()
 
     def __str__(self):
