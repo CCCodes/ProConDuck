@@ -50,3 +50,13 @@ class Review(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.date <= now
 
+
+class Advertisement(models.Model):
+
+    selected = models.BooleanField(default=False)
+    name = models.CharField(max_length=100)
+    image = models.ImageField()
+    link = models.URLField()
+
+    def __str__(self):
+        return self.name
