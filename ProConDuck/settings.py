@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'ProConDuck.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dcnus9i934p4o1',
+        'USER': 'naguazsuwvjfla',
+        'PASSWORD': 'ca02a445023b31aed4c0f7c3095571b183429cf33a027378f31bcca5cb808fe4',
+        'HOST': 'ec2-107-20-195-181.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
