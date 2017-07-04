@@ -29,7 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
                  'www.proconduck.com',
-                 '127.0.0.1']
+                 '127.0.0.1',
+                 'testserver',]
+
 
 
 # Application definition
