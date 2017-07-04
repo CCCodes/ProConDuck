@@ -22,7 +22,8 @@ def main(request):
     ad_file_paths = []
 
     for i in range(4):
-        ad_file_paths.append(ads[i][randint(0, len(ads[i])-1)].image.name[12:])
+        ads[i] = ads[i][randint(0, len(ads[i])-1)]
+        ad_file_paths.append(ads[i].image.name[12:])
 
     context = {
         'latest_review_list': latest_review_list,
