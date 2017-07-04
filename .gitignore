@@ -7,6 +7,5 @@ ProConDuck/__pycache__/
 ProConDuck/tcl/
 blog/__pycache__/
 blog/migrations/__pycache__/
-templates/
 venv/
 .gitignore
