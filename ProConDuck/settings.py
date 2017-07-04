@@ -13,6 +13,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import os.path
 import sys
+import requests
+
+import heroku3
+
+heroku_con = heroku3.from_key("0b842569-4c90-4c25-a67c-66b155a3b724")
+app = heroku_con.apps()['quiet-beyond-56572']
+config = app.config().data
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +38,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
                  'www.proconduck.com',
                  '127.0.0.1',
-                 'testserver',]
+                 'testserver',
+                 ]
 
 
 
@@ -84,10 +93,10 @@ WSGI_APPLICATION = 'ProConDuck.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dcnus9i934p4o1',
-        'USER': 'naguazsuwvjfla',
-        'PASSWORD': 'ca02a445023b31aed4c0f7c3095571b183429cf33a027378f31bcca5cb808fe4',
-        'HOST': 'ec2-107-20-195-181.compute-1.amazonaws.com',
+        'NAME': config['DB_NAME'],
+        'USER': config['USER'],
+        'PASSWORD': config['DB_PASS'],
+        'HOST': config['DB_HOST'],
         'PORT': '5432',
     }
 }

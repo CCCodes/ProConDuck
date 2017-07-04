@@ -14,10 +14,10 @@ def main(request):
     latest_review_list = Review.objects.order_by('-date')
     all_ads = Advertisement.objects
     ads = [
-        all_ads.filter(slot=AdSlot.objects.get(pk=1)),
-        all_ads.filter(slot=AdSlot.objects.get(pk=2)),
-        all_ads.filter(slot=AdSlot.objects.get(pk=3)),
-        all_ads.filter(slot=AdSlot.objects.get(pk=4)),
+        all_ads.filter(slot=AdSlot.objects.get(number=1)),
+        all_ads.filter(slot=AdSlot.objects.get(number=2)),
+        all_ads.filter(slot=AdSlot.objects.get(number=3)),
+        all_ads.filter(slot=AdSlot.objects.get(number=4)),
     ]
     ad_file_paths = []
 

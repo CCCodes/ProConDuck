@@ -53,11 +53,12 @@ class Review(models.Model):
 
 
 class AdSlot(models.Model):
+    number = models.IntegerField(default=1)
     image_width = models.IntegerField()
     image_height = models.IntegerField()
 
     def __str__(self):
-        return "%d - %d x %d" % (self.pk, self.image_width, self.image_height)
+        return "%d - %d x %d" % (self.number, self.image_width, self.image_height)
 
 
 class Advertisement(models.Model):
