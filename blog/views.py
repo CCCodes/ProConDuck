@@ -19,16 +19,15 @@ def main(request):
         all_ads.filter(slot=AdSlot.objects.get(pk=3)),
         all_ads.filter(slot=AdSlot.objects.get(pk=4)),
     ]
+    ad_file_paths = []
 
     for i in range(4):
-        ads[i] = ads[i][randint(0, len(ads[i])-1)].image.name[12:]
+        ad_file_paths[i] = ads[i][randint(0, len(ads[i])-1)].image.name[12:]
 
     context = {
         'latest_review_list': latest_review_list,
-        'ad1': ads[0],
-        'ad2': ads[1],
-        'ad3': ads[2],
-        'ad4': ads[3],
+        'ad_file_paths': ad_file_paths,
+        'ads': ads,
     }
 
     return render(request, 'blog/main.html', context)
