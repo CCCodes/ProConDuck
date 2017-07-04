@@ -26,6 +26,8 @@ class Product(models.Model):
 
 class Review(models.Model):
 
+    featured = models.BooleanField(default=False)
+
     # cascade will delete reviews if product is deleted
     # protect only lets you delete product if all reviews are deleted
     product = models.ForeignKey(Product, on_delete=models.PROTECT)

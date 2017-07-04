@@ -2,9 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Review
 
@@ -20,6 +20,6 @@ def main(request):
 
 def detail(request, review_id):
     context = {
-        'review': Review.objects.get(pk=review_id),
+        'review': get_object_or_404(Review, pk=review_id),
     }
     return render(request, 'blog/detail.html', context)

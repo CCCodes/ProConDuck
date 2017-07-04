@@ -9,7 +9,8 @@
 <ul>
     {% for review in latest_review_list %}
     <li>
-        <a href="/blog/{{ review.id }}/">{{ review.title }}</a>
+        <a href="/blog/{{ review.id }}/">{{ review.title }}</a><br/>
+        {{ review.date }} by {{ review.reviewer_name }}
     </li>
     {% endfor %}
 </ul>
