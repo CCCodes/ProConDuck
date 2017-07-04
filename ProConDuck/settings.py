@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'asi204)thkj^1ec)etut*n3bpuh58p2d7xys^9b17u()7!%a*x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
                  'www.proconduck.com',
