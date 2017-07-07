@@ -4,8 +4,8 @@ from django.shortcuts import render
 from random import randint
 
 from django.http import HttpResponse, Http404
-from django.template import loader
-from django.shortcuts import render, get_object_or_404
+from django.template import loader, RequestContext
+from django.shortcuts import render, get_object_or_404, render_to_response
 
 from .models import *
 
@@ -39,3 +39,14 @@ def detail(request, review_id):
         'review': get_object_or_404(Review, pk=review_id),
     }
     return render(request, 'blog/single_page.html', context)
+
+
+def contact(request):
+    return render(request, 'blog/contact.html', {})
+
+
+def handler404(request):
+    response = render_to_response('blog/404.html',{},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
