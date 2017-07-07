@@ -159,4 +159,4 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-ADMINS = (('Caitlin Coolie', 'proconduck@gmail.com'),)
+ADMINS = [('Caitlin', 'proconduck@gmail.com'), ]
