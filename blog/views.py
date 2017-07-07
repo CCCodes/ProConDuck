@@ -38,4 +38,4 @@ def detail(request, review_id):
     context = {
         'review': get_object_or_404(Review, pk=review_id),
     }
-    return render(request, 'blog/detail.html', context)
+    return render(request, 'blog/single_page.html', context)
