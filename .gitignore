@@ -11,3 +11,4 @@ blog/migrations/__pycache__/
 venv/
 .gitignore
 /db.sqlite3
+/blog/migrations
