@@ -4,7 +4,7 @@ from django.shortcuts import render
 from random import randint
 
 from django.http import HttpResponse, Http404
-from django.template import loader, RequestContext
+from django.template import loader, RequestContext, Context
 from django.shortcuts import render, get_object_or_404, render_to_response
 
 from .models import *
@@ -45,8 +45,16 @@ def contact(request):
     return render(request, 'blog/contact.html', {})
 
 
-def handler404(request):
-    response = render_to_response('blog/404.html',{},
-                                  context_instance=RequestContext(request))
-    response.status_code = 404
-    return response
+def error404(request):
+    # response = render_to_response('blog/404.html', {},
+    #                                context_instance=RequestContext(request))
+    # response.status_code = 404
+    template = loader.get_template('404.htm')
+    context = Context({
+        'message': 'All: %s' % request,
+        })
+
+    # 3. Return Template for this view + Data
+    return HttpResponse(content=template.render(context),
+                        content_type='text/html; charset=utf-8', status=404)
+
