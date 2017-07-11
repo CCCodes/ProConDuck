@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from random import randint
+import datetime
 
 from django.http import HttpResponse, Http404
 from django.template import loader, RequestContext, Context
@@ -25,10 +26,45 @@ def main(request):
         ads[i] = ads[i][randint(0, len(ads[i])-1)]
         ad_file_paths.append(ads[i].image.name[12:])
 
+    weekdays = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+    ]
+    months = [
+        0,
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ]
+
+    today = datetime.datetime.today()
+
+    date = {
+        'weekday': weekdays[today.weekday()],
+        'month': months[today.month],
+        'date': today.day,
+        'year': today.year,
+    }
+
     context = {
         'latest_review_list': latest_review_list,
         'ad_file_paths': ad_file_paths,
         'ads': ads,
+        'date': date,
     }
 
     return render(request, 'blog/main.html', context)
@@ -49,7 +85,7 @@ def error404(request):
     # response = render_to_response('blog/404.html', {},
     #                                context_instance=RequestContext(request))
     # response.status_code = 404
-    template = loader.get_template('404.htm')
+    template = loader.get_template('blog/404.html')
     context = Context({
         'message': 'All: %s' % request,
         })
