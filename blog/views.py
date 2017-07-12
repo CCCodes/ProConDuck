@@ -82,7 +82,7 @@ def contact(request):
 
 
 def error404(request):
-    # response = render_to_response('blog/404.html', {},
+    # response = render_to_response('blog/404', {},
     #                                context_instance=RequestContext(request))
     # response.status_code = 404
     template = loader.get_template('blog/404.html')

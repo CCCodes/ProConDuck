@@ -18,9 +18,21 @@ class Company(models.Model):
         return self.name
 
 
+class Category(models.Model):
+
+    name = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
 
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
     link = models.URLField()
 
@@ -95,15 +107,4 @@ class Advertisement(models.Model):
         return super(Advertisement, self).save(*args, **kwargs)
 
 
-# @receiver(post_delete, sender=Advertisement)
-# def advertisement_delete(sender, instance, **kwargs):
-#     # Pass false so FileField doesn't save the model.
-#     if instance.file:
-#         instance.file.delete(False)
 
-
-# @receiver(post_delete, sender=Review)
-# def review_delete(sender, instance, **kwargs):
-#     # Pass false so FileField doesn't save the model.
-#     if instance.file:
-#         instance.file.delete(False)
