@@ -7,7 +7,6 @@ ProConDuck/Lib/
 ProConDuck/__pycache__/
 ProConDuck/tcl/
 blog/__pycache__/
-blog/migrations/__pycache__/
 venv/
 .gitignore
 /db.sqlite3

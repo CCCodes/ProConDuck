@@ -32,7 +32,8 @@ class Category(models.Model):
 class Product(models.Model):
 
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT,
+                                 null=True, blank=True, default=0)
     name = models.CharField(max_length=100)
     link = models.URLField()
 
@@ -91,7 +92,7 @@ class Advertisement(models.Model):
         except Advertisement.DoesNotExist:
             # object is not in db, nothing to worry about
             return
-        # is the save due to an update of the actual image file?
+        # is the save due to an update of fathe actual image file?
         if obj.image and self.image and obj.image != self.image:
             # delete the old image file from the storage in favor of the new file
             obj.image.delete()

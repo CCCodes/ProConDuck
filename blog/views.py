@@ -26,6 +26,17 @@ def main(request):
         ads[i] = ads[i][randint(0, len(ads[i])-1)]
         ad_file_paths.append(ads[i].image.name[12:])
 
+    context = {
+        'latest_review_list': latest_review_list,
+        'ad_file_paths': ad_file_paths,
+        'ads': ads,
+        'date': get_date(),
+    }
+
+    return render(request, 'blog/main.html', context)
+
+
+def get_date():
     weekdays = [
         'Monday',
         'Tuesday',
@@ -50,24 +61,14 @@ def main(request):
         'November',
         'December',
     ]
-
     today = datetime.datetime.today()
-
     date = {
         'weekday': weekdays[today.weekday()],
         'month': months[today.month],
         'date': today.day,
         'year': today.year,
     }
-
-    context = {
-        'latest_review_list': latest_review_list,
-        'ad_file_paths': ad_file_paths,
-        'ads': ads,
-        'date': date,
-    }
-
-    return render(request, 'blog/main.html', context)
+    return date
 
 
 def detail(request, review_id):
@@ -78,7 +79,7 @@ def detail(request, review_id):
 
 
 def contact(request):
-    return render(request, 'blog/contact.html', {})
+    return render(request, 'blog/contact.html', {'date': get_date()})
 
 
 def error404(request):
