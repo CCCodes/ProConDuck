@@ -31,6 +31,7 @@ def main(request):
         'ad_file_paths': ad_file_paths,
         'ads': ads,
         'date': get_date(),
+        'categories': Category.objects.all(),
     }
 
     return render(request, 'blog/main.html', context)

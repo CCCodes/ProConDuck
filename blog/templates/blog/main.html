@@ -58,8 +58,10 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="#"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="#">Technology</a></li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
+            {% for category in categories %}
+          <li><a href="#">{{ category }}</a></li>
+            {% endfor %}
+{% comment %}          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Android</a></li>
               <li><a href="#">Samsung</a></li>
@@ -67,9 +69,7 @@
               <li><a href="#">Walton Mobile</a></li>
               <li><a href="#">Sympony</a></li>
             </ul>
-          </li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Tablets</a></li>
+          </li>{% endcomment %}
           <li><a href="contact-us">Contact Us</a></li>
           <li><a href="error404">404 Page</a></li>
         </ul>
@@ -355,19 +355,19 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="category">
+                  {% if categories %}
                 <ul>
-                  <li class="cat-item"><a href="#">Sports</a></li>
-                  <li class="cat-item"><a href="#">Fashion</a></li>
-                  <li class="cat-item"><a href="#">Business</a></li>
-                  <li class="cat-item"><a href="#">Technology</a></li>
-                  <li class="cat-item"><a href="#">Games</a></li>
-                  <li class="cat-item"><a href="#">Life &amp; Style</a></li>
-                  <li class="cat-item"><a href="#">Photography</a></li>
+                  {% for category in categories %}
+                  <li class="cat-item"><a href="#">{{ category.name }}</a></li>
+                  {% endfor %}
                 </ul>
+                  {% else %}
+                      No categories yet.
+                  {% endif %}
               </div>
               <div role="tabpanel" class="tab-pane" id="video">
                 <div class="vide_area">
-                  <iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+                  <iframe width="100%" height="250" src="http://www.youtube.com/embed/QWJW5yYN0zU?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="comments">
@@ -399,16 +399,19 @@
           <div class="single_sidebar wow fadeInDown">
             <h2><span>Sponsor</span></h2>
             <a class="sideAdd" href="#"><img src="{% static 'blog/images/add_img.jpg' %}" alt=""></a> </div>
-          <div class="single_sidebar wow fadeInDown">
+{% comment %}          <div class="single_sidebar wow fadeInDown">
             <h2><span>Category Archive</span></h2>
+              {% if categories %}
             <select class="catgArchive">
               <option>Select Category</option>
-              <option>Life styles</option>
-              <option>Sports</option>
-              <option>Technology</option>
-              <option>Treads</option>
+              {% for category in categories %}
+              <option>{{ category }}</option>
+              {% endfor %}
             </select>
-          </div>
+              {% else %}
+                  No categories yet.
+              {% endif %}
+          </div>{% endcomment %}
           <div class="single_sidebar wow fadeInDown">
             <h2><span>Links</span></h2>
             <ul>
@@ -427,27 +430,22 @@
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInLeftBig">
-            <h2>Flickr Images</h2>
+            <h2>Never miss out on an exclusive discount</h2>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInDown">
-            <h2>Tag</h2>
-            <ul class="tag_nav">
+            <h2>Become a Reviewer</h2>
+{% comment %}            <ul class="tag_nav">
               <li><a href="#">Games</a></li>
               <li><a href="#">Sports</a></li>
               <li><a href="#">Fashion</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Life &amp; Style</a></li>
-              <li><a href="#">Technology</a></li>
-              <li><a href="#">Photo</a></li>
-              <li><a href="#">Slider</a></li>
-            </ul>
+            </ul>{% endcomment %}
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInRightBig">
-            <h2>Contact</h2>
+            <h2>Become a Seller</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             <address>
             Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
@@ -457,8 +455,8 @@
       </div>
     </div>
     <div class="footer_bottom">
-      <p class="copyright">Copyright &copy; 2045 <a href="#">NewsFeed</a></p>
-      <p class="developer">Developed By Wpfreeware</p>
+      <p class="copyright">Copyright &copy; 2017 <a href="#">NewsFeed</a></p>
+        <p class="developer"><a href="#">Terms of Service</a></p>
     </div>
   </footer>
 </div>

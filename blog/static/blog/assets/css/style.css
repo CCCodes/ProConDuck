@@ -202,8 +202,8 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .footer_bottom{float:left; display:inline; width:100%; padding:10px 30px; background-color:#303030; color:#ccc}
 .copyright{float:left; width:50%; padding-top:5px; text-align:left}
 .copyright a{color:#ccc}
-.developer{float:right; width:50%; text-align:right; padding-top:5px; color:#222}
-.developer a{color:#222}
+.developer{float:right; width:50%; text-align:right; padding-top:5px; color:#ccc}
+.developer a{color:#ccc}
 .catgArchive{border:medium none; color:#fff; display:inline; float:left; font-weight:bold; padding:10px 15px; width:100%; margin-top:15px}
 .catgArchive option{background-color:#fff; font-weight:normal; padding:5px; color:#d083cf}
 .nav-tabs > li{display:inline-block; float:none; width:32.55%}
