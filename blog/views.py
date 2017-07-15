@@ -75,12 +75,18 @@ def get_date():
 def detail(request, review_id):
     context = {
         'review': get_object_or_404(Review, pk=review_id),
+        'date': get_date(),
+        'categories': Category.objects.all(),
     }
     return render(request, 'blog/single_page.html', context)
 
 
 def contact(request):
-    return render(request, 'blog/contact.html', {'date': get_date()})
+    context = {
+        'date': get_date(),
+        'categories': Category.objects.all(),
+    }
+    return render(request, 'blog/contact.html', context)
 
 
 def error404(request):
@@ -90,6 +96,8 @@ def error404(request):
     template = loader.get_template('blog/404.html')
     context = Context({
         'message': 'All: %s' % request,
+        'categories': Category.objects.all(),
+        'date': get_date(),
         })
 
     # 3. Return Template for this view + Data
