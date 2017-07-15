@@ -74,7 +74,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="#"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+          <li class="active"><a href="../"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
             {% for category in categories %}
           <li><a href="#">{{ category }}</a></li>
             {% endfor %}
@@ -238,15 +238,15 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="category">
+                  {% if categories %}
                 <ul>
-                  <li class="cat-item"><a href="#">Sports</a></li>
-                  <li class="cat-item"><a href="#">Fashion</a></li>
-                  <li class="cat-item"><a href="#">Business</a></li>
-                  <li class="cat-item"><a href="#">Technology</a></li>
-                  <li class="cat-item"><a href="#">Games</a></li>
-                  <li class="cat-item"><a href="#">Life &amp; Style</a></li>
-                  <li class="cat-item"><a href="#">Photography</a></li>
+                  {% for category in categories %}
+                  <li class="cat-item"><a href="#">{{ category.name }}</a></li>
+                  {% endfor %}
                 </ul>
+                  {% else %}
+                      No categories yet.
+                  {% endif %}
               </div>
               <div role="tabpanel" class="tab-pane" id="video">
                 <div class="vide_area">
