@@ -53,7 +53,7 @@ class Review(models.Model):
     reviewer_name = models.CharField(max_length=50)
     date = models.DateField(auto_now=True)
     score = models.IntegerField()
-    image = models.ImageField(blank=True, upload_to="blog/static/blog/images")
+    image = models.ImageField(blank=True, upload_to="images")
     video_link = models.URLField(blank=True)
     review = models.TextField()
 
@@ -79,7 +79,7 @@ class Advertisement(models.Model):
     selected = models.BooleanField(default=True)
     slot = models.ForeignKey(AdSlot, on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="blog/static/blog/images")
+    image = models.ImageField(upload_to="images")
     link = models.URLField()
 
     def __str__(self):

@@ -19,7 +19,7 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
 <meta name="theme-color" content="#ffffff">
-<title>Pro-Con Duck</title>
+<title>Pro Con Duck</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,7 +61,7 @@
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="header_bottom">
-          <div class="logo_area"><a href="#" class="logo"><img src="{% static 'blog/images/logo.png' %}" width="176.55" height="100" alt="Pro-Con Duck"></a></div>
+          <div class="logo_area"><a href="#" class="logo"><img src="{% static 'blog/images/logo.png' %}" width="176.55" height="100" alt="Pro Con Duck"></a></div>
           <div class="add_banner"><a href="#"><img src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}" alt=""></a></div>
         </div>
       </div>
@@ -130,15 +130,15 @@
         <div class="slick_slider">
           {%  if latest_review_list %}
           {% for review in latest_review_list %}
-          <div class="single_iteam"> <a href="{{ review.id }}"> <img src="{% static 'blog/images/slider_img4.jpg' %}" alt=""></a>
+          <div class="single_iteam"> <a href="{{ review.id }}"> <img src="/media/{{ review.image }}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href="{{ review.id }}">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-              <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
+              <h2><a class="slider_tittle" href="{{ review.id }}">{{ review.title }}</a></h2>
+              <p>{{ review.review }}</p>
             </div>
           </div>
           {% endfor %}
           {% else %}
-          <div class="single_iteam"> <a href="#"> <img src="{% static 'blog/images/slider_img4.jpg' %}" alt=""></a>
+          <div class="single_iteam"> <a href="#"> <img src="/media/{{ review.image }}" alt=""></a>
             <div class="slider_article">
               <h2><a class="slider_tittle" href="{{ review.id }}">No Reviews</a></h2>
               <p>We're sorry; there are no reviews available.</p>
@@ -472,7 +472,7 @@
       </div>
     </div>
     <div class="footer_bottom">
-      <p class="copyright">Copyright &copy; 2017 <a href="#">Pro-Con Duck</a></p>
+      <p class="copyright">Copyright &copy; 2017 <a href="#">Pro Con Duck</a></p>
       <p class="developer"><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
     </div>
   </footer>
