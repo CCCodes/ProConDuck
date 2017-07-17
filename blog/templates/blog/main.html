@@ -421,6 +421,7 @@
               {% if categories %}
             <select class="catgArchive">
               <option>Select Category</option>
+
               {% for category in categories %}
               <option>{{ category }}</option>
               {% endfor %}
@@ -448,14 +449,17 @@
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInLeftBig">
             <h2>Never miss an exclusive discount</h2>
-
-
+            <form action="#" class="contact_form">
+              <input class="form-control" type="text" placeholder="First Name*">
+              <input class="form-control" type="email" placeholder="Email*">
+              <input type="submit" value="Send Message">
+            </form>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInDown">
             <h2>Become a Reviewer</h2>
-            <p class="reviewerseller">Try the latest technology for free - all you have to do is share your opinion! Contact us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a> for more information.</p>
+            <p class="reviewerseller">Try the latest technology and get awesome perks! Email us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a> or contact us <a href="contact-us">here</a>.</p>
 {% comment %}            <ul class="tag_nav">
               <li><a href="#">Games</a></li>
               <li><a href="#">Sports</a></li>
@@ -466,7 +470,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInRightBig">
             <h2>Join as a Seller</h2>
-            <p class="reviewerseller">Feel like your products aren't getting the attention they deserve? We'll help you stand out - email us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>.</p>
+            <p class="reviewerseller">Feel like your products aren't getting the attention they deserve? We'll help you stand out - email us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a> or contact us <a href="contact-us">here</a>.</p>
           </div>
         </div>
       </div>
