@@ -1,6 +1,8 @@
 import datetime
 
+from django.core.urlresolvers import reverse
 from django.db.models import Avg
+from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.db import models
 
@@ -66,6 +68,15 @@ class Review(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('review', (), {
+            'slug': self.slug,
+            'id': self.id,
+        })
+
+    def slug(self):
+        return slugify(self.title)
 
     def was_published_recently(self):
         now = timezone.now()

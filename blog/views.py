@@ -79,7 +79,7 @@ def get_date():
     return date
 
 
-def detail(request, review_id):
+def detail(request, slug, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.views += 1
     review.save()
