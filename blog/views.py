@@ -83,7 +83,7 @@ def detail(request, slug, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.views += 1
     review.save()
-    top_rated_products = Product.objects.order_by("-")
+    top_rated_products = Product.objects.order_by("-score")
     context = {
         'review': review,
         'date': get_date(),
