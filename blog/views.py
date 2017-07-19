@@ -2,7 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 from random import randint
-import datetime
 
 from django.http import HttpResponse, Http404
 from django.template import loader, RequestContext, Context
@@ -12,7 +11,8 @@ from .models import *
 
 
 def main(request):
-    latest_review_list = Review.objects.order_by('-date')
+    latest_review_list = Review.objects.order_by('-date')[:4]
+    popular_review_list = Review.objects.order_by('-views')[:5]
     all_ads = Advertisement.objects
     ads = [
         all_ads.filter(slot=AdSlot.objects.get(number=1)),
@@ -22,12 +22,19 @@ def main(request):
     ]
     ad_file_paths = []
 
+    products = Product.objects.all()
+
+    for product in products:
+        product.update_rating_avg()
+
     for i in range(4):
         ads[i] = ads[i][randint(0, len(ads[i])-1)]
         ad_file_paths.append(ads[i].image.name[12:])
 
     context = {
         'latest_review_list': latest_review_list,
+        'popular_review_list': popular_review_list,
+        'top_rated_products': Product.objects.order_by('-score')[:5],
         'ad_file_paths': ad_file_paths,
         'ads': ads,
         'date': get_date(),
@@ -73,8 +80,12 @@ def get_date():
 
 
 def detail(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    review.views += 1
+    review.save()
+    top_rated_products = Product.objects.order_by("-")
     context = {
-        'review': get_object_or_404(Review, pk=review_id),
+        'review': review,
         'date': get_date(),
         'categories': Category.objects.all(),
     }

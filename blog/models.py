@@ -1,6 +1,6 @@
 import datetime
-import os
 
+from django.db.models import Avg
 from django.utils import timezone
 from django.db import models
 
@@ -35,10 +35,16 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT,
                                  null=True, blank=True, default=0)
     name = models.CharField(max_length=100)
+    score = models.FloatField(default=0)
     link = models.URLField()
+    image = models.ImageField(blank=True, upload_to="images")
 
     def __str__(self):
         return self.name
+
+    def update_rating_avg(self):
+        self.score = self.review_set.aggregate(Avg('score'))['score__avg']
+        self.save()
 
 
 class Review(models.Model):
@@ -51,11 +57,12 @@ class Review(models.Model):
 
     title = models.CharField(max_length=100)
     reviewer_name = models.CharField(max_length=50)
-    date = models.DateField(auto_now=True)
-    score = models.IntegerField()
+    date = models.DateField(auto_now_add=True)
+    score = models.IntegerField(default=10)
     image = models.ImageField(blank=True, upload_to="images")
     video_link = models.URLField(blank=True)
     review = models.TextField()
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
 {% load staticfiles %} {% load static %}
+<html>
 <head>
 <link rel="apple-touch-icon" sizes="57x57" href="{% static 'blog/images/favicon/apple-icon-57x57.png' %}">
 <link rel="apple-touch-icon" sizes="60x60" href="{% static 'blog/images/favicon/apple-icon-60x60.png' %}">
@@ -153,31 +153,13 @@
           <div class="latest_post_container">
             <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
             <ul class="latest_postnav">
+              {% for product in top_rated_products %}
               <li>
-                <div class="media"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                <div class="media"> <a href="#" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                  <div class="media-body"> <a href="#" class="catg_title"> {{ product.name }}</a> </div>
                 </div>
               </li>
-              <li>
-                <div class="media"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
+              {% endfor %}
             </ul>
             <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
           </div>
@@ -194,35 +176,22 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
-                  <figure class="bsbig_fig"> <a href="{{ review.id }}" class="featured_img"> <img alt="" src="{% static 'blog/images/featured_img1.jpg' %}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="{{ review.id }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                  <figure class="bsbig_fig"> <a href="{{ review.id }}" class="featured_img"> <img alt="" src="/media/{{ popular_review_list.0.image }}"> <span class="overlay"></span> </a>
+                    <figcaption> <a href="{{ review.id }}">{{ popular_review_list.0.title }}</a> </figcaption>
+                    <p>{{ popular_review_list.0.review }}</p>
                   </figure>
                 </li>
               </ul>
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
+                {% for review in popular_review_list|slice:"1:" %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title">{{ review.title }}</a> </div>
                   </div>
                 </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                  </div>
-                </li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -342,26 +311,13 @@
           <div class="single_sidebar">
             <h2><span>Latest Reviews</span></h2>
             <ul class="spost_nav">
+              {% for review in latest_review_list %}
               <li>
-                <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
+                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title">{{ review.date }}</a> </div>
                 </div>
               </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
+              {% endfor %}
             </ul>
           </div>
           <div class="single_sidebar">
