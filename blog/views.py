@@ -11,7 +11,7 @@ from .models import *
 
 
 def main(request):
-    latest_review_list = Review.objects.order_by('-date')[:4]
+    latest_review_list = Review.objects.order_by('-created')[:4]
     popular_review_list = Review.objects.order_by('-views')[:5]
     all_ads = Advertisement.objects
     ads = [

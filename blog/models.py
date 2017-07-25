@@ -59,12 +59,15 @@ class Review(models.Model):
 
     title = models.CharField(max_length=100)
     reviewer_name = models.CharField(max_length=50)
-    date = models.DateField(auto_now_add=True)
+    # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
     image = models.ImageField(blank=True, upload_to="images")
     video_link = models.URLField(blank=True)
     review = models.TextField()
-    views = models.IntegerField(default=0)
+    views = models.IntegerField(default=0, editable=False)
+
+    created = models.DateTimeField(editable=False)
+    modified = models.DateTimeField()
 
     def __str__(self):
         return self.title
@@ -80,7 +83,13 @@ class Review(models.Model):
 
     def was_published_recently(self):
         now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.date <= now
+        return now - datetime.timedelta(days=1) <= self.created <= now
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.created = timezone.now()
+        self.modified = timezone.now()  # will change if views gets updated
+        return super(Review, self).save(*args, **kwargs)
 
 
 class AdSlot(models.Model):
