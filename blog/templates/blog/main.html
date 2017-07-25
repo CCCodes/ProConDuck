@@ -140,7 +140,7 @@
           {% else %}
           <div class="single_iteam"> <a href="#"> <img src="/media/{{ review.image }}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href=" {{ review.slug }}, {{ review.id }}}">No Reviews</a></h2>
+              <h2><a class="slider_tittle" href="{{ review.id }}/{{ review.slug }}">No Reviews</a></h2>
               <p>We're sorry; there are no reviews available.</p>
             </div>
           </div>
@@ -176,8 +176,8 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
-                  <figure class="bsbig_fig"> <a href=" {{ review.slug }}, {{ review.id }}}" class="featured_img"> <img alt="" src="/media/{{ popular_review_list.0.image }}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href=" {{ review.slug }}, {{ review.id }}}">{{ popular_review_list.0.title }}</a> </figcaption>
+                  <figure class="bsbig_fig"> <a href="{{ review.id }}/{{ review.slug }}" class="featured_img"> <img alt="" src="/media/{{ popular_review_list.0.image }}"> <span class="overlay"></span> </a>
+                    <figcaption> <a href="{{ review.id }}/{{ review.slug }}">{{ popular_review_list.0.title }}</a> </figcaption>
                     <p>{{ popular_review_list.0.review }}</p>
                   </figure>
                 </li>
@@ -187,8 +187,8 @@
               <ul class="spost_nav">
                 {% for review in popular_review_list|slice:"1:" %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href=" {{ review.slug }}, {{ review.id }}}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
-                    <div class="media-body"> <a href=" {{ review.slug }}, {{ review.id }}}" class="catg_title">{{ review.title }}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.title }}</a> </div>
                   </div>
                 </li>
                 {% endfor %}
