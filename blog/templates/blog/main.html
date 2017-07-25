@@ -130,9 +130,9 @@
         <div class="slick_slider">
           {%  if latest_review_list %}
           {% for review in latest_review_list %}
-          <div class="single_iteam"> <a href="{{ review.id }}"> <img src="/media/{{ review.image }}" alt=""></a>
+          <div class="single_iteam"> <a href="{{ review.id }}/{{ review.slug }}"> <img src="/media/{{ review.image }}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href="{{ review.id }}">{{ review.title }}</a></h2>
+              <h2><a class="slider_tittle" href="{{ review.id }}/{{ review.slug }}">{{ review.title }}</a></h2>
               <p>{{ review.review }}</p>
             </div>
           </div>
@@ -140,7 +140,7 @@
           {% else %}
           <div class="single_iteam"> <a href="#"> <img src="/media/{{ review.image }}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href="{{ review.id }}">No Reviews</a></h2>
+              <h2><a class="slider_tittle" href="{{ review.id }}/{{ review.slug }}">No Reviews</a></h2>
               <p>We're sorry; there are no reviews available.</p>
             </div>
           </div>
@@ -176,8 +176,8 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
-                  <figure class="bsbig_fig"> <a href="{{ review.id }}" class="featured_img"> <img alt="" src="/media/{{ popular_review_list.0.image }}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="{{ review.id }}">{{ popular_review_list.0.title }}</a> </figcaption>
+                  <figure class="bsbig_fig"> <a href="{{ review.id }}/{{ review.slug }}" class="featured_img"> <img alt="" src="/media/{{ popular_review_list.0.image }}"> <span class="overlay"></span> </a>
+                    <figcaption> <a href="{{ review.id }}/{{ review.slug }}">{{ popular_review_list.0.title }}</a> </figcaption>
                     <p>{{ popular_review_list.0.review }}</p>
                   </figure>
                 </li>
@@ -187,8 +187,8 @@
               <ul class="spost_nav">
                 {% for review in popular_review_list|slice:"1:" %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title">{{ review.title }}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.title }}</a> </div>
                   </div>
                 </li>
                 {% endfor %}
@@ -201,31 +201,31 @@
                 <h2><span>Fashion</span></h2>
                 <ul class="business_catgnav wow fadeInDown">
                   <li>
-                    <figure class="bsbig_fig"> <a href="{{ review.id }}" class="featured_img"> <img alt="" src="{% static 'blog/images/featured_img2.jpg' %}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="{{ review.id }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
+                    <figure class="bsbig_fig"> <a href="{{ review.id }}/{{ review.slug }}" class="featured_img"> <img alt="" src="{% static 'blog/images/featured_img2.jpg' %}"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="{{ review.id }}/{{ review.slug }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
                       <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
                     </div>
                   </li>
                 </ul>
@@ -236,31 +236,31 @@
                 <h2><span>Technology</span></h2>
                 <ul class="business_catgnav">
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{ review.id }}" class="featured_img"> <img alt="" src="{% static 'blog/images/featured_img3.jpg' %}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="{{ review.id }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
+                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="featured_img"> <img alt="" src="{% static 'blog/images/featured_img3.jpg' %}"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="{{ review.id }}/{{ review.slug }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
                       <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
                     </div>
                   </li>
                 </ul>
@@ -272,8 +272,8 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav">
                 <li>
-                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="{{ review.id }}"> <img src="{% static 'blog/images/featured_img1.jpg' %}" alt=""> <span class="overlay"></span> </a>
-                    <figcaption> <a href="{{ review.id }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
+                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="{{ review.id }}/{{ review.slug }}"> <img src="{% static 'blog/images/featured_img1.jpg' %}" alt=""> <span class="overlay"></span> </a>
+                    <figcaption> <a href="{{ review.id }}/{{ review.slug }}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
                     <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
                   </figure>
                 </li>
@@ -282,23 +282,23 @@
             <div class="single_post_content_right">
               <ul class="spost_nav">
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
                   </div>
                 </li>
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
                   </div>
                 </li>
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
                   </div>
                 </li>
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
                   </div>
                 </li>
               </ul>
@@ -314,7 +314,7 @@
               {% for review in latest_review_list %}
               <li>
                 <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.created }}</a> </div>
+                  <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.date }}</a> </div>
                 </div>
               </li>
               {% endfor %}
@@ -346,23 +346,23 @@
               <div role="tabpanel" class="tab-pane" id="comments">
                 <ul class="spost_nav">
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
                     </div>
                   </li>
                   <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
                     </div>
                   </li>
                 </ul>
