@@ -1,5 +1,6 @@
 import datetime
 
+import django
 from django.core.urlresolvers import reverse
 from django.db.models import Avg
 from django.template.defaultfilters import slugify
@@ -61,13 +62,13 @@ class Review(models.Model):
     reviewer_name = models.CharField(max_length=50)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
-    image = models.ImageField(blank=True, upload_to="images")
+    image = models.ImageField(blank=True, upload_to="")
     video_link = models.URLField(blank=True)
     review = models.TextField()
     views = models.IntegerField(default=0, editable=False)
 
-    created = models.DateTimeField(editable=False)
-    modified = models.DateTimeField()
+    created = models.DateField(editable=False, default=django.utils.timezone.now)
+    modified = models.DateField(blank=True, null=True, default="2017-07-26 07:16")
 
     def __str__(self):
         return self.title
