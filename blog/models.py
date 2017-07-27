@@ -67,8 +67,8 @@ class Review(models.Model):
     review = models.TextField()
     views = models.IntegerField(default=0, editable=False)
 
-    created = models.DateField(editable=False, default=django.utils.timezone.now)
-    modified = models.DateField(blank=True, null=True, default="2017-07-26 07:16")
+    created = models.DateTimeField(editable=False, default=django.utils.timezone.now)
+    modified = models.DateTimeField(blank=True, null=True, default=django.utils.timezone.now)
 
     def __str__(self):
         return self.title

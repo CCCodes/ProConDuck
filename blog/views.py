@@ -17,8 +17,6 @@ def main(request):
     ads = [
         all_ads.filter(slot=AdSlot.objects.get(number=1)),
         all_ads.filter(slot=AdSlot.objects.get(number=2)),
-        all_ads.filter(slot=AdSlot.objects.get(number=3)),
-        all_ads.filter(slot=AdSlot.objects.get(number=4)),
     ]
     ad_file_paths = []
 
@@ -27,7 +25,7 @@ def main(request):
     for product in products:
         product.update_rating_avg()
 
-    for i in range(4):
+    for i in range(2):
         ads[i] = ads[i][randint(0, len(ads[i])-1)]
         ad_file_paths.append(ads[i].image.name[12:])
 
