@@ -177,7 +177,7 @@
               <ul class="business_catgnav  wow fadeInDown">
                 <li>
                   <figure class="bsbig_fig"> <a href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}" class="featured_img"> <img alt="" src="/media/{{ popular_review_list.0.image }}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="{{ review.id }}/{{ review.slug }}">{{ popular_review_list.0.title }}</a> </figcaption>
+                    <figcaption> <a href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}">{{ popular_review_list.0.title }}</a> </figcaption>
                     <p>{{ popular_review_list.0.review }}</p>
                   </figure>
                 </li>
@@ -314,7 +314,7 @@
               {% for review in latest_review_list %}
               <li>
                 <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.date }}</a> </div>
+                  <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.created }}</a> </div>
                 </div>
               </li>
               {% endfor %}

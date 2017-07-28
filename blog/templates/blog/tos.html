@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
 {% load staticfiles %} {% load static %}
+<html>
 <head>
 <link rel="apple-touch-icon" sizes="57x57" href="{% static 'blog/images/favicon/apple-icon-57x57.png' %}">
 <link rel="apple-touch-icon" sizes="60x60" href="{% static 'blog/images/favicon/apple-icon-60x60.png' %}">
@@ -19,7 +19,7 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
 <meta name="theme-color" content="#ffffff">
-<title>404 Not Found | Pro Con Duck</title>
+<title>Terms of Service | Pro Con Duck</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,7 +88,7 @@
             </ul>
           </li>{% endcomment %}
           <li><a href="../contact-us">Contact Us</a></li>
-          <li><a href="#">404 Page</a></li>
+          <li><a href="../error404">404 Page</a></li>
         </ul>
       </div>
     </nav>
@@ -128,13 +128,47 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="left_content">
-          <div class="error_page">
-            <h3>We Are Sorry</h3>
-            <h1>404</h1>
-            <p>Unfortunately, the page you were looking for could not be found. It may be temporarily unavailable, moved or no longer exists</p>
-            <span></span> <a href="../" class="wow fadeInLeftBig">Go to home page</a> </div>
+          <div class="single_page">
+            <ol class="breadcrumb">
+              <li><a href="../">Home</a></li>
+              <li><a href="#">{{ review.product.category.name }}</a></li>
+            </ol>
+            <h1>Terms of Service ("Terms")</h1>
+            <p>Last updated: July 26, 2017
+
+Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the https://www.proconduck.com website (the "Service") operated by Pro Con Duck ("us", "we", or "our").
+
+Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
+
+By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.</p>
+              <h3>Links To Other Web Sites</h3>
+              <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by Pro Con Duck.
+
+Pro Con Duck has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that Pro Con Duck shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+
+We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.</p>
+              <h3>Governing Law</h3>
+              <p>These Terms shall be governed and construed in accordance with the laws of New York, United States, without regard to its conflict of law provisions.
+
+Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.</p>
+              <h3>Changes</h3>
+              <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 15 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+
+By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+              <h3>Contact Us</h3>
+              <p>If you have any questions about these Terms, please contact us.</p>
+            </div>
         </div>
       </div>
+      <nav class="nav-slit"> <a class="prev" href="#"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+        <div>
+          <h3>City Lights</h3>
+          <img src="{% static 'blog/images/post_img1.jpg' %}" alt=""/> </div>
+        </a> <a class="next" href="#"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+        <div>
+          <h3>Street Hills</h3>
+          <img src="{% static 'blog/images/post_img1.jpg' %}" alt=""/> </div>
+        </a> </nav>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
           <div class="single_sidebar">
@@ -160,6 +194,77 @@
                   <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
                 </div>
               </li>
+            </ul>
+          </div>
+          <div class="single_sidebar">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
+              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
+              <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="category">
+                  {% if categories %}
+                <ul>
+                  {% for category in categories %}
+                  <li class="cat-item"><a href="#">{{ category.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                  {% else %}
+                      No categories yet.
+                  {% endif %}
+              </div>
+              <div role="tabpanel" class="tab-pane" id="video">
+                <div class="vide_area">
+                  <iframe width="100%" height="250" src="" data-src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="comments">
+                <ul class="spost_nav">
+                  <li>
+                    <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
+                      <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
+                      <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="single_sidebar wow fadeInDown">
+            <h2><span>Sponsor</span></h2>
+            <a class="sideAdd" href="#"><img src="{% static 'blog/images/add_img.jpg' %}" alt=""></a> </div>
+{% comment %}          <div class="single_sidebar wow fadeInDown">
+            <h2><span>Category Archive</span></h2>
+            <select class="catgArchive">
+              <option>Select Category</option>
+              <option>Life styles</option>
+              <option>Sports</option>
+              <option>Technology</option>
+              <option>Treads</option>
+            </select>
+          </div> {% endcomment %}
+          <div class="single_sidebar wow fadeInDown">
+            <h2><span>Links</span></h2>
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Rss Feed</a></li>
+              <li><a href="#">Login</a></li>
+              <li><a href="#">Life &amp; Style</a></li>
             </ul>
           </div>
         </aside>

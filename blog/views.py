@@ -90,6 +90,16 @@ def detail(request, slug, review_id):
     return render(request, 'blog/single_page.html', context)
 
 
+def tos(request, slug, review_id):
+    top_rated_products = Product.objects.order_by("-score")
+    context = {
+        'review': review,
+        'date': get_date(),
+        'categories': Category.objects.all(),
+    }
+    return render(request, 'blog/tos.html', context)
+
+
 def contact(request):
     context = {
         'date': get_date(),
