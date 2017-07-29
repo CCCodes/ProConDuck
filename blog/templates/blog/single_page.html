@@ -135,7 +135,7 @@
             </ol>
             <h1>{{ review.title }}</h1>
             <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>{{ review.reviewer_name }}</a> <span><i class="fa fa-calendar"></i>{{ review.created }}</span> <a href="#"><i class="fa fa-tags"></i>{{ review.product.category.name }}</a> </div>
-            <div class="single_page_content"> <img class="img-center" src="/media/{{ review.image }}" alt="">
+            <div class="single_page_content"> <img class="img-center" src="{% static review.image %}" alt="">
               <p>{{ review.review }}</p>
 {% comment %}              <blockquote> Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus. Donec id arcu quis mauris euismod placerat sit amet ut metus. Sed imperdiet fringilla sem eget euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque adipiscing, neque ut pulvinar tincidunt, est sem euismod odio, eu ullamcorper turpis nisl sit amet velit. Nullam vitae nibh odio, non scelerisque nibh. Vestibulum ut est augue, in varius purus. </blockquote>
               <ul>
@@ -167,27 +167,19 @@
                 <li><a href="https://twitter.com/home?status=Check%20out%20this%20review%20at%20proconduck.com{{ request.path }}"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="https://plus.google.com/share?url=proconduck.com{{ request.path }}"><i class="fa fa-google-plus"></i></a></li>
                 <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=proconduck.com{{ request.path }}&title={{ review.title }}&summary={{ review.review }}&source="><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media=https://proconduck.com/media/{{ review.image }}&description={{ review.review }}"><i class="fa fa-pinterest"></i></a></li>
+                <li><a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media=https://proconduck.com/static/{{ review.image }}&description={{ review.review }}"><i class="fa fa-pinterest"></i></a></li>
               </ul>
             </div>
             <div class="related_post">
               <h2>Related Reviews <i class="fa fa-thumbs-o-up"></i></h2>
               <ul class="spost_nav wow fadeInDown animated">
+                {% for review in related_reviews %}
                 <li>
-                  <div class="media"> <a class="media-left" href="single_page.html"> <img src="{% static 'blog/images/post_img1.jpg' %}" alt=""> </a>
-                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
+                  <div class="media"> <a class="media-left" href="{{ review.id }}/{{ review.slug }}"> <img src="{% static review.image %}" alt=""> </a>
+                    <div class="media-body"> <a class="catg_title" href="single_page.html"> {{ review.title }}</a> </div>
                   </div>
                 </li>
-                <li>
-                  <div class="media"> <a class="media-left" href="single_page.html"> <img src="{% static 'blog/images/post_img2.jpg' %}" alt=""> </a>
-                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media"> <a class="media-left" href="single_page.html"> <img src="{% static 'blog/images/post_img1.jpg' %}" alt=""> </a>
-                    <div class="media-body"> <a class="catg_title" href="single_page.html"> Aliquam malesuada diam eget turpis varius</a> </div>
-                  </div>
-                </li>
+                {% endfor %}
               </ul>
             </div>
           </div>

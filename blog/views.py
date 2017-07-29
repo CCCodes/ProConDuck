@@ -94,11 +94,13 @@ def detail(request, slug, review_id):
     review.views += 1
     review.save()
     top_rated_products = Product.objects.order_by("-score")
+    related = Product.objects.get(pk=review.product_id).review_set.exclude(
+        pk=review_id)
     context = {
         'review': review,
         'date': get_date(),
         'categories': Category.objects.all(),
-        'related_reviews': Product.objects.get(pk=review.product_id).review_set.exclude(pk=review_id)
+        'related_reviews': related
     }
     return render(request, 'blog/single_page.html', context)
 
