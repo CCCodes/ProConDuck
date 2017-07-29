@@ -41,7 +41,8 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     score = models.FloatField(editable=False, default=0)
     link = models.URLField()
-    image = models.ImageField(blank=True, upload_to="images")
+    # image = models.ImageField(blank=True, upload_to="images")
+    image = models.CharField(max_length=100, default="blog/media/Capture.PNG")
 
     def __str__(self):
         return self.name
@@ -67,7 +68,8 @@ class Review(models.Model):
     reviewer_name = models.CharField(max_length=50)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
-    image = models.ImageField(blank=True, upload_to="images")
+    # image = models.ImageField(blank=True, upload_to="images")
+    image = models.CharField(max_length=100, default="blog/media/robotics.png")
     video_link = models.URLField(blank=True)
     review = models.TextField()
     views = models.IntegerField(default=0)  # editable=False)
