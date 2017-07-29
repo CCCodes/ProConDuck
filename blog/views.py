@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -96,6 +98,9 @@ def detail(request, slug, review_id):
     top_rated_products = Product.objects.order_by("-score")
     related = Product.objects.get(pk=review.product_id).review_set.exclude(
         pk=review_id)
+    for category in Category.objects.exclude(pk=review.product.category_id):
+        for product in category.product_set.all():
+            related = list(chain(related, product.review_set.all()))
     context = {
         'review': review,
         'date': get_date(),

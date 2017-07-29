@@ -173,7 +173,7 @@
             <div class="related_post">
               <h2>Related Reviews <i class="fa fa-thumbs-o-up"></i></h2>
               <ul class="spost_nav wow fadeInDown animated">
-                {% for review in related_reviews %}
+                {% for review in related_reviews|slice:":3" %}
                 <li>
                   <div class="media"> <a class="media-left" href="{{ review.id }}/{{ review.slug }}"> <img src="{% static review.image %}" alt=""> </a>
                     <div class="media-body"> <a class="catg_title" href="single_page.html"> {{ review.title }}</a> </div>
