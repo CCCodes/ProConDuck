@@ -185,7 +185,7 @@
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-                {% for review in popular_review_list|slice:"1:" %}
+                {% for review in popular_review_list|slice:"1:4" %}
                 <li>
                   <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="/media/{{ review.image }}"> </a>
                     <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.title }}</a> </div>
