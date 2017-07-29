@@ -19,7 +19,7 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
 <meta name="theme-color" content="#ffffff">
-<title>Single Page | Pro Con Duck</title>
+<title>{{ review.title }} | Pro Con Duck</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,7 +76,7 @@
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="../../"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
             {% for category in categories %}
-          <li><a href="#">{{ category }}</a></li>
+          <li><a href="#">{{ category.name }}</a></li>
             {% endfor %}
 {% comment %}          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
             <ul class="dropdown-menu" role="menu">
@@ -163,11 +163,11 @@
             </div>
             <div class="social_link">
               <ul class="sociallink_nav">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=proconduck.com{{ request.path }}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/home?status=Check%20out%20this%20review%20at%20proconduck.com{{ request.path }}"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://plus.google.com/share?url=proconduck.com{{ request.path }}"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=proconduck.com{{ request.path }}&title={{ review.title }}&summary={{ review.review }}&source="><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://pinterest.com/pin/create/button/?url={{ request.path }}&media=proconduck.com/media/images/WIN_20170610_21_55_45_Pro.jpg&description={{ review.review }}"><i class="fa fa-pinterest"></i></a></li>
               </ul>
             </div>
             <div class="related_post">

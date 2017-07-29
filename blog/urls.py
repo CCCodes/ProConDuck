@@ -1,4 +1,6 @@
 from django.conf.urls import url, handler404
+from django.conf import settings
+from django.views.static import serve
 
 from . import views
 

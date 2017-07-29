@@ -2,7 +2,7 @@ import datetime
 
 import django
 from django.core.urlresolvers import reverse
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.db import models
@@ -24,12 +24,13 @@ class Company(models.Model):
 class Category(models.Model):
 
     name = models.CharField(max_length=20)
+    number = models.IntegerField(default=1, unique=True)
 
     class Meta:
         verbose_name_plural = "categories"
 
     def __str__(self):
-        return self.name
+        return "%d - %s" % (self.number, self.name)
 
 
 class Product(models.Model):
@@ -38,7 +39,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT,
                                  null=True, blank=True, default=0)
     name = models.CharField(max_length=100)
-    score = models.FloatField(default=0)
+    score = models.FloatField(editable=False, default=0)
     link = models.URLField()
     image = models.ImageField(blank=True, upload_to="images")
 
@@ -46,7 +47,11 @@ class Product(models.Model):
         return self.name
 
     def update_rating_avg(self):
+        #Product.objects.select_related().annotate(count_reviews=Count('review'))
+        #if 0 != Product[0].count_reviews:
         self.score = self.review_set.aggregate(Avg('score'))['score__avg']
+
+        self.score = 10
         self.save()
 
 
@@ -62,10 +67,10 @@ class Review(models.Model):
     reviewer_name = models.CharField(max_length=50)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
-    image = models.ImageField(blank=True, upload_to="")
+    image = models.ImageField(blank=True, upload_to="images")
     video_link = models.URLField(blank=True)
     review = models.TextField()
-    views = models.IntegerField(default=0, editable=False)
+    views = models.IntegerField(default=0)  # editable=False)
 
     created = models.DateTimeField(editable=False, default=django.utils.timezone.now)
     modified = models.DateTimeField(blank=True, null=True, default=django.utils.timezone.now)

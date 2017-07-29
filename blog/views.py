@@ -32,11 +32,12 @@ def main(request):
     context = {
         'latest_review_list': latest_review_list,
         'popular_review_list': popular_review_list,
-        'top_rated_products': Product.objects.order_by('-score')[:5],
+        'top_rated_products': Product.objects.order_by('-score'),
         'ad_file_paths': ad_file_paths,
         'ads': ads,
         'date': get_date(),
         'categories': Category.objects.all(),
+        'display_categories': display_categories(),
     }
 
     return render(request, 'blog/main.html', context)
@@ -77,6 +78,17 @@ def get_date():
     return date
 
 
+def display_categories():
+
+    result = []
+
+    for i in range(3):
+        products = Category.objects.get(number=i).product_set.order_by('-score')
+        result.append([product.review_set.order_by('-views') for product in products])
+
+    return result
+
+
 def detail(request, slug, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.views += 1
@@ -86,6 +98,7 @@ def detail(request, slug, review_id):
         'review': review,
         'date': get_date(),
         'categories': Category.objects.all(),
+        'related_reviews': Product.objects.get(pk=review.product_id).review_set.exclude(pk=review_id)
     }
     return render(request, 'blog/single_page.html', context)
 
@@ -93,7 +106,7 @@ def detail(request, slug, review_id):
 def tos(request, slug, review_id):
     top_rated_products = Product.objects.order_by("-score")
     context = {
-        'review': review,
+        'review': Review.objects.get(pk=review_id),
         'date': get_date(),
         'categories': Category.objects.all(),
     }
