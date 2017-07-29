@@ -95,7 +95,9 @@ def detail(request, slug, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.views += 1
     review.save()
-    top_rated_products = Product.objects.order_by("-score")
+    popular_review_list = Review.objects.exclude(pk=review_id).order_by(
+        '-views')[:4]
+    top_rated_products = Product.objects.order_by('-score')
     related = Product.objects.get(pk=review.product_id).review_set.exclude(
         pk=review_id)
     for category in Category.objects.exclude(pk=review.product.category_id):
@@ -105,7 +107,8 @@ def detail(request, slug, review_id):
         'review': review,
         'date': get_date(),
         'categories': Category.objects.all(),
-        'related_reviews': related
+        'related_reviews': related,
+        'popular_review_list': popular_review_list
     }
     return render(request, 'blog/single_page.html', context)
 

@@ -164,7 +164,7 @@
             <div class="social_link">
               <ul class="sociallink_nav">
                 <li><a href="https://www.facebook.com/sharer/sharer.php?u=proconduck.com{{ request.path }}"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/home?status=Check%20out%20this%20review%20at%20proconduck.com{{ request.path }}"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://twitter.com/intent/tweet?text={{ review.product }}%20-%20{{ review.title }}&url=https://proconduck.com{{ request.path }}"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="https://plus.google.com/share?url=proconduck.com{{ request.path }}"><i class="fa fa-google-plus"></i></a></li>
                 <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=proconduck.com{{ request.path }}&title={{ review.title }}&summary={{ review.review }}&source="><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media=https://proconduck.com/static/{{ review.image }}&description={{ review.review }}"><i class="fa fa-pinterest"></i></a></li>
@@ -199,26 +199,13 @@
           <div class="single_sidebar">
             <h2><span>Popular Reviews</span></h2>
             <ul class="spost_nav">
+              {% for review in popular_review_list %}
               <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static review.image %}"> </a>
+                  <div class="media-body"> <a href="single_page.html" class="catg_title"> {{ review.title }}</a> </div>
                 </div>
               </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                  <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
+              {% endfor %}
             </ul>
           </div>
           <div class="single_sidebar">
