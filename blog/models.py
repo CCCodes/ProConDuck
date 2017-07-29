@@ -37,7 +37,7 @@ class Product(models.Model):
 
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
     category = models.ForeignKey(Category, on_delete=models.PROTECT,
-                                 null=True, blank=True, default=0)
+                                 default=0)
     name = models.CharField(max_length=100)
     score = models.FloatField(editable=False, default=0)
     link = models.URLField()
