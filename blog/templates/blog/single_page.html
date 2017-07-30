@@ -110,12 +110,6 @@
           </ul>
           <div class="social_area">
             <ul class="social_nav">
-              <li class="facebook"><a href="#"></a></li>
-              <li class="twitter"><a href="#"></a></li>
-              <li class="flickr"><a href="#"></a></li>
-              <li class="pinterest"><a href="#"></a></li>
-              <li class="googleplus"><a href="#"></a></li>
-              <li class="vimeo"><a href="#"></a></li>
               <li class="youtube"><a href="#"></a></li>
               <li class="mail"><a href="#"></a></li>
             </ul>
@@ -173,6 +167,7 @@
             <div class="related_post">
               <h2>Related Reviews <i class="fa fa-thumbs-o-up"></i></h2>
               <ul class="spost_nav wow fadeInDown animated">
+                {% if related_reviews %}
                 {% for review in related_reviews|slice:":3" %}
                 <li>
                   <div class="media"> <a class="media-left" href="{{ review.id }}/{{ review.slug }}"> <img src="{% static review.image %}" alt=""> </a>
@@ -180,6 +175,9 @@
                   </div>
                 </li>
                 {% endfor %}
+                {% else %}  
+                  <p>No related reviews available.</p>
+                {% endif %}
               </ul>
             </div>
           </div>

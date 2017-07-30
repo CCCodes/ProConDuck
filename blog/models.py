@@ -72,7 +72,7 @@ class Review(models.Model):
     image = models.CharField(max_length=100, default="blog/media/robotics.png")
     video_link = models.URLField(blank=True)
     review = models.TextField()
-    views = models.IntegerField(default=0)  # editable=False)
+    views = models.IntegerField(default=0, editable=False)
 
     created = models.DateTimeField(editable=False, default=django.utils.timezone.now)
     modified = models.DateTimeField(blank=True, null=True, default=django.utils.timezone.now)
@@ -101,6 +101,7 @@ class Review(models.Model):
 
 
 class AdSlot(models.Model):
+
     number = models.IntegerField(default=1)
     image_width = models.IntegerField()
     image_height = models.IntegerField()
@@ -143,4 +144,23 @@ class Advertisement(models.Model):
         return super(Advertisement, self).save(*args, **kwargs)
 
 
+class Promotion(models.Model):
 
+    company = models.ForeignKey(Company, on_delete=models.PROTECT)
+    link = models.URLField()
+    title = models.CharField(max_length=20)
+    descriptions = models.TextField()
+    image = models.CharField(max_length=100)
+    current = models.BooleanField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class NewsletterEmail(models.Model):
+
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.email

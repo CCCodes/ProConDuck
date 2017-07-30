@@ -103,8 +103,8 @@ img:hover{opacity:0.75}
 .social_nav li.mail a{ background-image:url("images/socials.png"); background-position:-240px -30px; background-size:270px 60px; width:32px}
 .social_nav li.mail a:hover{background-position:-240px 0px; background-size:270px 60px; background-color:#bc75d6}
 #sliderSection{background-color:#fff; display:inline; float:left; width:100%; padding:0 30px}
-.single_iteam{display:inline; float:left; position:relative; width:100%; height:448px}
-.single_iteam img{width:100%; height:100%}
+.single_iteam{display:inline; float:left; position:relative; width:100%} /*; height:448px}*/
+.single_iteam img{width:100%} /*; height:100%}*/
 .single_iteam img:hover{opacity:1}
 .slider_article{ bottom:20px; left:0; position:absolute; right:0; padding:10px 15px}
 .slider_article > h2 a{ background:none repeat scroll 0 0 rgba(0,0,0,0.4); color:#fff; font-size:18px; padding:10px; display:inline-block}
@@ -142,7 +142,7 @@ img:hover{opacity:0.75}
 .spost_nav li{float:left; display:block; width:100%; margin-bottom:10px}
 .spost_nav .media-left{width:100px; height:80px}
 .media-left > img{height:70px; width:90px}
-.spost_nav .media-body > a{font-family:"Oswald",sans-serif}
+.spost_nav .media-body > a{font-family:"Arial",sans-serif}
 .featured_img{position:relative}
 .overlay:hover{ background:none repeat scroll 0 0 rgba(0,0,0,0.4)}
 .overlay{ bottom:0; display:block; left:0; position:absolute; width:100%; z-index:2; height:100%; -webkit-transition:all 0.5s; -mz-transition:all 0.5s; -ms-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}
@@ -273,7 +273,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .contact_form input[type="submit"]:hover{border:1px solid #d083cf}
 @media(max-width:1199px ){.logo_area{width:34%}.add_banner{width:580px}.nav-tabs > li{width:32.3%}.photograph_nav li{width:31.5%}
 @media(max-width:991px ){.add_banner{display:none}.logo_area{width:100%}.nav > li > a{padding:8px 8px}.latest_post_container{height:380px;overflow:hidden}#next-button{bottom:-2px}.single_iteam{height:415px}.photograph_nav li{width:47.7%}.related_post .spost_nav li{width:100%}.nav-tabs > li{width:31.9%}.nav-tabs > li > a{font-size:13px;padding-left:0 !important;padding-right:0 !important;text-align:center}}
-@media(max-width:767px ){.navbar-collapse{padding-left:15px}.mobile-show{display:block}.desktop-home{display:none}.navbar-inverse .navbar-nav > li > a{display:block}.header_top_left{width:100%}.header_top_right > p{display:none}.social_area{display:none}.single_iteam a{height:100%}.single_iteam a > img{height:100%}.error_page > a{margin-bottom:25px}.nav-tabs > li{width:32.6%}}
+@media(max-width:767px ){.navbar-collapse{padding-left:15px}.mobile-show{display:block}.desktop-home{display:none}.navbar-inverse .navbar-nav > li > a{display:block}.header_top_left{width:100%}.header_top_right > p{display:none}.social_area{display:none}.single_iteam a{height:100%}.single_iteam a > img{/*height:100%*/}.error_page > a{margin-bottom:25px}.nav-tabs > li{width:32.6%}}
 @media(max-width:480px ){.top_nav{text-align:center}.single_post_content_left{width:100%}.single_post_content_right{width:100%}.fashion{width:100%}.technology{width:100%}.copyright{text-align:center;width:100%}.developer{text-align:center;width:100%}.single_iteam{height:300px}.photo_grid figure{height:200px}.photograph_nav li{width:100%;margin-left:0}.nav > li > a{padding:8px 12px}.nav-tabs > li{width:32.6%}}
 @media(max-width:360px ){.latest_newsarea span{font-size:12px;line-height:2.2em;padding:2px 10px 1px 10px}.single_iteam{height:210px}.slider_article > p{display:none}.error_page > span{width:80px}.nav-tabs > li{width:32.3%}.pagination > li > a,.pagination > li > span{padding:4px 8px}}
 @media(max-width:320px ){.sociallink_nav li a{padding:5px 10px}.sociallink_nav li:nth-child(1) > a{padding:5px 13px}.nav-tabs > li{width:32.1%}}}

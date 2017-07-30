@@ -1,11 +1,7 @@
 from itertools import chain
-
-from django.shortcuts import render
-
-# Create your views here.
 from random import randint
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext, Context
 from django.shortcuts import render, get_object_or_404, render_to_response
 
@@ -15,6 +11,7 @@ from .models import *
 def main(request):
     latest_review_list = Review.objects.order_by('-created')[:4]
     popular_review_list = Review.objects.order_by('-views')[:5]
+    featured_reviews = Review.objects.filter(featured=True)
     all_ads = Advertisement.objects
     ads = [
         all_ads.filter(slot=AdSlot.objects.get(number=1)),
@@ -32,8 +29,10 @@ def main(request):
         ad_file_paths.append(ads[i].image.name[12:])
 
     context = {
+        'promotions': Promotion.objects.filter(current=True),
         'latest_review_list': latest_review_list,
         'popular_review_list': popular_review_list,
+        'featured_reviews': featured_reviews,
         'top_rated_products': Product.objects.order_by('-score'),
         'ad_file_paths': ad_file_paths,
         'ads': ads,
@@ -43,6 +42,22 @@ def main(request):
     }
 
     return render(request, 'blog/main.html', context)
+
+
+def signup(request):
+    try:
+        name = request.POST['name']
+        email = request.POST['email']
+    except KeyError:
+        # Redisplay the question voting form.
+        pass
+    else:
+        if len(name) < 50 and 5 <= len(email) < 100:
+            NewsletterEmail.objects.create(name=name, email=email)
+    # Always return an HttpResponseRedirect after successfully dealing
+    # with POST data. This prevents data from being posted twice if a
+    # user hits the Back button.
+    return HttpResponseRedirect(reverse('blog:main'))
 
 
 def get_date():
@@ -100,9 +115,10 @@ def detail(request, slug, review_id):
     top_rated_products = Product.objects.order_by('-score')
     related = Product.objects.get(pk=review.product_id).review_set.exclude(
         pk=review_id)
-    for category in Category.objects.exclude(pk=review.product.category_id):
-        for product in category.product_set.all():
-            related = list(chain(related, product.review_set.all()))
+    for product in Category.objects.get(
+            pk=review.product.category_id).product_set.exclude(
+            pk=review.product_id):
+        related = list(chain(related, product.review_set.all()))
     context = {
         'review': review,
         'date': get_date(),
