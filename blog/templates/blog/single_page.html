@@ -170,7 +170,7 @@
                 {% if related_reviews %}
                 {% for review in related_reviews|slice:":3" %}
                 <li>
-                  <div class="media"> <a class="media-left" href="{{ review.id }}/{{ review.slug }}"> <img src="{% static review.image %}" alt=""> </a>
+                  <div class="media"> <a class="media-left" href="../../{{ review.id }}/{{ review.slug }}"> <img src="{% static review.image %}" alt=""> </a>
                     <div class="media-body"> <a class="catg_title" href="single_page.html"> {{ review.title }}</a> </div>
                   </div>
                 </li>
@@ -199,7 +199,7 @@
             <ul class="spost_nav">
               {% for review in popular_review_list %}
               <li>
-                <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="{% static review.image %}"> </a>
+                <div class="media wow fadeInDown"> <a href="../../{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static review.image %}"> </a>
                   <div class="media-body"> <a href="single_page.html" class="catg_title"> {{ review.title }}</a> </div>
                 </div>
               </li>
