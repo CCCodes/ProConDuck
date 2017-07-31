@@ -3,6 +3,7 @@ import datetime
 import django
 from django.core.urlresolvers import reverse
 from django.db.models import Avg, Count
+from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.db import models
@@ -69,7 +70,7 @@ class Review(models.Model):
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
     # image = models.ImageField(blank=True, upload_to="images")
-    image = models.CharField(max_length=100, default="blog/media/robotics.png")
+    image = models.CharField(max_length=100, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()
     views = models.IntegerField(default=0, editable=False)
@@ -98,6 +99,13 @@ class Review(models.Model):
             self.created = timezone.now()
         self.modified = timezone.now()  # will change if views gets updated
         return super(Review, self).save(*args, **kwargs)
+
+
+@receiver(models.signals.post_save, sender=Review)
+def execute_after_save(sender, instance, created, *args, **kwargs):
+    if created and instance.image == "":
+        instance.image = instance.product.image
+        instance.save()
 
 
 class AdSlot(models.Model):
