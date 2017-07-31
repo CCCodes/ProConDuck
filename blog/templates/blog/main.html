@@ -2,83 +2,120 @@
 {% load staticfiles %} {% load static %}
 <html>
 <head>
-<link rel="apple-touch-icon" sizes="57x57" href="{% static 'blog/images/favicon/apple-icon-57x57.png' %}">
-<link rel="apple-touch-icon" sizes="60x60" href="{% static 'blog/images/favicon/apple-icon-60x60.png' %}">
-<link rel="apple-touch-icon" sizes="72x72" href="{% static 'blog/images/favicon/apple-icon-72x72.png' %}">
-<link rel="apple-touch-icon" sizes="76x76" href="{% static 'blog/images/favicon/apple-icon-76x76.png' %}">
-<link rel="apple-touch-icon" sizes="114x114" href="{% static 'blog/images/favicon/apple-icon-114x114.png' %}">
-<link rel="apple-touch-icon" sizes="120x120" href="{% static 'blog/images/favicon/apple-icon-120x120.png' %}">
-<link rel="apple-touch-icon" sizes="144x144" href="{% static 'blog/images/favicon/apple-icon-144x144.png' %}">
-<link rel="apple-touch-icon" sizes="152x152" href="{% static 'blog/images/favicon/apple-icon-152x152.png' %}">
-<link rel="apple-touch-icon" sizes="180x180" href="{% static 'blog/images/favicon/apple-icon-180x180.png' %}">
-<link rel="icon" type="image/png" sizes="192x192"  href="{% static 'blog/images/favicon/android-icon-192x192.png' %}">
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'blog/images/favicon/favicon-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="96x96" href="{% static 'blog/images/favicon/favicon-96x96.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'blog/images/favicon/favicon-16x16.png' %}">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
-<meta name="theme-color" content="#ffffff">
-<title>Pro Con Duck</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/bootstrap.min.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/font-awesome.min.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/animate.css' %}" media="screen" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/font.css' %}" media="screen" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/li-scroller.css' %}" media="screen" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/slick.css' %}" media="screen" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/jquery.fancybox.css' %}" media="screen" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/theme.css' %}" media="screen" />
-<link rel="stylesheet" type="text/css" href="{% static 'blog/assets/css/style.css' %}" media="screen" />
-<!--[if lt IE 9]>
+    <link rel="apple-touch-icon" sizes="57x57"
+          href="{% static 'blog/images/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60"
+          href="{% static 'blog/images/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72"
+          href="{% static 'blog/images/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76"
+          href="{% static 'blog/images/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="{% static 'blog/images/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="{% static 'blog/images/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="{% static 'blog/images/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="{% static 'blog/images/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static 'blog/images/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"
+          href="{% static 'blog/images/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'blog/images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96"
+          href="{% static 'blog/images/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static 'blog/images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage"
+          content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <title>Pro Con Duck</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/animate.css' %}" media="screen"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/font.css' %}" media="screen"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/li-scroller.css' %}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/slick.css' %}" media="screen"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/jquery.fancybox.css' %}"
+          media="screen"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/theme.css' %}" media="screen"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'blog/assets/css/style.css' %}" media="screen"/>
+    <!--[if lt IE 9]>
 <script src="{% static 'blog/assets/js/html5shiv.min.js' %}"></script>
 <script src="{% static 'blog/assets/js/respond.min.js' %}"></script>
 <![endif]-->
 </head>
 <body>
 <div id="preloader">
-  <div id="status">&nbsp;</div>
+    <div id="status">&nbsp;</div>
 </div>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
-  <header id="header">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="header_top">
-          <div class="header_top_left">
-            <ul class="top_nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="contact-us">Contact</a></li>
-            </ul>
-          </div>
-          <div class="header_top_right">
-            <p>{{ date.weekday }}, {{ date.month }} {{ date.date }}, {{ date.year }}</p>
-          </div>
+    <header id="header">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="header_top">
+                    <div class="header_top_left">
+                        <ul class="top_nav">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="contact-us">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="header_top_right">
+                        <p>{{ date.weekday }}, {{ date.month }} {{ date.date }}, {{ date.year }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="header_bottom">
+                    <div class="logo_area"><a href="#" class="logo"><img
+                            src="{% static 'blog/images/logo.png' %}"
+                            width="176.55" height="100" alt="Pro Con Duck"></a>
+                    </div>
+                    <div class="add_banner"><a href="#"><img
+                            src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}"
+                            alt=""></a></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="header_bottom">
-          <div class="logo_area"><a href="#" class="logo"><img src="{% static 'blog/images/logo.png' %}" width="176.55" height="100" alt="Pro Con Duck"></a></div>
-          <div class="add_banner"><a href="#"><img src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}" alt=""></a></div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <section id="navArea">
-    <nav class="navbar navbar-inverse" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav main_nav">
-          <li class="active"><a href="#"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-            {% for category in categories %}
-          <li><a href="#">{{ category.name }}</a></li>
-            {% endfor %}
-{% comment %}          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
+    </header>
+    <section id="navArea">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar"><span
+                        class="sr-only">Toggle navigation</span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span></button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav main_nav">
+                    <li class="active"><a href="#"><span
+                            class="fa fa-home desktop-home"></span><span
+                            class="mobile-show">Home</span></a></li>
+                    {% for category in categories %}
+                        <li><a href="#">{{ category.name }}</a></li>
+                    {% endfor %}
+                    {% comment %}          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Android</a></li>
               <li><a href="#">Samsung</a></li>
@@ -87,179 +124,256 @@
               <li><a href="#">Sympony</a></li>
             </ul>
           </li>{% endcomment %}
-          <li><a href="contact-us">Contact Us</a></li>
-          <li><a href="error404">404 Page</a></li>
-        </ul>
-      </div>
-    </nav>
-  </section>
-  <section id="newsSection">
-    <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <div class="latest_newsarea">
-            <div><span>Don't Miss Out!</span></div>
-          <div id="promotions">
-          <ul id="ticker01" class="news_sticker">
-          {% if promotions %}
-            {% for promotion in promotions %}
-              {% if forloop.last %}
-                <li><a href="{{ promotions.last.link}}"><img src="{% static promotions.last.image %}" alt="">{{ promotions.last.title }}</a>
-                {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
-                  &emsp;
-                {% endfor %}</li>
-              {% else %}
-                <li><a href="{{ promotions.link }}"><img src="{% static promotions.image %}" alt="">{{ promotion.title }}</a></li>
-              {% endif %}
-            {% endfor %}
-          {% else %}
-            <li><a href="#">No promotions currently available.</a>
-              {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
-              &emsp;
-            {% endfor %}</li>
-          {% endif %}
-          </ul>
-          </div>
-          <div class="social_area">
-            <ul class="social_nav">
-{% comment %}              <li class="facebook"><a href="#"></a></li>
+                    <li><a href="contact-us">Contact Us</a></li>
+                    <li><a href="error404">404 Page</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section id="newsSection">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="latest_newsarea">
+                    <div><span>Don't Miss Out!</span></div>
+                        <ul id="ticker01" class="news_sticker">
+                            {% if promotions %}
+                                {% for promotion in promotions %}
+                                    {% if forloop.last %}
+                                        <li>
+                                            <a href="{{ promotions.last.link }}"><img
+                                                    src="{% static promotions.last.image %}"
+                                                    alt="">{{ promotions.last.title }}
+                                            </a>
+                                            {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
+                                                &emsp;
+                                            {% endfor %}</li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ promotions.link }}"><img
+                                                    src="{% static promotions.image %}"
+                                                    alt="">{{ promotion.title }}
+                                            </a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <li><a href="#">No promotions currently
+                                    available.</a>
+                                    {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
+                                        &emsp;
+                                    {% endfor %}</li>
+                            {% endif %}
+                        </ul>
+                    <div class="social_area">
+                        <ul class="social_nav">
+                            {% comment %}              <li class="facebook"><a href="#"></a></li>
               <li class="twitter"><a href="#"></a></li>
               <li class="flickr"><a href="#"></a></li>
               <li class="pinterest"><a href="#"></a></li>
               <li class="googleplus"><a href="#"></a></li>
               <li class="vimeo"><a href="#"></a></li>{% endcomment %}
-              <li class="youtube"><a href="#"></a></li>
-              <li class="mail"><a href="#"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="sliderSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="slick_slider">
-          {%  if featured_reviews %}
-          {% for review in featured_reviews %}
-          <div class="single_iteam"> <a href="{{ review.id }}/{{ review.slug }}"> <img src="{% static review.image %}" alt=""></a>
-            <div class="slider_article">
-              <h2><a class="slider_tittle" href="{{ review.id }}/{{ review.slug }}">{{ review.title }} - {{ review.product }}</a></h2>
-              <p>{{ review.review }}</p>
-            </div>
-          </div>
-          {% endfor %}
-          {% else %}
-          <div class="single_iteam"> <a href="#"> <img src="{% static review.image %}" alt=""></a>
-            <div class="slider_article">
-              <h2><a class="slider_tittle" href="{{ review.id }}/{{ review.slug }}">No Reviews</a></h2>
-              <p>We're sorry; there are no featured reviews available.</p>
-            </div>
-          </div>
-          {% endif %}
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-          <h2><span>Top Rated Products</span></h2>
-          <div class="latest_post_container">
-            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-            <ul class="latest_postnav">
-              {% for product in top_rated_products|slice:":5" %}
-              <li>
-                <div class="media"> <a href="#" class="media-left"> <img alt="" src="{% static product.image %}"> </a>
-                  <div class="media-body"> <a href="#" class="catg_title"> {{ product.name }}</a> </div>
+                            <li class="youtube"><a href="#"></a></li>
+                            <li class="mail"><a href="#"></a></li>
+                        </ul>
+                    </div>
                 </div>
-              </li>
-              {% endfor %}
-            </ul>
-            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section id="contentSection">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="left_content">
-          <div class="single_post_content">
-            <h2><span>Popular Reviews</span></h2>
-            <div class="single_post_content_left">
-              <ul class="business_catgnav  wow fadeInDown">
-                <li>
-                  <figure class="bsbig_fig"> <a href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}" class="featured_img"> <img alt="" src="{% static popular_review_list.0.image %}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}">{{ popular_review_list.0.title }} - {{ popular_review_list.0.product }}</a> </figcaption>
-                      <p><em>{{ popular_review_list.0.created.date }}</em> | {{ popular_review_list.0.review }}</p>
-                  </figure>
-                </li>
-              </ul>
+    </section>
+    <section id="sliderSection">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="slick_slider">
+                    {% if featured_reviews %}
+                        {% for review in featured_reviews %}
+                            <div class="single_iteam"><a
+                                    href="{{ review.id }}/{{ review.slug }}">
+                                <img src="{% static review.image %}"
+                                     alt=""></a>
+                                <div class="slider_article">
+                                    <h2><a class="slider_tittle"
+                                           href="{{ review.id }}/{{ review.slug }}">{{ review.title }}
+                                        - {{ review.product }}</a></h2>
+                                    <p>{{ review.review }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="single_iteam"><a href="#"> <img
+                                src="{% static review.image %}" alt=""></a>
+                            <div class="slider_article">
+                                <h2><a class="slider_tittle"
+                                       href="{{ review.id }}/{{ review.slug }}">No
+                                    Reviews</a></h2>
+                                <p>We're sorry; there are no featured reviews
+                                    available.</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-            <div class="single_post_content_right">
-              <ul class="spost_nav">
-                {% for review in popular_review_list|slice:"1:" %}
-                <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static review.image %}"> </a>
-                    <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.title }} - {{ review.product }}<br/>{{ review.created.date }}</a> </div>
-                  </div>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="fashion_technology_area">
-            <div class="fashion">
-              <div class="single_post_content">
-                <h2><span>{{ categories.0.name }}</span></h2>
-                <ul class="business_catgnav wow fadeInDown">
-                  <li>
-                    <figure class="bsbig_fig"> <a href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}" class="featured_img"> <img alt="" src="{% static display_categories.0.0.0.image %}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}">{{ display_categories.0.0.0.title }} - {{ display_categories.0.0.0.product }}</a> </figcaption>
-                      <p><em>{{ display_categories.0.0.0.created.date }}</em> | {{ display_categories.0.0.0.review }}</p>
-                    </figure>
-                  </li>
-                </ul>
-                <ul class="spost_nav">
-                  {% for review in display_categories.0|slice:"1:" %}
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.0.id }}/{{ review.0.slug }}" class="media-left"> <img alt="" src="{% static review.0.image %}"> </a>
-                      <div class="media-body"> <a href="{{ review.0.id }}/{{ review.0.slug }}" class="catg_title"> {{ review.0.title }} - {{ review.0.product }}<br/>{{ review.0.created.date }}</a> </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="latest_post">
+                    <h2><span>Top Rated Products</span></h2>
+                    <div class="latest_post_container">
+                        <div id="prev-button"><i class="fa fa-chevron-up"></i>
+                        </div>
+                        <ul class="latest_postnav">
+                            {% for product in top_rated_products|slice:":5" %}
+                                <li>
+                                    <div class="media"><a href="#"
+                                                          class="media-left">
+                                        <img alt=""
+                                             src="{% static product.image %}">
+                                    </a>
+                                        <div class="media-body"><a href="#"
+                                                                   class="catg_title"> {{ product.name }}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div id="next-button"><i
+                                class="fa  fa-chevron-down"></i></div>
                     </div>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
+                </div>
             </div>
-            <div class="technology">
-              <div class="single_post_content">
-                <h2><span>{{ categories.1.name }}</span></h2>
-                <ul class="business_catgnav">
-                  <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}" class="featured_img"> <img alt="" src="{% static display_categories.1.0.0.image %}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}">{{ display_categories.1.0.0.title }} - {{ display_categories.1.0.0.product }}</a> </figcaption>
-                      <p><em>{{ display_categories.1.0.0.created.date }}</em> | {{ display_categories.1.0.0.review }}</p>
-                    </figure>
-                  </li>
-                </ul>
-                <ul class="spost_nav">
-                  {% for review in display_categories.1|slice:"1:" %}
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.0.id }}/{{ review.0.slug }}" class="media-left"> <img alt="" src="{% static review.0.image %}"> </a>
-                      <div class="media-body"> <a href="{{ review.0.id }}/{{ review.0.slug }}" class="catg_title">{{ review.0.title }} - {{ review.0.product }}<br/>{{ review.0.created.date }}</a> </div>
+        </div>
+    </section>
+    <section id="contentSection">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="left_content">
+                    <div class="single_post_content">
+                        <h2><span>Popular Reviews</span></h2>
+                        <div class="single_post_content_left">
+                            <ul class="business_catgnav  wow fadeInDown">
+                                <li>
+                                    <figure class="bsbig_fig"><a
+                                            href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}"
+                                            class="featured_img"> <img alt=""
+                                                                       src="{% static popular_review_list.0.image %}">
+                                        <span class="overlay"></span> </a>
+                                        <figcaption><a
+                                                href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}">{{ popular_review_list.0.title }}
+                                            - {{ popular_review_list.0.product }}</a>
+                                        </figcaption>
+                                        <p>{{ popular_review_list.0.created.date }}
+                                            | {{ popular_review_list.0.review }}</p>
+                                    </figure>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="single_post_content_right">
+                            <ul class="spost_nav">
+                                {% for review in popular_review_list|slice:"1:" %}
+                                    <li>
+                                        <div class="media wow fadeInDown"><a
+                                                href="{{ review.id }}/{{ review.slug }}"
+                                                class="media-left"> <img alt=""
+                                                                         src="{% static review.image %}">
+                                        </a>
+                                            <div class="media-body"><a
+                                                    href="{{ review.id }}/{{ review.slug }}"
+                                                    class="catg_title">{{ review.title }}
+                                                - {{ review.product }}<br/>{{ review.created.date }}
+                                            </a></div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-          </div>
-          {% comment %}<div class="single_post_content">
+                    <div class="fashion_technology_area">
+                        <div class="fashion">
+                            <div class="single_post_content">
+                                <h2><span>{{ categories.0.name }}</span></h2>
+                                <ul class="business_catgnav wow fadeInDown">
+                                    <li>
+                                        <figure class="bsbig_fig"><a
+                                                href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}"
+                                                class="featured_img"> <img
+                                                alt=""
+                                                src="{% static display_categories.0.0.0.image %}">
+                                            <span class="overlay"></span> </a>
+                                            <figcaption><a
+                                                    href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}">{{ display_categories.0.0.0.title }}
+                                                - {{ display_categories.0.0.0.product }}</a>
+                                            </figcaption>
+                                            <p>{{ display_categories.0.0.0.created.date }}
+                                                | {{ display_categories.0.0.0.review }}</p>
+                                        </figure>
+                                    </li>
+                                </ul>
+                                <ul class="spost_nav">
+                                    {% for review in display_categories.0|slice:"1:" %}
+                                        <li>
+                                            <div class="media wow fadeInDown">
+                                                <a href="{{ review.0.id }}/{{ review.0.slug }}"
+                                                   class="media-left"> <img
+                                                        alt=""
+                                                        src="{% static review.0.image %}">
+                                                </a>
+                                                <div class="media-body"><a
+                                                        href="{{ review.0.id }}/{{ review.0.slug }}"
+                                                        class="catg_title"> {{ review.0.title }}
+                                                    - {{ review.0.product }}<br/>{{ review.0.created.date }}
+                                                </a></div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="technology">
+                            <div class="single_post_content">
+                                <h2><span>{{ categories.1.name }}</span></h2>
+                                <ul class="business_catgnav">
+                                    <li>
+                                        <figure class="bsbig_fig wow fadeInDown">
+                                            <a href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}"
+                                               class="featured_img"> <img
+                                                    alt=""
+                                                    src="{% static display_categories.1.0.0.image %}">
+                                                <span class="overlay"></span>
+                                            </a>
+                                            <figcaption><a
+                                                    href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}">{{ display_categories.1.0.0.title }}
+                                                - {{ display_categories.1.0.0.product }}</a>
+                                            </figcaption>
+                                            <p>{{ display_categories.1.0.0.created.date }}
+                                                | {{ display_categories.1.0.0.review }}</p>
+                                        </figure>
+                                    </li>
+                                </ul>
+                                <ul class="spost_nav">
+                                    {% for review in display_categories.1|slice:"1:" %}
+                                        <li>
+                                            <div class="media wow fadeInDown">
+                                                <a href="{{ review.0.id }}/{{ review.0.slug }}"
+                                                   class="media-left"> <img
+                                                        alt=""
+                                                        src="{% static review.0.image %}">
+                                                </a>
+                                                <div class="media-body"><a
+                                                        href="{{ review.0.id }}/{{ review.0.slug }}"
+                                                        class="catg_title">{{ review.0.title }}
+                                                    - {{ review.0.product }}<br/>{{ review.0.created.date }}
+                                                </a></div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% comment %}<div class="single_post_content">
             <h2><span>{{ categories.2.name }}</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav">
                 <li>
                   <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="{{ display_categories.2.0.0.id }}/{{ display_categories.2.0.0.slug }}"> <img src="{% static display_categories.2.0.0.image %}" alt=""> <span class="overlay"></span> </a>
                     <figcaption> <a href="{{ display_categories.2.0.0.id }}/{{ display_categories.2.0.0.slug }}">{{ display_categories.2.0.0.title }} - {{ display_categories.2.0.0.product }}</a> </figcaption>
-                      <p><em>{{ display_categories.2.0.0.created.date }}</em> | {{ display_categories.2.0.0.review }}</p>
+                      <p>{{ display_categories.2.0.0.created.date }} | {{ display_categories.2.0.0.review }}</p>
                   </figure>
                 </li>
               </ul>
@@ -276,23 +390,31 @@
               </ul>
             </div>
           </div>{% endcomment %}
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <aside class="right_content">
-          <div class="single_sidebar">
-            <h2><span>Latest Reviews</span></h2>
-            <ul class="spost_nav">
-              {% for review in latest_review_list %}
-              <li>
-                <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static review.image %}"> </a>
-                  <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title">{{ review.title }} - {{ review.product }}<br/>{{ review.created.date }}</a> </div>
                 </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-{% comment %}          <div class="single_sidebar">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <aside class="right_content">
+                    <div class="single_sidebar">
+                        <h2><span>Latest Reviews</span></h2>
+                        <ul class="spost_nav">
+                            {% for review in latest_review_list %}
+                                <li>
+                                    <div class="media wow fadeInDown"><a
+                                            href="{{ review.id }}/{{ review.slug }}"
+                                            class="media-left"> <img alt=""
+                                                                     src="{% static review.image %}">
+                                    </a>
+                                        <div class="media-body"><a
+                                                href="{{ review.id }}/{{ review.slug }}"
+                                                class="catg_title">{{ review.title }}
+                                            - {{ review.product }}<br/>{{ review.created.date }}
+                                        </a></div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% comment %}          <div class="single_sidebar">
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
               <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
@@ -341,22 +463,26 @@
               </div>
             </div>
           </div>{% endcomment %}
-          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Categories</span></h2>
-              {% if categories %}
-                <ul>
-                  {% for category in categories %}
-                  <li class="cat-item"><a href="#">{{ category.name }}</a></li>
-                  {% endfor %}
-                </ul>
-              {% else %}
-                No categories yet.
-              {% endif %}
-          </div>
-          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Sponsor</span></h2>
-            <a class="sideAdd" href="#"><img src="{% static 'blog/images/add_img.jpg' %}" alt=""></a> </div>
-{% comment %}          <div class="single_sidebar wow fadeInDown">
+                    <div class="single_sidebar wow fadeInDown">
+                        <h2><span>Categories</span></h2>
+                        {% if categories %}
+                            <ul>
+                                {% for category in categories %}
+                                    <li class="cat-item"><a
+                                            href="#">{{ category.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            No categories yet.
+                        {% endif %}
+                    </div>
+                    <div class="single_sidebar wow fadeInDown">
+                        <h2><span>Sponsor</span></h2>
+                        <a class="sideAdd" href="#"><img
+                                src="{% static 'blog/images/add_img.jpg' %}"
+                                alt=""></a></div>
+                    {% comment %}          <div class="single_sidebar wow fadeInDown">
             <h2><span>Category Archive</span></h2>
               {% if categories %}
             <select class="catgArchive">
@@ -370,7 +496,7 @@
                   No categories yet.
 
           </div>{% endcomment %}
-{% comment %}          <div class="single_sidebar wow fadeInDown">
+                    {% comment %}          <div class="single_sidebar wow fadeInDown">
             <h2><span>Links</span></h2>
             <ul>
               <li><a href="#">Blog</a></li>
@@ -379,48 +505,60 @@
               <li><a href="#">Life &amp; Style</a></li>
             </ul>
           </div>{% endcomment %}
-        </aside>
-      </div>
-    </div>
-  </section>
-  <footer id="footer">
-    <div class="footer_top">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="footer_widget wow fadeInLeftBig">
-            <h2>Never miss an exclusive discount</h2>
-            <form action="{% url 'blog:signup' %}" method="post" class="contact_form">
-            {% csrf_token %}
-              <input class="form-control" type="text" name="name" placeholder="First Name*">
-              <input class="form-control" type="email" name="email" placeholder="Email*">
-              <input type="submit" value="Sign Up">
-            </form>
-          </div>
+                </aside>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="footer_widget wow fadeInDown">
-            <h2>Become a Reviewer</h2>
-            <p class="reviewerseller">Try the latest technology and get awesome perks! Email us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a> or contact us <a href="contact-us">here</a>.</p>
-{% comment %}            <ul class="tag_nav">
+    </section>
+    <footer id="footer">
+        <div class="footer_top">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="footer_widget wow fadeInLeftBig">
+                        <h2>Never miss an exclusive discount</h2>
+                        <form action="{% url 'blog:signup' %}" method="post"
+                              class="contact_form">
+                            {% csrf_token %}
+                            <input class="form-control" type="text" name="name"
+                                   placeholder="First Name*">
+                            <input class="form-control" type="email"
+                                   name="email" placeholder="Email*">
+                            <input type="submit" value="Sign Up">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="footer_widget wow fadeInDown">
+                        <h2>Become a Reviewer</h2>
+                        <p class="reviewerseller">Try the latest technology and
+                            get awesome perks! Email us at <a
+                                    href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>
+                            or contact us <a href="contact-us">here</a>.</p>
+                        {% comment %}            <ul class="tag_nav">
               <li><a href="#">Games</a></li>
               <li><a href="#">Sports</a></li>
               <li><a href="#">Fashion</a></li>
             </ul>{% endcomment %}
-          </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="footer_widget wow fadeInRightBig">
+                        <h2>Join as a Seller</h2>
+                        <p class="reviewerseller">Feel like your products
+                            aren't getting the attention they deserve? We'll
+                            help you stand out - email us at <a
+                                    href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>
+                            or contact us <a href="contact-us">here</a>.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <div class="footer_widget wow fadeInRightBig">
-            <h2>Join as a Seller</h2>
-            <p class="reviewerseller">Feel like your products aren't getting the attention they deserve? We'll help you stand out - email us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a> or contact us <a href="contact-us">here</a>.</p>
-          </div>
+        <div class="footer_bottom">
+            <p class="copyright">Copyright &copy; 2017 <a href="#">Pro Con
+                Duck</a></p>
+            <p class="developer"><a href="#">Terms of Service</a> | <a
+                    href="#">Privacy Policy</a></p>
         </div>
-      </div>
-    </div>
-    <div class="footer_bottom">
-      <p class="copyright">Copyright &copy; 2017 <a href="#">Pro Con Duck</a></p>
-      <p class="developer"><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
-    </div>
-  </footer>
+    </footer>
 </div>
 <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'blog/assets/js/wow.min.js' %}"></script>
@@ -431,13 +569,20 @@
 <script src="{% static 'blog/assets/js/jquery.fancybox.pack.js' %}"></script>
 <script src="{% static 'blog/assets/js/custom.js' %}"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-97587291-2', 'auto');
-  ga('send', 'pageview');
+    ga('create', 'UA-97587291-2', 'auto');
+    ga('send', 'pageview');
 
 </script>
 </body>

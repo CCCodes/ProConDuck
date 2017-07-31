@@ -166,7 +166,8 @@
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="footer_widget wow fadeInLeftBig">
             <h2>Never miss an exclusive discount</h2>
-            <form action="#" class="contact_form">
+            <form action="{% url 'blog:signup' %}" method="post" class="contact_form">
+            {% csrf_token %}
               <input class="form-control" type="text" placeholder="First Name*">
               <input class="form-control" type="email" placeholder="Email*">
               <input type="submit" value="Sign Up">
