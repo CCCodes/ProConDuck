@@ -40,7 +40,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT,
                                  default=0)
     name = models.CharField(max_length=100)
-    score = models.FloatField(editable=False, default=0)
+    score = models.FloatField(default=0) #, editable=False)
     link = models.URLField()
     # image = models.ImageField(blank=True, upload_to="images")
     image = models.CharField(max_length=100, default="blog/media/Capture.PNG")
@@ -48,12 +48,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def update_rating_avg(self):
+    def update_rating_avg(self, delete_instance=None):
         #Product.objects.select_related().annotate(count_reviews=Count('review'))
         #if 0 != Product[0].count_reviews:
-        self.score = self.review_set.aggregate(Avg('score'))['score__avg']
 
-        self.score = 10
+        reviews = self.review_set
+        if delete_instance:
+            reviews = reviews.exclude(pk=delete_instance.id)
+
+        self.score = reviews.aggregate(Avg('score'))['score__avg']
+
         self.save()
 
 
@@ -101,9 +105,15 @@ class Review(models.Model):
         return super(Review, self).save(*args, **kwargs)
 
 
+@receiver(models.signals.pre_delete, sender=Review)
+def review_pre_delete(sender, instance, *args, **kwargs):
+    instance.product.update_rating_avg(instance)
+
+
 @receiver(models.signals.post_save, sender=Review)
-def execute_after_save(sender, instance, created, *args, **kwargs):
-    if created and instance.image == "":
+def review_post_save(sender, instance, created, *args, **kwargs):
+    instance.product.update_rating_avg()
+    if instance.image == "":
         instance.image = instance.product.image
         instance.save()
 

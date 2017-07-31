@@ -16,6 +16,7 @@ import sys
 import requests
 
 import heroku3
+from django.core.mail.backends import smtp
 
 heroku_con = heroku3.from_key("0b842569-4c90-4c25-a67c-66b155a3b724")
 app = heroku_con.apps()['quiet-beyond-56572']
@@ -74,6 +75,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'blog.context_processors.default',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -181,3 +183,11 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = config['EMAIL_PASS'] #my gmail password
+EMAIL_HOST_USER = 'proconduck@gmail.com' #my gmail username
+EMAIL_PORT = 587
+

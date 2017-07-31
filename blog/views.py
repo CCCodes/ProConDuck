@@ -1,6 +1,7 @@
 from itertools import chain
 from random import randint
 
+from django.core.mail import send_mail
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext, Context
 from django.shortcuts import render, get_object_or_404, render_to_response
@@ -18,11 +19,6 @@ def main(request):
         all_ads.filter(slot=AdSlot.objects.get(number=2)),
     ]
     ad_file_paths = []
-
-    products = Product.objects.all()
-
-    for product in products:
-        product.update_rating_avg()
 
     for i in range(2):
         ads[i] = ads[i][randint(0, len(ads[i])-1)]
@@ -52,8 +48,16 @@ def signup(request):
         # Redisplay the question voting form.
         pass
     else:
-        if len(name) < 50 and 5 <= len(email) < 100:
+        emails = [o.email for o in NewsletterEmail.objects.all()]
+        if email not in emails and len(name) < 50 and 5 <= len(email) < 100:
             NewsletterEmail.objects.create(name=name, email=email)
+            send_mail(
+                'Welcome ' + name,
+                'Hi %s,\nWelcome to the Pro Con Duck community.' % name,
+                'proconduck@gmail.com',
+                [email],
+                fail_silently=False,
+            )
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
