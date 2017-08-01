@@ -10,9 +10,6 @@ from .models import *
 
 
 def main(request):
-    latest_review_list = Review.objects.order_by('-created')[:4]
-    popular_review_list = Review.objects.order_by('-views')[:5]
-    featured_reviews = Review.objects.filter(featured=True)
     all_ads = Advertisement.objects
     ads = [
         all_ads.filter(slot=AdSlot.objects.get(number=1)),
@@ -25,15 +22,8 @@ def main(request):
         ad_file_paths.append(ads[i].image.name[12:])
 
     context = {
-        'promotions': Promotion.objects.filter(current=True),
-        'latest_review_list': latest_review_list,
-        'popular_review_list': popular_review_list,
-        'featured_reviews': featured_reviews,
         'top_rated_products': Product.objects.order_by('-score'),
         'ad_file_paths': ad_file_paths,
-        'ads': ads,
-        'date': get_date(),
-        'categories': Category.objects.all(),
         'display_categories': display_categories(),
     }
 
@@ -64,41 +54,6 @@ def signup(request):
     return HttpResponseRedirect(reverse('blog:main'))
 
 
-def get_date():
-    weekdays = [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-    ]
-    months = [
-        0,
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ]
-    today = datetime.datetime.today()
-    date = {
-        'weekday': weekdays[today.weekday()],
-        'month': months[today.month],
-        'date': today.day,
-        'year': today.year,
-    }
-    return date
-
-
 def display_categories():
 
     result = []
@@ -114,9 +69,6 @@ def detail(request, slug, review_id):
     review = get_object_or_404(Review, pk=review_id)
     review.views += 1
     review.save()
-    popular_review_list = Review.objects.exclude(pk=review_id).order_by(
-        '-views')[:4]
-    top_rated_products = Product.objects.order_by('-score')
     related = Product.objects.get(pk=review.product_id).review_set.exclude(
         pk=review_id)
     for product in Category.objects.get(
@@ -125,10 +77,7 @@ def detail(request, slug, review_id):
         related = list(chain(related, product.review_set.all()))
     context = {
         'review': review,
-        'date': get_date(),
-        'categories': Category.objects.all(),
         'related_reviews': related,
-        'popular_review_list': popular_review_list
     }
     return render(request, 'blog/single_page.html', context)
 
@@ -137,16 +86,12 @@ def tos(request, slug, review_id):
     top_rated_products = Product.objects.order_by("-score")
     context = {
         'review': Review.objects.get(pk=review_id),
-        'date': get_date(),
-        'categories': Category.objects.all(),
     }
     return render(request, 'blog/tos.html', context)
 
 
 def contact(request):
     context = {
-        'date': get_date(),
-        'categories': Category.objects.all(),
     }
     return render(request, 'blog/contact.html', context)
 
@@ -158,8 +103,6 @@ def error404(request):
     template = loader.get_template('blog/404.html')
     context = Context({
         'message': 'All: %s' % request,
-        'categories': Category.objects.all(),
-        'date': get_date(),
         })
 
     # 3. Return Template for this view + Data

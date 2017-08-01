@@ -77,7 +77,7 @@ class Review(models.Model):
     image = models.CharField(max_length=100, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()
-    views = models.IntegerField(default=0, editable=False)
+    views = models.IntegerField(default=0)  # editable=False)
 
     created = models.DateTimeField(editable=False, default=django.utils.timezone.now)
     modified = models.DateTimeField(blank=True, null=True, default=django.utils.timezone.now)
