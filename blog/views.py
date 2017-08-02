@@ -33,14 +33,19 @@ def main(request):
 def signup(request, success=None):
     if success is not None:
         if success == 'true':
-            message = "You have successfully signed up for the newsletter. " \
-                      "Thanks!"
+            message = "You have successfully signed up for the newsletter."
+            header_main = "Congratulations"
         elif success == 'false':
             message = "Sorry, something went wrong with submitting your " \
                       "information."
+            header_main = "We Are Sorry"
         else:
             raise Http404
-        return render(request, 'blog/signup.html', {"message": message})
+        context = {
+            'message': message,
+            'header_main': header_main
+        }
+        return render(request, 'blog/signup.html', context)
     try:
         name = request.POST['name']
         email = request.POST['email']

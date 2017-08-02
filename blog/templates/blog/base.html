@@ -90,7 +90,7 @@
                             src="{% static 'blog/images/logo.png' %}"
                             width="176.55" height="100" alt="Pro Con Duck"></a>
                     </div>
-                    <div class="add_banner"><a href="asdfjl"><img
+                    <div class="add_banner"><a href="#"><img
                             src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}"
                             alt=""></a></div>
                 </div>
@@ -116,7 +116,6 @@
                         <li><a href="#">{{ category.name }}</a></li>
                     {% endfor %}
                     <li><a href="{% url 'blog:contact' %}">Contact Us</a></li>
-                    <li><a href="{% url 'blog:error404' %}">404 Page</a></li>
                 </ul>
             </div>
         </nav>

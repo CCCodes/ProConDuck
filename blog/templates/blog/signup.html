@@ -1,6 +1,8 @@
 {% extends "blog/base.html" %}
 
 {% block left_content %}
-    <p>{{ message }}
-    <a href="{% url 'blog:main' %}"><button class="btn btn-theme">Go back</button></a></p>
+    <div class="error_page">
+        <h3>{{ header_main }}</h3>
+        <p>{{ message }}</p>
+        <span></span> <a href="{% url 'blog:main' %}" class="wow fadeInLeftBig">Go to home page</a> </div>
 {% endblock %}
