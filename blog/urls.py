@@ -10,9 +10,11 @@ app_name = "blog"
 urlpatterns = [
     url(r'^$', views.main, name='main'),
     url(r'^(?P<review_id>\d+)/(?P<slug>[-\w\d]+)/$', views.detail, name='detail'),
-    url(r'^contact-us/$', views.contact),
+    url(r'^contact-us/$', views.contact, name='contact'),
     url(r'^terms-of-service/$', views.tos),
-    url(r'^signup/$', views.signup, name='signup')
+    url(r'^signup/?(?P<success>[-\w\d]+)/?$', views.signup, name='signup'),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^error404/$', views.error404, name='error404')
 ]
 
 handler404 = views.error404

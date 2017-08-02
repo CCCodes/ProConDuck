@@ -1,3 +1,6 @@
 {% extends "blog/base.html" %}
 
-{% block left_content %}You have successfully signed up for the newsletter.{% endblock %}
+{% block left_content %}
+    <p>{{ message }}
+    <a href="{% url 'blog:main' %}"><button class="btn btn-theme">Go back</button></a></p>
+{% endblock %}

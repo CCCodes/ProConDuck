@@ -1,454 +1,161 @@
-<!DOCTYPE html>
+{% extends "blog/base.html" %}
 {% load staticfiles %} {% load static %}
-<html>
-<head>
-    <link rel="apple-touch-icon" sizes="57x57"
-          href="{% static 'blog/images/favicon/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60"
-          href="{% static 'blog/images/favicon/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72"
-          href="{% static 'blog/images/favicon/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76"
-          href="{% static 'blog/images/favicon/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114"
-          href="{% static 'blog/images/favicon/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120"
-          href="{% static 'blog/images/favicon/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144"
-          href="{% static 'blog/images/favicon/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152"
-          href="{% static 'blog/images/favicon/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180"
-          href="{% static 'blog/images/favicon/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192"
-          href="{% static 'blog/images/favicon/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="{% static 'blog/images/favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96"
-          href="{% static 'blog/images/favicon/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16"
-          href="{% static 'blog/images/favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage"
-          content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
-    <meta name="theme-color" content="#ffffff">
-    <title>{{ review.title }} | Pro Con Duck</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/animate.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/font.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/li-scroller.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/slick.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/jquery.fancybox.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/theme.css' %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/style.css' %}">
-    <!--[if lt IE 9]>
-<script src="{% static 'blog/assets/js/html5shiv.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/respond.min.js' %}"></script>
-<![endif]-->
-</head>
-<body>
-<div id="preloader">
-    <div id="status">&nbsp;</div>
-</div>
-<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-<div class="container">
-    <header id="header">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="header_top">
-                    <div class="header_top_left">
-                        <ul class="top_nav">
-                            <li><a href="../../">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="../../contact-us">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="header_top_right">
-                        <p>{{ date.weekday }}, {{ date.month }} {{ date.date }}, {{ date.year }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="header_bottom">
-                    <div class="logo_area"><a href="../../" class="logo"><img
-                            src="{% static 'blog/images/logo.png' %}"
-                            width="176.55" height="100" alt="Pro Con Duck"></a>
-                    </div>
-                    <div class="add_banner"><a href="#"><img
-                            src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}"
-                            alt=""></a></div>
-                </div>
-            </div>
+{% block left_content %}
+    <div class="single_page">
+        <ol class="breadcrumb">
+            <li><a href="../../">Home</a></li>
+            <li>
+                <a href="#">{{ review.product.category.name }}</a>
+            </li>
+        </ol>
+        <h1>{{ review.title }}</h1>
+        <div class="post_commentbox"><a href="#"><i
+                class="fa fa-user"></i>{{ review.reviewer_name }}
+        </a> <span><i
+                class="fa fa-calendar"></i>{{ review.created }}</span>
+            <a href="#"><i
+                    class="fa fa-tags"></i>{{ review.product.category.name }}
+            </a></div>
+        <div class="single_page_content"><img
+                class="img-center"
+                src="{% static review.image %}" alt="">
+            <p>{{ review.review }}</p>
+            {% comment %}              <blockquote> Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus. Donec id arcu quis mauris euismod placerat sit amet ut metus. Sed imperdiet fringilla sem eget euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque adipiscing, neque ut pulvinar tincidunt, est sem euismod odio, eu ullamcorper turpis nisl sit amet velit. Nullam vitae nibh odio, non scelerisque nibh. Vestibulum ut est augue, in varius purus. </blockquote>
+  <ul>
+    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+  </ul>
+  <h2>This is h2 title</h2>
+  <h3>This is h3 title</h3>
+  <h4>This is h4 title</h4>
+  <h5>This is h5 title</h5>
+  <h6>This is h6 Title</h6>
+  <button class="btn default-btn">Default</button>
+  <button class="btn btn-red">Red Button</button>
+  <button class="btn btn-yellow">Yellow Button</button>
+  <button class="btn btn-green">Green Button</button>
+  <button class="btn btn-black">Black Button</button>
+  <button class="btn btn-orange">Orange Button</button>
+  <button class="btn btn-blue">Blue Button</button>
+  <button class="btn btn-lime">Lime Button</button>
+  <button class="btn btn-theme">Theme Button</button>{% endcomment %}
         </div>
-    </header>
-    <section id="navArea">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar"><span
-                        class="sr-only">Toggle navigation</span> <span
-                        class="icon-bar"></span> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span></button>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav main_nav">
-                    <li class="active"><a href="../../"><span
-                            class="fa fa-home desktop-home"></span><span
-                            class="mobile-show">Home</span></a></li>
-                    {% for category in categories %}
-                        <li><a href="#">{{ category.name }}</a></li>
+        <div class="social_link">
+            <ul class="sociallink_nav">
+                <li>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=proconduck.com{{ request.path }}"><i
+                            class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/intent/tweet?text={{ review.product }}%20-%20{{ review.title }}&url=https://proconduck.com{{ request.path }}"><i
+                            class="fa fa-twitter"></i></a></li>
+                <li>
+                    <a href="https://plus.google.com/share?url=proconduck.com{{ request.path }}"><i
+                            class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=proconduck.com{{ request.path }}&title={{ review.title }}&summary={{ review.review }}&source="><i
+                            class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                    <a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media=https://proconduck.com/static/{{ review.image }}&description={{ review.review }}"><i
+                            class="fa fa-pinterest"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="related_post">
+            <h2>Related Reviews <i
+                    class="fa fa-thumbs-o-up"></i></h2>
+            <ul class="spost_nav wow fadeInDown animated">
+                {% if related_reviews %}
+                    {% for review in related_reviews|slice:":3" %}
+                        <li>
+                            <div class="media"><a
+                                    class="media-left"
+                                    href="../../{{ review.id }}/{{ review.slug }}">
+                                <img src="{% static review.image %}"
+                                     alt=""> </a>
+                                <div class="media-body"><a
+                                        class="catg_title"
+                                        href="single_page.html"> {{ review.title }}
+                                    - {{ review.product }}</a>
+                                </div>
+                            </div>
+                        </li>
                     {% endfor %}
-                    {% comment %}          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Android</a></li>
-              <li><a href="#">Samsung</a></li>
-              <li><a href="#">Nokia</a></li>
-              <li><a href="#">Walton Mobile</a></li>
-              <li><a href="#">Sympony</a></li>
-            </ul>
-          </li>{% endcomment %}
-                    <li><a href="../../contact-us">Contact Us</a></li>
-                    <li><a href="../../error404">404 Page</a></li>
-                </ul>
-            </div>
-        </nav>
-    </section>
-    <section id="newsSection">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="latest_newsarea"><span>Don't Miss Out!</span>
-                    <ul id="ticker01" class="news_sticker">
-                        {% if promotions %}
-                            {% for promotion in promotions %}
-                                {% if forloop.last %}
-                                    <li>
-                                        <a href="{{ promotions.last.link }}"><img
-                                                src="{% static promotions.last.image %}"
-                                                alt="">{{ promotions.last.title }}
-                                        </a>
-                                        {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
-                                            &emsp;
-                                        {% endfor %}</li>
-                                {% else %}
-                                    <li>
-                                        <a href="{{ promotions.link }}"><img
-                                                src="{% static promotions.image %}"
-                                                alt="">{{ promotion.title }}
-                                        </a></li>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <li><a href="#">No promotions currently
-                                available.</a>
-                                {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
-                                    &emsp;
-                                {% endfor %}</li>
-                        {% endif %}
-                    </ul>
-                    <div class="social_area">
-                        <ul class="social_nav">
-                            <li class="youtube"><a href="#"></a></li>
-                            <li class="mail"><a href="#"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="contentSection">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <div class="left_content">
-                    <div class="single_page">
-                        <ol class="breadcrumb">
-                            <li><a href="../../">Home</a></li>
-                            <li>
-                                <a href="#">{{ review.product.category.name }}</a>
-                            </li>
-                        </ol>
-                        <h1>{{ review.title }}</h1>
-                        <div class="post_commentbox"><a href="#"><i
-                                class="fa fa-user"></i>{{ review.reviewer_name }}
-                        </a> <span><i
-                                class="fa fa-calendar"></i>{{ review.created }}</span>
-                            <a href="#"><i
-                                    class="fa fa-tags"></i>{{ review.product.category.name }}
-                            </a></div>
-                        <div class="single_page_content"><img
-                                class="img-center"
-                                src="{% static review.image %}" alt="">
-                            <p>{{ review.review }}</p>
-                            {% comment %}              <blockquote> Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus. Donec id arcu quis mauris euismod placerat sit amet ut metus. Sed imperdiet fringilla sem eget euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque adipiscing, neque ut pulvinar tincidunt, est sem euismod odio, eu ullamcorper turpis nisl sit amet velit. Nullam vitae nibh odio, non scelerisque nibh. Vestibulum ut est augue, in varius purus. </blockquote>
-              <ul>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-                <li>Nullam vitae nibh odio, non scelerisque nibh</li>
-              </ul>
-              <h2>This is h2 title</h2>
-              <h3>This is h3 title</h3>
-              <h4>This is h4 title</h4>
-              <h5>This is h5 title</h5>
-              <h6>This is h6 Title</h6>
-              <button class="btn default-btn">Default</button>
-              <button class="btn btn-red">Red Button</button>
-              <button class="btn btn-yellow">Yellow Button</button>
-              <button class="btn btn-green">Green Button</button>
-              <button class="btn btn-black">Black Button</button>
-              <button class="btn btn-orange">Orange Button</button>
-              <button class="btn btn-blue">Blue Button</button>
-              <button class="btn btn-lime">Lime Button</button>
-              <button class="btn btn-theme">Theme Button</button>{% endcomment %}
-                        </div>
-                        <div class="social_link">
-                            <ul class="sociallink_nav">
-                                <li>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=proconduck.com{{ request.path }}"><i
-                                            class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/intent/tweet?text={{ review.product }}%20-%20{{ review.title }}&url=https://proconduck.com{{ request.path }}"><i
-                                            class="fa fa-twitter"></i></a></li>
-                                <li>
-                                    <a href="https://plus.google.com/share?url=proconduck.com{{ request.path }}"><i
-                                            class="fa fa-google-plus"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=proconduck.com{{ request.path }}&title={{ review.title }}&summary={{ review.review }}&source="><i
-                                            class="fa fa-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media=https://proconduck.com/static/{{ review.image }}&description={{ review.review }}"><i
-                                            class="fa fa-pinterest"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="related_post">
-                            <h2>Related Reviews <i
-                                    class="fa fa-thumbs-o-up"></i></h2>
-                            <ul class="spost_nav wow fadeInDown animated">
-                                {% if related_reviews %}
-                                    {% for review in related_reviews|slice:":3" %}
-                                        <li>
-                                            <div class="media"><a
-                                                    class="media-left"
-                                                    href="../../{{ review.id }}/{{ review.slug }}">
-                                                <img src="{% static review.image %}"
-                                                     alt=""> </a>
-                                                <div class="media-body"><a
-                                                        class="catg_title"
-                                                        href="single_page.html"> {{ review.title }}
-                                                    - {{ review.product }}</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {% endfor %}
-                                {% else %}
-                                    <p>No related reviews available.</p>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <nav class="nav-slit"> {% if related_reviews.0 %}
-                <a class="prev"
-                   href="../../{{ related_reviews.0.id }}/{{ related_reviews.0.slug }}">
-                    <span class="icon-wrap"><i
-                            class="fa fa-angle-left"></i></span>
-                    <div>
-                        <h3>{{ related_reviews.0.title }}</h3>
-                        <img src="{% static related_reviews.0.image %}"
-                             alt=""/></div>
-                </a>
-            {% else %}
-                <a class="prev"
-                   href="../../{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}"><span
-                        class="icon-wrap"><i
-                        class="fa fa-angle-left"></i></span>
-                    <div>
-                        <h3>{{ popular_review_list.0.title }}</h3>
-                        <img src="{% static popular_review_list.0.image %}"
-                             alt=""/>
-                    </div>
-                </a>
-            {% endif %}
-                {% if related_reviews.1 %}<a class="next"
-                                             href="../../{{ related_reviews.1.id }}/{{ related_reviews.1.slug }}">
-                    <span class="icon-wrap"><i
-                            class="fa fa-angle-right"></i></span>
-                    <div>
-                        <h3>{{ related_reviews.1.title }}</h3>
-                        <img src="{% static related_reviews.1.image %}"
-                             alt=""/></div>
-                </a>
                 {% else %}
-                    <a class="prev"
-                       href="../../{{ popular_review_list.1.id }}/{{ popular_review_list.1.slug }}"><span
-                            class="icon-wrap"><i class="fa fa-angle-right"></i></span>
-                        <div>
-                            <h3>{{ popular_review_list.1.title }}</h3>
-                            <img src="{% static popular_review_list.1.image %}"
-                                 alt=""/>
-                        </div>
-                    </a>
-                {% endif %} </nav>
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <aside class="right_content">
-                    <div class="single_sidebar">
-                        <h2><span>Popular Reviews</span></h2>
-                        <ul class="spost_nav">
-                            {% for review in popular_review_list %}
-                                <li>
-                                    <div class="media wow fadeInDown"><a
-                                            href="../../{{ review.id }}/{{ review.slug }}"
-                                            class="media-left"> <img alt=""
-                                                                     src="{% static review.image %}">
-                                    </a>
-                                        <div class="media-body"><a
-                                                href="single_page.html"
-                                                class="catg_title"> {{ review.title }}</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="single_sidebar wow fadeInDown">
-                        <h2><span>Categories</span></h2>
-                        {% if categories %}
-                            <ul>
-                                {% for category in categories %}
-                                    <li class="cat-item"><a
-                                            href="#">{{ category.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            No categories yet.
-                        {% endif %}
-                    </div>
-                    <div class="single_sidebar wow fadeInDown">
-                        <h2><span>Sponsor</span></h2>
-                        <a class="sideAdd" href="#"><img
-                                src="{% static 'blog/images/add_img.jpg' %}"
-                                alt=""></a></div>
-                    {% comment %}          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Category Archive</span></h2>
-            <select class="catgArchive">
-              <option>Select Category</option>
-              <option>Life styles</option>
-              <option>Sports</option>
-              <option>Technology</option>
-              <option>Treads</option>
-            </select>
-          </div> {% endcomment %}
-                    {% comment %}          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Links</span></h2>
-            <ul>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Rss Feed</a></li>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Life &amp; Style</a></li>
+                    <p>No related reviews available.</p>
+                {% endif %}
             </ul>
-          </div>{% endcomment %}
-                </aside>
+        </div>
+    </div>
+{% endblock %}
+{% block nav %}
+    <nav class="nav-slit"> {% if related_reviews.0 %}
+        <a class="prev"
+           href="../../{{ related_reviews.0.id }}/{{ related_reviews.0.slug }}">
+            <span class="icon-wrap"><i
+                    class="fa fa-angle-left"></i></span>
+            <div>
+                <h3>{{ related_reviews.0.title }}</h3>
+                <img src="{% static related_reviews.0.image %}"
+                     alt=""/></div>
+        </a>
+    {% else %}
+        <a class="prev"
+           href="../../{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}"><span
+                class="icon-wrap"><i
+                class="fa fa-angle-left"></i></span>
+            <div>
+                <h3>{{ popular_review_list.0.title }}</h3>
+                <img src="{% static popular_review_list.0.image %}"
+                     alt=""/>
             </div>
-        </div>
-    </section>
-    <footer id="footer">
-        <div class="footer_top">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInLeftBig">
-                        <h2>Never miss an exclusive discount</h2>
-                        <form action="{% url 'blog:signup' %}" method="post"
-                              class="contact_form">
-                            {% csrf_token %}
-                            <input class="form-control" type="text"
-                                   placeholder="First Name*">
-                            <input class="form-control" type="email"
-                                   placeholder="Email*">
-                            <input type="submit" value="Sign Up">
-                        </form>
-                    </div>
+        </a>
+    {% endif %}
+        {% if related_reviews.1 %}<a class="next"
+                                     href="../../{{ related_reviews.1.id }}/{{ related_reviews.1.slug }}">
+            <span class="icon-wrap"><i
+                    class="fa fa-angle-right"></i></span>
+            <div>
+                <h3>{{ related_reviews.1.title }}</h3>
+                <img src="{% static related_reviews.1.image %}"
+                     alt=""/></div>
+        </a>
+        {% else %}
+            <a class="prev"
+               href="../../{{ popular_review_list.1.id }}/{{ popular_review_list.1.slug }}"><span
+                    class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+                <div>
+                    <h3>{{ popular_review_list.1.title }}</h3>
+                    <img src="{% static popular_review_list.1.image %}"
+                         alt=""/>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInDown">
-                        <h2>Become a Reviewer</h2>
-                        <p class="reviewerseller">Try the latest technology and
-                            get awesome perks! Email us at <a
-                                    href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>
-                            or contact us <a href="contact-us">here</a>.</p>
-                        {% comment %}            <ul class="tag_nav">
-              <li><a href="#">Games</a></li>
-              <li><a href="#">Sports</a></li>
-              <li><a href="#">Fashion</a></li>
-            </ul>{% endcomment %}
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInRightBig">
-                        <h2>Join as a Seller</h2>
-                        <p class="reviewerseller">Feel like your products
-                            aren't getting the attention they deserve? We'll
-                            help you stand out - email us at <a
-                                    href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>
-                            or contact us <a href="contact-us">here</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer_bottom">
-            <p class="copyright">Copyright &copy; 2017 <a href="#">Pro Con
-                Duck</a></p>
-            <p class="developer"><a href="#">Terms of Service</a> | <a
-                    href="#">Privacy Policy</a></p>
-        </div>
-    </footer>
-</div>
-<script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/wow.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/slick.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/jquery.li-scroller.1.0.js' %}"></script>
-<script src="{% static 'blog/assets/js/jquery.newsTicker.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/jquery.fancybox.pack.js' %}"></script>
-<script src="{% static 'blog/assets/js/custom.js' %}"></script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-97587291-2', 'auto');
-    ga('send', 'pageview');
-
-</script>
-</body>
-</html>
+            </a>
+        {% endif %} </nav>
+{% endblock %}
+{% block category_sponsor %}
+    <div class="single_sidebar wow fadeInDown">
+        <h2><span>Categories</span></h2>
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                    <li class="cat-item"><a
+                            href="#">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No categories yet.
+        {% endif %}
+    </div>
+    <div class="single_sidebar wow fadeInDown">
+        <h2><span>Sponsor</span></h2>
+        <a class="sideAdd" href="#"><img
+                src="{% static 'blog/images/add_img.jpg' %}"
+                alt=""></a></div>
+{% endblock %}

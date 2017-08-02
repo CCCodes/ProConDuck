@@ -30,13 +30,24 @@ def main(request):
     return render(request, 'blog/main.html', context)
 
 
-def signup(request):
+def signup(request, success=None):
+    if success is not None:
+        if success == 'true':
+            message = "You have successfully signed up for the newsletter. " \
+                      "Thanks!"
+        elif success == 'false':
+            message = "Sorry, something went wrong with submitting your " \
+                      "information."
+        else:
+            raise Http404
+        return render(request, 'blog/signup.html', {"message": message})
     try:
         name = request.POST['name']
         email = request.POST['email']
     except KeyError:
         # Redisplay the question voting form.
-        pass
+        return HttpResponseRedirect(
+            reverse('blog:signup', kwargs={'success': 'false'}))
     else:
         emails = [o.email for o in NewsletterEmail.objects.all()]
         if email not in emails and len(name) < 50 and 5 <= len(email) < 100:
@@ -48,10 +59,12 @@ def signup(request):
                 [email],
                 fail_silently=False,
             )
+            return HttpResponseRedirect(reverse('blog:signup', kwargs={'success': 'true'}))
+        else:
+            return HttpResponseRedirect(reverse('blog:signup', kwargs={'success': 'false'}))
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
-    return HttpResponseRedirect(reverse('blog:main'))
 
 
 def display_categories():
@@ -82,11 +95,8 @@ def detail(request, slug, review_id):
     return render(request, 'blog/single_page.html', context)
 
 
-def tos(request, slug, review_id):
-    top_rated_products = Product.objects.order_by("-score")
-    context = {
-        'review': Review.objects.get(pk=review_id),
-    }
+def tos(request):
+    context = {}
     return render(request, 'blog/tos.html', context)
 
 
@@ -100,12 +110,11 @@ def error404(request):
     # response = render_to_response('blog/404', {},
     #                                context_instance=RequestContext(request))
     # response.status_code = 404
-    template = loader.get_template('blog/404.html')
-    context = Context({
+    context = {
         'message': 'All: %s' % request,
-        })
+        }
 
     # 3. Return Template for this view + Data
-    return HttpResponse(content=template.render(context),
-                        content_type='text/html; charset=utf-8', status=404)
+    return HttpResponse(content=render(request, '404.html', context),
+                        status=404)
 

@@ -74,9 +74,9 @@
                 <div class="header_top">
                     <div class="header_top_left">
                         <ul class="top_nav">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{% url 'blog:main' %}">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="contact-us">Contact</a></li>
+                            <li><a href="{% url 'blog:contact' %}">Contact</a></li>
                         </ul>
                     </div>
                     <div class="header_top_right">
@@ -86,11 +86,11 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="header_bottom">
-                    <div class="logo_area"><a href="#" class="logo"><img
+                    <div class="logo_area"><a href="{% url 'blog:main' %}" class="logo"><img
                             src="{% static 'blog/images/logo.png' %}"
                             width="176.55" height="100" alt="Pro Con Duck"></a>
                     </div>
-                    <div class="add_banner"><a href="#"><img
+                    <div class="add_banner"><a href="asdfjl"><img
                             src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}"
                             alt=""></a></div>
                 </div>
@@ -115,8 +115,8 @@
                     {% for category in categories %}
                         <li><a href="#">{{ category.name }}</a></li>
                     {% endfor %}
-                    <li><a href="contact-us">Contact Us</a></li>
-                    <li><a href="error404">404 Page</a></li>
+                    <li><a href="{% url 'blog:contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'blog:error404' %}">404 Page</a></li>
                 </ul>
             </div>
         </nav>
@@ -172,6 +172,7 @@
                 {% block left_content %}{% endblock %}
                 </div>
             </div>
+            {% block nav %}{% endblock %}
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <aside class="right_content">
                     {% block right_content %}
@@ -181,12 +182,12 @@
                             {% for review in popular_review_list %}
                                 <li>
                                     <div class="media wow fadeInDown"><a
-                                            href="../../{{ review.id }}/{{ review.slug }}"
+                                            href="{% url 'blog:detail' review.id review.slug %}"
                                             class="media-left"> <img alt=""
                                                                      src="{% static review.image %}">
                                     </a>
                                         <div class="media-body"><a
-                                                href="single_page.html"
+                                                href="{% url 'blog:detail' review.id review.slug %}"
                                                 class="catg_title"> {{ review.title }}</a>
                                         </div>
                                     </div>
@@ -224,7 +225,7 @@
                         <p class="reviewerseller">Try the latest technology and
                             get awesome perks! Email us at <a
                                     href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>
-                            or contact us <a href="contact-us">here</a>.</p>
+                            or contact us <a href="{% url 'blog:contact' %}">here</a>.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
@@ -234,7 +235,7 @@
                             aren't getting the attention they deserve? We'll
                             help you stand out - email us at <a
                                     href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>
-                            or contact us <a href="contact-us">here</a>.</p>
+                            or contact us <a href="{% url 'blog:contact' %}">here</a>.</p>
                     </div>
                 </div>
             </div>
