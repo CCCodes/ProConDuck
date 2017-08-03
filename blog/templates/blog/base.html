@@ -156,7 +156,7 @@
                     <div class="social_area">
                         <ul class="social_nav">
                             <li class="youtube"><a href="https://www.youtube.com/channel/UCddlejtYBppwJepUor8_n9Q"></a></li>
-                            <li class="mail"><a href="#"></a></li>
+                            <li class="mail"><a href="mailto:proconduck@gmail.com"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,9 +211,9 @@
                               class="contact_form">
                             {% csrf_token %}
                             <input class="form-control" type="text" name="name"
-                                   placeholder="First Name*">
+                                   placeholder="First Name*" required>
                             <input class="form-control" type="email"
-                                   name="email" placeholder="Email*">
+                                   name="email" placeholder="Email*" required>
                             <input type="submit" value="Sign Up">
                         </form>
                     </div>

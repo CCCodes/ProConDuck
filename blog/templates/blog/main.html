@@ -189,30 +189,6 @@
                             </div>
                         </div>
                     </div>
-                    {% comment %}<div class="single_post_content">
-            <h2><span>{{ categories.2.name }}</span></h2>
-            <div class="single_post_content_left">
-              <ul class="business_catgnav">
-                <li>
-                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="{{ display_categories.2.0.0.id }}/{{ display_categories.2.0.0.slug }}"> <img src="{% static display_categories.2.0.0.image %}" alt=""> <span class="overlay"></span> </a>
-                    <figcaption> <a href="{{ display_categories.2.0.0.id }}/{{ display_categories.2.0.0.slug }}">{{ display_categories.2.0.0.title }} - {{ display_categories.2.0.0.product }}</a> </figcaption>
-                      <p>{{ display_categories.2.0.0.created.date }} | {{ display_categories.2.0.0.review }}</p>
-                  </figure>
-                </li>
-              </ul>
-            </div>
-            <div class="single_post_content_right">
-              <ul class="spost_nav">
-                {% for review in display_categories.2|slice:"1:" %}
-                <li>
-                  <div class="media wow fadeInDown"> <a href="{{ review.0.id }}/{{ review.0.slug }}" class="media-left"> <img alt="" src="{% static review.0.image %}"> </a>
-                    <div class="media-body"> <a href="{{ review.0.id }}/{{ review.0.slug }}" class="catg_title">{{ review.0.title }} - {{ review.0.product }}<br/>{{ review.0.created.date }}</a> </div>
-                  </div>
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>{% endcomment %}
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -237,55 +213,6 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    {% comment %}          <div class="single_sidebar">
-            <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
-              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
-              <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
-            </ul>
-            <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="category">
-                  {% if categories %}
-                <ul>
-                  {% for category in categories %}
-                  <li class="cat-item"><a href="#">{{ category.name }}</a></li>
-                  {% endfor %}
-                </ul>
-                  {% else %}
-                      No categories yet.
-                  {% endif %}
-              </div>
-              <div role="tabpanel" class="tab-pane" id="video">
-                <div class="vide_area">
-                  <iframe width="100%" height="250" src="http://www.youtube.com/embed/QWJW5yYN0zU?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="comments">
-                <ul class="spost_nav">
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="{{ review.id }}/{{ review.slug }}" class="media-left"> <img alt="" src="{% static 'blog/images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="{{ review.id }}/{{ review.slug }}" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>{% endcomment %}
                     <div class="single_sidebar wow fadeInDown">
                         <h2><span>Categories</span></h2>
                         {% if categories %}

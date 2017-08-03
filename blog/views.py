@@ -101,14 +101,23 @@ def detail(request, slug, review_id):
 
 
 def tos(request):
-    context = {}
-    return render(request, 'blog/tos.html', context)
+    return render(request, 'blog/tos.html', {})
 
 
 def contact(request):
-    context = {
-    }
-    return render(request, 'blog/contact.html', context)
+    return render(request, 'blog/contact.html', {})
+
+
+def contact_submit(request):
+    send_mail(
+        'Site Contact from ' + request.POST['email'],
+        'Name: ' + request.POST['name'] + '\nEmail: ' +
+        request.POST['email'] + '\nMessage: ' + request.POST['message'],
+        'proconduck@gmail.com',
+        ['proconduck@gmail.com'],
+        fail_silently=False
+    )
+    return HttpResponseRedirect(reverse('blog:contact'))
 
 
 def error404(request):

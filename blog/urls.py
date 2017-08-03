@@ -1,7 +1,4 @@
-from django.conf.urls import url, handler404
-from django.conf import settings
-
-from . import views
+from django.conf.urls import url
 
 from . import views
 
@@ -11,10 +8,9 @@ urlpatterns = [
     url(r'^$', views.main, name='main'),
     url(r'^(?P<review_id>\d+)/(?P<slug>[-\w\d]+)/$', views.detail, name='detail'),
     url(r'^contact-us/$', views.contact, name='contact'),
+    url(r'^contact-us/submit/$', views.contact_submit, name='contact_submit'),
     url(r'^terms-of-service/$', views.tos),
     url(r'^signup/?(?P<success>[-\w\d]+)/?$', views.signup, name='signup'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^error404/$', views.error404, name='error404')
 ]
-
-handler404 = views.error404
