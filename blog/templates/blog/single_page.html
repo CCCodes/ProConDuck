@@ -9,10 +9,9 @@
             </li>
         </ol>
         <h1>{{ review.title }}</h1>
-        <div class="post_commentbox"><a href="#"><i
-                class="fa fa-user"></i>{{ review.reviewer_name }}
-        </a> <span><i
-                class="fa fa-calendar"></i>{{ review.created }}</span>
+        <div class="post_commentbox"><i
+                class="fa fa-user"></i>{{ review.reviewer }}
+            <span><i class="fa fa-calendar"></i>{{ review.created }}</span>
             <a href="#"><i
                     class="fa fa-tags"></i>{{ review.product.category.name }}
             </a></div>

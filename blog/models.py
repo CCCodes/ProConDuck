@@ -61,6 +61,15 @@ class Product(models.Model):
         self.save()
 
 
+class Reviewer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+
 class Review(models.Model):
 
     featured = models.BooleanField(default=False)
@@ -70,7 +79,7 @@ class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
 
     title = models.CharField(max_length=100)
-    reviewer_name = models.CharField(max_length=50)
+    reviewer = models.ForeignKey(Reviewer, default=1)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
     # image = models.ImageField(blank=True, upload_to="images")
@@ -79,8 +88,10 @@ class Review(models.Model):
     review = models.TextField()
     views = models.IntegerField(default=0)  # editable=False)
 
-    created = models.DateTimeField(editable=False, default=django.utils.timezone.now)
-    modified = models.DateTimeField(blank=True, null=True, default=django.utils.timezone.now)
+    created = models.DateTimeField(editable=False,
+                                   default=django.utils.timezone.now)
+    modified = models.DateTimeField(blank=True, null=True,
+                                    default=django.utils.timezone.now)
 
     def __str__(self):
         return self.title
