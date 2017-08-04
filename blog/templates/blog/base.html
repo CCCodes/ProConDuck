@@ -90,8 +90,8 @@
                             src="{% static 'blog/images/logo.png' %}"
                             width="176.55" height="100" alt="Pro Con Duck"></a>
                     </div>
-                    <div class="add_banner"><a href="#"><img
-                            src="{% static 'blog/images/addbanner_728x90_V1.jpg' %}"
+                    <div class="add_banner"><a href="{{ ads.ThemeForest.link }}" target="_blank"><img
+                            src="{% static 'blog/images/'|add:ads.ThemeForest.image %}"
                             alt=""></a></div>
                 </div>
             </div>

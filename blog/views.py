@@ -10,21 +10,12 @@ from .models import *
 
 
 def main(request):
-    all_ads = Advertisement.objects
-    ads = [
-        all_ads.filter(slot=AdSlot.objects.get(number=1)),
-        all_ads.filter(slot=AdSlot.objects.get(number=2)),
-    ]
-    ad_file_paths = []
-
-    for i in range(2):
-        ads[i] = ads[i][randint(0, len(ads[i])-1)]
-        ad_file_paths.append(ads[i].image.name[12:])
+    featured_reviews = Review.objects.filter(featured=True)
 
     context = {
         'top_rated_products': Product.objects.order_by('-score'),
-        'ad_file_paths': ad_file_paths,
         'display_categories': display_categories(),
+        'featured_reviews': featured_reviews,
     }
 
     return render(request, 'blog/main.html', context)

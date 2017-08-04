@@ -16,7 +16,7 @@
                                     <h2><a class="slider_tittle"
                                            href="{{ review.id }}/{{ review.slug }}">{{ review.title }}
                                         - {{ review.product }}</a></h2>
-                                    <p>{{ review.review }}</p>
+                                    <p>{{ review.review|truncatechars:290 }}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -78,10 +78,10 @@
                                         <span class="overlay"></span> </a>
                                         <figcaption><a
                                                 href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}">{{ popular_review_list.0.title }}
-                                            - {{ popular_review_list.0.product }} {{ popular_review_list.0.views }} Views</a>
+                                            - {{ popular_review_list.0.product }}</a>
                                         </figcaption>
-                                        <p>{{ popular_review_list.0.created.date }}
-                                            | {{ popular_review_list.0.review }}</p>
+                                        <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br/>
+                                           {{ popular_review_list.0.review }}</p>
                                     </figure>
                                 </li>
                             </ul>
@@ -122,8 +122,9 @@
                                                     href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}">{{ display_categories.0.0.0.title }}
                                                 - {{ display_categories.0.0.0.product }}</a>
                                             </figcaption>
-                                            <p>{{ display_categories.0.0.0.created.date }}
-                                                | {{ display_categories.0.0.0.review }}</p>
+                                            <p>{{ display_categories.0.0.0.reviewer }}
+                                                | {{ display_categories.0.0.0.created.date }}
+                                                <br/>{{ display_categories.0.0.0.review|truncatechars:130 }}</p>
                                         </figure>
                                     </li>
                                 </ul>
@@ -163,8 +164,9 @@
                                                     href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}">{{ display_categories.1.0.0.title }}
                                                 - {{ display_categories.1.0.0.product }}</a>
                                             </figcaption>
-                                            <p>{{ display_categories.1.0.0.created.date }}
-                                                | {{ display_categories.1.0.0.review }}</p>
+                                            <p>{{ display_categories.1.0.0.reviewer }}
+                                                | {{ display_categories.1.0.0.created.date }}<br/>
+                                                {{ display_categories.1.0.0.review|truncatechars:130 }}</p>
                                         </figure>
                                     </li>
                                 </ul>
@@ -229,8 +231,8 @@
                     </div>
                     <div class="single_sidebar wow fadeInDown">
                         <h2><span>Sponsor</span></h2>
-                        <a class="sideAdd" href="#"><img
-                                src="{% static 'blog/images/add_img.jpg' %}"
+                        <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
+                                src="{% static 'blog/images/'|add:ads.World.image %}"
                                 alt=""></a></div>
                 </aside>
             </div>
