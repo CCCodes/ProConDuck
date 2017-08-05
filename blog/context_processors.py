@@ -12,19 +12,15 @@ def default(request):
     ]
 
     ad_paths = {
-        ads[0][0].name: {'link': ads[0][0].link},
-        ads[1][0].name: {'link': ads[1][0].link}
+        ads[0][0].name: {
+            'link': ads[0][0].link,
+            'image': ads[0][0].image
+        },
+        ads[1][0].name: {
+            'link': ads[1][0].link,
+            'image': ads[1][0].image
+        }
     }
-
-    # prevent 500 error if database images don't exist
-    if finders.find("blog/images/" + ads[0][0].image) is not None:
-        ad_paths[ads[0][0].name]['image'] = ads[0][0].image
-    else:
-        ad_paths[ads[0][0].name]['image'] = "addbanner_728x90_V1.jpg"
-    if finders.find("blog/images/" + ads[1][0].image) is not None:
-        ad_paths[ads[1][0].name]['image'] = ads[1][0].image
-    else:
-        ad_paths[ads[1][0].name]['image'] = "add_img.jpg"
 
     return dict(
         latest_review_list=Review.objects.order_by('-created')[:4],

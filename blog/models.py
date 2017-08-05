@@ -150,7 +150,7 @@ class Advertisement(models.Model):
     selected = models.BooleanField(default=True)
     slot = models.ForeignKey(AdSlot, on_delete=models.CASCADE, default=1)
     name = models.CharField(max_length=100)
-    image = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="ads", storage=s3)
     link = models.URLField()
 
     def __str__(self):
