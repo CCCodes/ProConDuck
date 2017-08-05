@@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
                  'www.proconduck.com',
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -161,8 +162,11 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-MEDIA_URL = "media/"
+MEDIA_URL = 'https://s3-%s.amazonaws.com/%s/media/' % (config['AWS_REGION'],
+                                                       config['S3_BUCKET'])
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'blog.customstorages.MediaStorage'
+MEDIAFILES_LOCATION = 'media'
 
 ADMINS = [('Caitlin', 'proconduck@gmail.com'), ]
 
@@ -187,7 +191,12 @@ LOGGING = {
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = config['EMAIL_PASS'] #my gmail password
-EMAIL_HOST_USER = 'proconduck@gmail.com' #my gmail username
+EMAIL_HOST_PASSWORD = config['EMAIL_PASS']
+EMAIL_HOST_USER = 'proconduck@gmail.com'
 EMAIL_PORT = 587
 
+AWS_ACCESS_KEY_ID = config['AWS_ACCESS_KEY']
+AWS_SECRET_ACCESS_KEY = config['AWS_SECRET_KEY']
+BOTO_S3_HOST = config['S3_BUCKET']
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

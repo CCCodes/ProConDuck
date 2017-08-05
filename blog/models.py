@@ -8,7 +8,13 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 from django.db import models
 
+from django_boto.s3.storage import S3Storage
+
+from ProConDuck.settings import *
+
 # Create your models here.
+
+s3 = S3Storage()
 
 
 class Company(models.Model):
@@ -42,8 +48,8 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     score = models.FloatField(default=0) #, editable=False)
     link = models.URLField()
-    # image = models.ImageField(blank=True, upload_to="images")
-    image = models.CharField(max_length=100, default="blog/media/Capture.PNG")
+    image = models.ImageField(upload_to="images", storage=s3)
+    # image = models.CharField(max_length=100, default="blog/media/Capture.PNG")
 
     def __str__(self):
         return self.name
@@ -82,15 +88,15 @@ class Review(models.Model):
     reviewer = models.ForeignKey(Reviewer, default=1)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
-    # image = models.ImageField(blank=True, upload_to="images")
-    image = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(blank=True, upload_to="images", storage=s3)
+    # image = models.CharField(max_length=100, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()
     views = models.IntegerField(default=0)  # editable=False)
 
     created = models.DateTimeField(editable=False,
                                    default=django.utils.timezone.now)
-    modified = models.DateTimeField(blank=True, null=True,
+    modified = models.DateTimeField(blank=True, null=True, editable=False,
                                     default=django.utils.timezone.now)
 
     def __str__(self):
