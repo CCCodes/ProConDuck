@@ -1,5 +1,6 @@
 from itertools import chain
 from random import randint
+from smtplib import SMTPAuthenticationError
 
 from django.core.mail import send_mail
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -100,14 +101,17 @@ def contact(request):
 
 
 def contact_submit(request):
-    send_mail(
-        'Site Contact from ' + request.POST['email'],
-        'Name: ' + request.POST['name'] + '\nEmail: ' +
-        request.POST['email'] + '\nMessage: ' + request.POST['message'],
-        'proconduck@gmail.com',
-        ['proconduck@gmail.com'],
-        fail_silently=False
-    )
+    try:
+        send_mail(
+            'Site Contact from ' + request.POST['email'],
+            'Name: ' + request.POST['name'] + '\nEmail: ' +
+            request.POST['email'] + '\nMessage: ' + request.POST['message'],
+            'proconduck@gmail.com',
+            ['proconduck@gmail.com'],
+            fail_silently=False
+        )
+    except SMTPAuthenticationError:
+        return HttpResponseRedirect(reverse('blog:signup', kwargs={'success':'false'}))
     return HttpResponseRedirect(reverse('blog:contact'))
 
 
