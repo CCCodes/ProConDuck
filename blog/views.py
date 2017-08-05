@@ -88,6 +88,7 @@ def detail(request, slug, review_id):
     context = {
         'review': review,
         'related_reviews': related,
+        'image_link': review.image.url.replace('%', '%25')
     }
     return render(request, 'blog/single_page.html', context)
 

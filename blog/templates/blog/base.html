@@ -129,18 +129,14 @@
                                 {% for promotion in promotions %}
                                     {% if forloop.last %}
                                         <li>
-                                            <a href="{{ promotions.last.link }}"><img
-                                                    src="{% static promotions.last.image %}"
-                                                    alt="">{{ promotions.last.title }}
+                                            <a href="{{ promotions.last.link }}">{{ promotions.last.title }}
                                             </a>
-                                            {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
+                                            {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
                                                 &emsp;
                                             {% endfor %}</li>
                                     {% else %}
                                         <li>
-                                            <a href="{{ promotions.link }}"><img
-                                                    src="{% static promotions.image %}"
-                                                    alt="">{{ promotion.title }}
+                                            <a href="{{ promotions.link }}">{{ promotion.title }}
                                             </a></li>
                                     {% endif %}
                                 {% endfor %}

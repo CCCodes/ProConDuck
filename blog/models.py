@@ -1,6 +1,7 @@
 import datetime
 
 import django
+from django.contrib.postgres.fields import ArrayField
 from django.core.urlresolvers import reverse
 from django.db.models import Avg, Count
 from django.dispatch import receiver
@@ -98,6 +99,8 @@ class Review(models.Model):
                                    default=django.utils.timezone.now)
     modified = models.DateTimeField(blank=True, null=True, editable=False,
                                     default=django.utils.timezone.now)
+    pros = ArrayField(models.CharField(max_length=20, blank=True), null=True, size=10)
+    cons = ArrayField(models.CharField(max_length=20, blank=True), null=True, size=10)
 
     def __str__(self):
         return self.title

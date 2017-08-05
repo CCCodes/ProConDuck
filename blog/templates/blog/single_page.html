@@ -18,7 +18,24 @@
         <div class="single_page_content"><img
                 class="img-center"
                 src="{{ review.image.url }}" alt="">
-            <p>{{ review.review }}</p>
+            <h3 style="color:#0066ff">{{ review.product }} by {{ review.product.company }}</h3>
+            <p><br/>{{ review.review }}</p>
+            {% if review.pros %}
+            <h3>Pros</h3>
+            <ul>
+            {% for pro in review.pros %}
+                <li>{{ pro }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            {% if review.cons %}
+            <h3>Cons</h3>
+            <ul>
+            {% for con in review.cons %}
+                <li>{{ con }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
             {% comment %}              <blockquote> Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus. Donec id arcu quis mauris euismod placerat sit amet ut metus. Sed imperdiet fringilla sem eget euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque adipiscing, neque ut pulvinar tincidunt, est sem euismod odio, eu ullamcorper turpis nisl sit amet velit. Nullam vitae nibh odio, non scelerisque nibh. Vestibulum ut est augue, in varius purus. </blockquote>
   <ul>
     <li>Nullam vitae nibh odio, non scelerisque nibh</li>
@@ -61,7 +78,7 @@
                             class="fa fa-linkedin"></i></a>
                 </li>
                 <li>
-                    <a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media=https://proconduck.com/{{ review.image.url }}&description={{ review.review }}"><i
+                    <a href="https://pinterest.com/pin/create/button/?url=proconduck.com{{ request.path }}&media={{ image_link }}&description={{ review.review }}"><i
                             class="fa fa-pinterest"></i></a>
                 </li>
             </ul>
