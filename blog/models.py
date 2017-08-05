@@ -156,27 +156,27 @@ class Advertisement(models.Model):
     def __str__(self):
         return self.name
 
-    # def remove_on_image_update(self):
-    #     try:
-    #         # is the object in the database yet?
-    #         obj = Advertisement.objects.get(id=self.id)
-    #     except Advertisement.DoesNotExist:
-    #         # object is not in db, nothing to worry about
-    #         return
-    #     # is the save due to an update of fathe actual image file?
-    #     if obj.image and self.image and obj.image != self.image:
-    #         # delete the old image file from the storage in favor of the new file
-    #         obj.image.delete()
-    #
-    # def delete(self, *args, **kwargs):
-    #     # object is being removed from db, remove the file from storage first
-    #     self.image.delete()
-    #     return super(Advertisement, self).delete(*args, **kwargs)
-    #
-    # def save(self, *args, **kwargs):
-    #     # object is possibly being updated, if so, clean up.
-    #     self.remove_on_image_update()
-    #     return super(Advertisement, self).save(*args, **kwargs)
+    def remove_on_image_update(self):
+        try:
+            # is the object in the database yet?
+            obj = Advertisement.objects.get(id=self.id)
+        except Advertisement.DoesNotExist:
+            # object is not in db, nothing to worry about
+            return
+        # is the save due to an update of fathe actual image file?
+        if obj.image and self.image and obj.image != self.image:
+            # delete the old image file from the storage in favor of the new file
+            obj.image.delete()
+
+    def delete(self, *args, **kwargs):
+        # object is being removed from db, remove the file from storage first
+        self.image.delete()
+        return super(Advertisement, self).delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        # object is possibly being updated, if so, clean up.
+        self.remove_on_image_update()
+        return super(Advertisement, self).save(*args, **kwargs)
 
 
 class Promotion(models.Model):

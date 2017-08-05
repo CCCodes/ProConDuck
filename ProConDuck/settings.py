@@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
                  'www.proconduck.com',
@@ -197,6 +197,7 @@ EMAIL_PORT = 587
 
 AWS_ACCESS_KEY_ID = config['AWS_ACCESS_KEY']
 AWS_SECRET_ACCESS_KEY = config['AWS_SECRET_KEY']
-BOTO_S3_HOST = config['S3_BUCKET']
+BOTO_S3_BUCKET = config['S3_BUCKET']
+BOTO_S3_HOST = config['AWS_HOST']
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

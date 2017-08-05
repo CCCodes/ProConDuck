@@ -10,7 +10,7 @@
                         {% for review in featured_reviews %}
                             <div class="single_iteam"><a
                                     href="{{ review.id }}/{{ review.slug }}">
-                                <img src="{% static review.image %}"
+                                <img src="{{ review.image.url }}"
                                      alt=""></a>
                                 <div class="slider_article">
                                     <h2><a class="slider_tittle"
@@ -22,7 +22,7 @@
                         {% endfor %}
                     {% else %}
                         <div class="single_iteam"><a href="#"> <img
-                                src="{% static review.image %}" alt=""></a>
+                                src="{{ review.image.url }}" alt=""></a>
                             <div class="slider_article">
                                 <h2><a class="slider_tittle"
                                        href="{{ review.id }}/{{ review.slug }}">No
@@ -46,7 +46,7 @@
                                     <div class="media"><a href="#"
                                                           class="media-left">
                                         <img alt=""
-                                             src="{% static product.image %}">
+                                             src="{{ product.image.url }}">
                                     </a>
                                         <div class="media-body"><a href="#"
                                                                    class="catg_title"> {{ product.name }}</a>
@@ -74,7 +74,7 @@
                                     <figure class="bsbig_fig"><a
                                             href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}"
                                             class="featured_img"> <img alt=""
-                                                                       src="/{{ popular_review_list.0.image.url }}">
+                                                                       src="{{ popular_review_list.0.image.url }}">
                                         <span class="overlay"></span> </a>
                                         <figcaption><a
                                                 href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}">{{ popular_review_list.0.title }}
@@ -93,7 +93,7 @@
                                         <div class="media wow fadeInDown"><a
                                                 href="{{ review.id }}/{{ review.slug }}"
                                                 class="media-left"> <img alt=""
-                                                                         src="{% static review.image %}">
+                                                                         src="{{ review.image.url }}">
                                         </a>
                                             <div class="media-body"><a
                                                     href="{{ review.id }}/{{ review.slug }}"
@@ -116,7 +116,7 @@
                                                 href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}"
                                                 class="featured_img"> <img
                                                 alt=""
-                                                src="{% static display_categories.0.0.0.image %}">
+                                                src="{{ display_categories.0.0.0.image.url }}">
                                             <span class="overlay"></span> </a>
                                             <figcaption><a
                                                     href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}">{{ display_categories.0.0.0.title }}
@@ -135,7 +135,7 @@
                                                 <a href="{{ review.0.id }}/{{ review.0.slug }}"
                                                    class="media-left"> <img
                                                         alt=""
-                                                        src="{% static review.0.image %}">
+                                                        src="{{ review.0.image.url }}">
                                                 </a>
                                                 <div class="media-body"><a
                                                         href="{{ review.0.id }}/{{ review.0.slug }}"
@@ -157,7 +157,7 @@
                                             <a href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}"
                                                class="featured_img"> <img
                                                     alt=""
-                                                    src="{% static display_categories.1.0.0.image %}">
+                                                    src="{{ display_categories.1.0.0.image.url }}">
                                                 <span class="overlay"></span>
                                             </a>
                                             <figcaption><a
@@ -177,7 +177,7 @@
                                                 <a href="{{ review.0.id }}/{{ review.0.slug }}"
                                                    class="media-left"> <img
                                                         alt=""
-                                                        src="{% static review.0.image %}">
+                                                        src="{{ review.0.image.url }}">
                                                 </a>
                                                 <div class="media-body"><a
                                                         href="{{ review.0.id }}/{{ review.0.slug }}"
@@ -203,7 +203,7 @@
                                     <div class="media wow fadeInDown"><a
                                             href="{{ review.id }}/{{ review.slug }}"
                                             class="media-left"> <img alt=""
-                                                                     src="{% static review.image %}">
+                                                                     src="{{ review.image.url }}">
                                     </a>
                                         <div class="media-body"><a
                                                 href="{{ review.id }}/{{ review.slug }}"
