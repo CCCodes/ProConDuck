@@ -221,7 +221,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .breadcrumb{background-color:#303030; border-radius:0}
 .breadcrumb li a{color:#fff}
 .single_page_content{display:inline; float:left; padding-top:20px; width:100%; border-bottom:1px solid #ddd; padding-bottom:20px}
-.single_page_content > img{max-width:100%; width:320px; height:213px; margin-bottom:15px}
+.single_page_content > img{max-width:100%;/* width:320px; height:213px; margin-bottom:15px */}
 .single_page_content ul{position:relative; padding-left:25px}
 .single_page_content ul li{line-height:25px}
 .single_page_content ul li:before{content:""; height:5px; left:5px; position:absolute; width:9px; margin-top:8px}

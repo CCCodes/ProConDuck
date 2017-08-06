@@ -15,10 +15,14 @@
             <a href="#"><i
                     class="fa fa-tags"></i>{{ review.product.category.name }}
             </a></div>
-        <div class="single_page_content"><img
-                class="img-center"
-                src="{{ review.image.url }}" alt="">
-            <h3 style="color:#0066ff">{{ review.product }} by {{ review.product.company }}</h3>
+        <div class="single_page_content">
+        <table class="table">
+            <tr><th>Product</th><td>{{ review.product }}</td><td rowspan="2" style="width:1px; white-space: nowrap">
+            <img class="img-center" height="75" src="{{ review.product.image.url }}" alt="" />
+            </td></tr>
+            <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
+        </table>
+            <img class="" src="{{ review.image.url }}" alt="">
             <p><br/>{{ review.review }}</p>
             {% if review.pros %}
             <h3>Pros</h3>
