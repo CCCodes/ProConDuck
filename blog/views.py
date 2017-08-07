@@ -93,8 +93,19 @@ def detail(request, slug, review_id):
     return render(request, 'blog/single_page.html', context)
 
 
+def category(request, category_name):
+    context = {
+        'category': category,
+    }
+    return render(request, 'blog/category.html', context)
+
+
 def tos(request):
     return render(request, 'blog/tos.html', {})
+
+
+def privacy(request):
+    return render(request, 'blog/privacy.html', {})
 
 
 def contact(request):

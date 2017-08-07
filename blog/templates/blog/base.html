@@ -38,29 +38,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/bootstrap.min.css' %}"/>
+          href="{% static 'blog/assets/NewsFeed/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/font-awesome.min.css' %}"/>
+          href="{% static 'blog/assets/NewsFeed/css/font-awesome.min.css' %}"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/animate.css' %}" media="screen"/>
+          href="{% static 'blog/assets/NewsFeed/css/animate.css' %}" media="screen"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/font.css' %}" media="screen"/>
+          href="{% static 'blog/assets/NewsFeed/css/font.css' %}" media="screen"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/li-scroller.css' %}"
+          href="{% static 'blog/assets/NewsFeed/css/li-scroller.css' %}"
           media="screen"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/slick.css' %}" media="screen"/>
+          href="{% static 'blog/assets/NewsFeed/css/slick.css' %}" media="screen"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/jquery.fancybox.css' %}"
+          href="{% static 'blog/assets/NewsFeed/css/jquery.fancybox.css' %}"
           media="screen"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/theme.css' %}" media="screen"/>
+          href="{% static 'blog/assets/NewsFeed/css/theme.css' %}" media="screen"/>
     <link rel="stylesheet" type="text/css"
-          href="{% static 'blog/assets/css/style.css' %}" media="screen"/>
+          href="{% static 'blog/assets/NewsFeed/css/style.css' %}" media="screen"/>
     <!--[if lt IE 9]>
-<script src="{% static 'blog/assets/js/html5shiv.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/respond.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/html5shiv.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/respond.min.js' %}"></script>
 <![endif]-->
+{% block more_style %} {% endblock %}
 </head>
 <body>
 <div id="preloader">
@@ -74,7 +75,6 @@
                 <div class="header_top">
                     <div class="header_top_left">
                         <ul class="top_nav">
-                            <li><a href="{% url 'blog:main' %}">Home</a></li>
                             <li><a href="#">About</a></li>
                             <li><a href="{% url 'blog:contact' %}">Contact</a></li>
                         </ul>
@@ -235,21 +235,21 @@
             </div>
         </div>
         <div class="footer_bottom">
-            <p class="copyright">Copyright &copy; 2017 <a href="#">Pro Con
+            <p class="copyright">Copyright &copy; 2017 <a href="{% url 'blog:main' %}">Pro Con
                 Duck</a></p>
-            <p class="developer"><a href="#">Terms of Service</a> | <a
-                    href="#">Privacy Policy</a></p>
+            <p class="developer"><a href="{% url 'blog:tos' %}">Terms of Service</a> | <a
+                    href="{% url 'blog:privacy' %}">Privacy Policy</a></p>
         </div>
     </footer>
 </div>
-<script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/wow.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/slick.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/jquery.li-scroller.1.0.js' %}"></script>
-<script src="{% static 'blog/assets/js/jquery.newsTicker.min.js' %}"></script>
-<script src="{% static 'blog/assets/js/jquery.fancybox.pack.js' %}"></script>
-<script src="{% static 'blog/assets/js/custom.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/jquery.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/wow.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/slick.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/jquery.li-scroller.1.0.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/jquery.newsTicker.min.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/jquery.fancybox.pack.js' %}"></script>
+<script src="{% static 'blog/assets/NewsFeed/js/custom.js' %}"></script>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
