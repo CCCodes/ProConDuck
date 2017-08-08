@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block title %}About - Pro Con Duck{% endblock %}
+{% block left_content %}
+    <div class="single_page">
+        <ol class="breadcrumb">
+            <li><a href="">Home</a></li>
+            <li>
+                <a href="#">{{ review.product.category.name }}</a>
+            </li>
+        </ol>
+        <h1>About</h1>
+        <p><br/>In the world of big business, there is little room for small businesses to succeed. We wanted to change this.</p>
+        <p>We created Pro Con Duck as a community of consumers and companies.</p>
+    </div>
+{% endblock %}

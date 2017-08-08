@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
-{% load staticfiles %} {% load static %}{% load thumbnail %}
+{% block title %}{{ review.title }} - Pro Con Duck{% endblock %}
+{% load staticfiles %} {% load static %}
 {% block left_content %}
     <div class="single_page">
         <ol class="breadcrumb">
@@ -18,10 +19,7 @@
         <div class="single_page_content">
         <table class="table">
             <tr><th>Product</th><td>{{ review.product }}</td><td rowspan="2" style="width:1px; white-space: nowrap">
-{#            {% thumbnail review.image "100x100" crop="center" as im %}#}
-                <img class="img-center" height="75"
-                     src="{{ review.product.image.url|thumbnail_url:'small' }}" alt="" />
-{#            {% endthumbnail %}#}
+            <img class="img-center" height="75" src="{{ review.product.image.url }}" alt="" />
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
         </table>

@@ -112,6 +112,10 @@ def contact(request):
     return render(request, 'blog/contact.html', {})
 
 
+def about(request):
+    return render(request, 'blog/about.html', {})
+
+
 def contact_submit(request):
     try:
         send_mail(
