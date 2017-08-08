@@ -112,7 +112,7 @@
                             class="fa fa-home desktop-home"></span><span
                             class="mobile-show">Home</span></a></li>
                     {% for category in categories %}
-                        <li><a href="#">{{ category.name }}</a></li>
+                        <li><a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a></li>
                     {% endfor %}
                     <li><a href="{% url 'blog:contact' %}">Contact Us</a></li>
                 </ul>

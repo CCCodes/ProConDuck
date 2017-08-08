@@ -33,7 +33,6 @@ def default(request):
     )
 
 
-
 def get_date():
     weekdays = [
         'Monday',

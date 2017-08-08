@@ -95,7 +95,7 @@ def detail(request, slug, review_id):
 
 def category(request, category_name):
     context = {
-        'category': category_name,
+        'category': get_object_or_404(Category, slug=category_name),
     }
     return render(request, 'blog/category.html', context)
 

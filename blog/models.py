@@ -33,13 +33,18 @@ class Company(models.Model):
 class Category(models.Model):
 
     name = models.CharField(max_length=20)
-    number = models.IntegerField(default=1, unique=True)
+    number = models.IntegerField(unique=True)
+    slug = models.SlugField(unique=True)
 
     class Meta:
         verbose_name_plural = "categories"
 
     def __str__(self):
         return "%d - %s" % (self.number, self.name)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super(Category, self).save(*args, **kwargs)
 
 
 class Product(models.Model):
@@ -51,7 +56,7 @@ class Product(models.Model):
     score = models.FloatField(default=0) #, editable=False)
     link = models.URLField()
     image = ThumbnailerImageField(upload_to="images", storage=s3)
-    # image = models.CharField(max_length=100, default="blog/media/Capture.PNG")
+    description = models.TextField(default="Default description")
 
     def __str__(self):
         return self.name
@@ -188,7 +193,7 @@ class Promotion(models.Model):
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
     link = models.URLField()
     title = models.CharField(max_length=20)
-    descriptions = models.TextField()
+    description = models.TextField()
     image = models.CharField(max_length=100)
     current = models.BooleanField(default=0)
 
