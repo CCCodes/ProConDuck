@@ -187,7 +187,7 @@ class Promotion(models.Model):
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
     link = models.URLField()
     title = models.CharField(max_length=20)
-    descriptions = models.TextField()
+    description = models.TextField()
     image = models.CharField(max_length=100)
     current = models.BooleanField(default=0)
 
