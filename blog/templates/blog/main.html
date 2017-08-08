@@ -82,7 +82,7 @@
                                             - {{ popular_review_list.0.product }}</a>
                                         </figcaption>
                                         <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br/>
-                                           {{ popular_review_list.0.review }}</p>
+                                           {{ popular_review_list.0.review|truncatechars:200 }}</p>
                                     </figure>
                                 </li>
                             </ul>
