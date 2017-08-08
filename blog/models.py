@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.db import models
 
 from django_boto.s3.storage import S3Storage
+from easy_thumbnails.fields import ThumbnailerImageField
 
 from ProConDuck.settings import *
 
@@ -49,7 +50,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     score = models.FloatField(default=0) #, editable=False)
     link = models.URLField()
-    image = models.ImageField(upload_to="images", storage=s3)
+    image = ThumbnailerImageField(upload_to="images", storage=s3)
     # image = models.CharField(max_length=100, default="blog/media/Capture.PNG")
 
     def __str__(self):
@@ -89,7 +90,7 @@ class Review(models.Model):
     reviewer = models.ForeignKey(Reviewer, default=1)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
-    image = models.ImageField(blank=True, upload_to="images", storage=s3)
+    image = ThumbnailerImageField(blank=True, upload_to="images", storage=s3)
     # image = models.CharField(max_length=100, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()
@@ -166,7 +167,7 @@ class Advertisement(models.Model):
         except Advertisement.DoesNotExist:
             # object is not in db, nothing to worry about
             return
-        # is the save due to an update of fathe actual image file?
+        # is the save due to an update of the actual image file?
         if obj.image and self.image and obj.image != self.image:
             # delete the old image file from the storage in favor of the new file
             obj.image.delete()

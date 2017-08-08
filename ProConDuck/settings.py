@@ -34,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = ['quiet-beyond-56572.herokuapp.com',
                  'www.proconduck.com',
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [
@@ -165,7 +166,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 MEDIA_URL = 'https://s3-%s.amazonaws.com/%s/media/' % (config['AWS_REGION'],
                                                        config['S3_BUCKET'])
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-DEFAULT_FILE_STORAGE = 'blog.customstorages.MediaStorage'
+# DEFAULT_FILE_STORAGE = 'blog.customstorages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
 MEDIAFILES_LOCATION = 'media'
 
 ADMINS = [('Caitlin', 'proconduck@gmail.com'), ]
@@ -201,3 +203,9 @@ BOTO_S3_BUCKET = config['S3_BUCKET']
 BOTO_S3_HOST = config['AWS_HOST']
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'small': {'size': (100, 75), 'crop': False}
+    },
+}

@@ -5,6 +5,7 @@ Django==1.11.3
 django-boto==0.3.12
 django-email-registration==0.3.1
 django-storages==1.6.5
+easy-thumbnails==2.4.1
 gunicorn==19.7.1
 heroku==0.1.4
 heroku3==3.3.0

@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% load staticfiles %} {% load static %}
+{% load staticfiles %} {% load static %}{% load thumbnail %}
 {% block left_content %}
     <div class="single_page">
         <ol class="breadcrumb">
@@ -18,7 +18,10 @@
         <div class="single_page_content">
         <table class="table">
             <tr><th>Product</th><td>{{ review.product }}</td><td rowspan="2" style="width:1px; white-space: nowrap">
-            <img class="img-center" height="75" src="{{ review.product.image.url }}" alt="" />
+{#            {% thumbnail review.image "100x100" crop="center" as im %}#}
+                <img class="img-center" height="75"
+                     src="{{ review.product.image.url|thumbnail_url:'small' }}" alt="" />
+{#            {% endthumbnail %}#}
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
         </table>
@@ -40,6 +43,10 @@
             {% endfor %}
             </ul>
             {% endif %}
+        {% if review.video_link %}
+            <iframe width="500" height="350" style="margin-top: 20px"
+                    src="{{ review.video_link }}"></iframe>
+        {% endif %}
             {% comment %}              <blockquote> Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus. Donec id arcu quis mauris euismod placerat sit amet ut metus. Sed imperdiet fringilla sem eget euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque adipiscing, neque ut pulvinar tincidunt, est sem euismod odio, eu ullamcorper turpis nisl sit amet velit. Nullam vitae nibh odio, non scelerisque nibh. Vestibulum ut est augue, in varius purus. </blockquote>
   <ul>
     <li>Nullam vitae nibh odio, non scelerisque nibh</li>
