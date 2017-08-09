@@ -176,12 +176,12 @@
                             {% for review in popular_review_list %}
                                 <li>
                                     <div class="media wow fadeInDown"><a
-                                            href="{% url 'blog:detail' review.id review.slug %}"
+                                            href="{% url 'blog:review' review.id review.slug %}"
                                             class="media-left"> <img alt=""
                                                                      src="{{ review.image.url }}">
                                     </a>
                                         <div class="media-body"><a
-                                                href="{% url 'blog:detail' review.id review.slug %}"
+                                                href="{% url 'blog:review' review.id review.slug %}"
                                                 class="catg_title"> {{ review.title }}</a>
                                         </div>
                                     </div>
