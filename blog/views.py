@@ -75,20 +75,20 @@ def display_categories():
     return result
 
 
-def detail(request, slug, review_id):
-    review = get_object_or_404(Review, pk=review_id)
-    review.views += 1
-    review.save()
-    related = Product.objects.get(pk=review.product_id).review_set.exclude(
+def review(request, slug, review_id):
+    display_review = get_object_or_404(Review, pk=review_id)
+    display_review.views += 1
+    display_review.save()
+    related = Product.objects.get(pk=display_review.product_id).review_set.exclude(
         pk=review_id)
     for product in Category.objects.get(
-            pk=review.product.category_id).product_set.exclude(
-            pk=review.product_id):
+            pk=display_review.product.category_id).product_set.exclude(
+            pk=display_review.product_id):
         related = list(chain(related, product.review_set.all()))
     context = {
-        'review': review,
+        'review': display_review,
         'related_reviews': related,
-        'image_link': review.image.url.replace('%', '%25')
+        'image_link': display_review.image.url.replace('%', '%25')
     }
     return render(request, 'blog/single_page.html', context)
 
@@ -97,6 +97,7 @@ def category(request, category_name):
     context = {
         'category': get_object_or_404(Category, slug=category_name),
     }
+    context['products'] = context['category'].product_set.annotate(num_r=Count('review')).order_by('-num_r')
     return render(request, 'blog/category.html', context)
 
 

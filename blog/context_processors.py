@@ -27,7 +27,7 @@ def default(request):
         popular_review_list=Review.objects.order_by('-views')[:5],
         ads=ad_paths,
         date=get_date(),
-        categories=Category.objects.all(),
+        categories=Category.objects.annotate(num_p=Count('product')).order_by('-num_p'),
         promotions=Promotion.objects.filter(current=True),
 
     )

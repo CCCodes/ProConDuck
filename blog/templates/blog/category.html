@@ -60,14 +60,6 @@
                 <div id="fleche-nav-3"></div>
     		</div>
             </div>
-            <div id="wrapper-bouton-icon">
-            	<div id="bouton-ai"><img src="{% static 'blog/assets/Platz/img/icon-ai.svg' %}" alt="illustrator" title="Illustrator" height="28" width="28"></div>
-            	<div id="bouton-psd"><img src="{% static 'blog/assets/Platz/img/icon-psd.svg' %}" alt="photoshop" title="Photoshop" height="28" width="28"></div>
-            	<div id="bouton-theme"><img src="{% static 'blog/assets/Platz/img/icon-themes.svg' %}" alt="theme" title="Theme" height="28" width="28"></div>
-            	<div id="bouton-font"><img src="{% static 'blog/assets/Platz/img/icon-font.svg' %}" alt="font" title="Font" height="28" width="28"></div>
-            	<div id="bouton-photo"><img src="{% static 'blog/assets/Platz/img/icon-photo.svg' %}" alt="photo" title="Photo" height="28" width="28"></div>
-            	<div id="bouton-premium"><img src="{% static 'blog/assets/Platz/img/icon-premium.svg' %}" alt="premium" title="Premium" height="28" width="28"></div>
-			</div>
     	</div>
     </div>
 
@@ -121,7 +113,7 @@
 			<div id="main-container-image">
 
 					<section class="work">
-                        {% for product in category.product_set.all %}
+                        {% for product in products %}
 						<figure class="white">
 							<a href="#">
 								<img src="{{ product.image.url }}" alt="" />
