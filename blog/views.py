@@ -93,12 +93,20 @@ def review(request, slug, review_id):
     return render(request, 'blog/single_page.html', context)
 
 
-def category(request, category_name):
+def category(request, category_slug):
     context = {
-        'category': get_object_or_404(Category, slug=category_name),
+        'category': get_object_or_404(Category, slug=category_slug),
     }
     context['products'] = context['category'].product_set.annotate(num_r=Count('review')).order_by('-num_r')
     return render(request, 'blog/category.html', context)
+
+
+def detail(request, product_slug):
+    context = {
+        'product': get_object_or_404(Product, slug=product_slug),
+    }
+    context['reviews'] = context['product'].review_set.order_by('-views')
+    return render(request, 'blog/detail.html', context)
 
 
 def tos(request):

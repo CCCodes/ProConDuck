@@ -53,6 +53,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT,
                                  default=0)
     name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
     score = models.FloatField(default=0) #, editable=False)
     link = models.URLField()
     image = ThumbnailerImageField(upload_to="images", storage=s3)
@@ -72,6 +73,10 @@ class Product(models.Model):
         self.score = reviews.aggregate(Avg('score'))['score__avg']
 
         self.save()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super(Product, self).save(*args, **kwargs)
 
 
 class Reviewer(models.Model):

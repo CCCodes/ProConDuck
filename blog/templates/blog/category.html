@@ -115,7 +115,7 @@
 					<section class="work">
                         {% for product in products %}
 						<figure class="white">
-							<a href="#">
+							<a href="{% url 'blog:detail' product.slug %}">
 								<img src="{{ product.image.url }}" alt="" />
 								<dl>
 									<dt>{{ product.name }}</dt>

@@ -44,7 +44,7 @@
                         <ul class="latest_postnav">
                             {% for product in top_rated_products|slice:":5" %}
                                 <li>
-                                    <div class="media"><a href="#"
+                                    <div class="media"><a href="{% url 'blog:detail' product.slug %}"
                                                           class="media-left">
                                         <img alt=""
                                              src="{{ product.image.url }}">

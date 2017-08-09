@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^signup/?(?P<success>[-\w\d]+)/?$', views.signup, name='signup'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^error404/$', views.error404, name='error404'),
-    url(r'^category/(?P<category_name>[-\w\d]+)/$', views.category, name='category')
+    url(r'^category/(?P<category_slug>[-\w\d]+)/$', views.category, name='category'),
+    url(r'^product/(?P<product_slug>[-\w\d]+)/$', views.detail, name='detail'),
 ]
