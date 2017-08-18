@@ -1,7 +1,10 @@
 import datetime
+from PIL import Image as Img
+from io import StringIO
 
 import django
 from django.contrib.postgres.fields import ArrayField
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.urlresolvers import reverse
 from django.db.models import Avg, Count
 from django.dispatch import receiver
@@ -133,6 +136,19 @@ class Review(models.Model):
         if not self.id:
             self.created = timezone.now()
         self.modified = timezone.now()  # will change if views gets updated
+
+        if self.image:
+            img = Img.open(StringIO(self.image.read()))
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
+                          Img.ANTIALIAS)
+            output = StringIO()
+            img.save(output, format='JPEG', quality=70)
+            output.seek(0)
+            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
+                                              self.image.name.split('.')[0],
+                                              'image/jpeg', output.len, None)
         return super(Review, self).save(*args, **kwargs)
 
 

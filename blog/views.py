@@ -103,10 +103,10 @@ def category(request, category_slug):
 
 def detail(request, product_slug):
     context = {
-        'product': get_object_or_404(Product, slug=product_slug),
+        'item': get_object_or_404(Product, slug=product_slug),
     }
-    context['reviews'] = context['product'].review_set.order_by('-views')
-    return render(request, 'blog/detail.html', context)
+    context['item_subset'] = context['item'].review_set.order_by('-views')
+    return render(request, 'blog/category.html', context)
 
 
 def tos(request):
@@ -131,11 +131,12 @@ def contact_submit(request):
             'Site Contact from ' + request.POST['email'],
             'Name: ' + request.POST['name'] + '\nEmail: ' +
             request.POST['email'] + '\nMessage: ' + request.POST['message'],
-            'proconduck@gmail.com',
-            ['proconduck@gmail.com'],
+            'proconduck@support.com',
+            ['support@proconduck.com'],
             fail_silently=False
         )
-    except SMTPAuthenticationError:
+    except SMTPAuthenticationError as e:
+        print(e)
         return HttpResponseRedirect(reverse('blog:signup', kwargs={'success':'false'}))
     return HttpResponseRedirect(reverse('blog:contact'))
 

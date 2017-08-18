@@ -5,7 +5,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>{{ category.name }} - Pro Con Duck</title>
+<title>{{ item.name }} - Pro Con Duck</title>
 
 <!-- Behavioral Meta Data -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -113,18 +113,18 @@
 			<div id="main-container-image">
 
 					<section class="work">
-                        {% for product in products %}
+                        {% for item_sub in item_subset %}
 						<figure class="white">
-							<a href="{% url 'blog:detail' product.slug %}">
-								<img src="{{ product.image.url }}" alt="" />
+							<a href="{% url 'blog:detail' item_sub.slug %}">
+								<img src="{{ item_sub.image.url }}" alt="" />
 								<dl>
-									<dt>{{ product.name }}</dt>
-									<dd>{{ product.description }}</dd>
+									<dt>{{ item_sub.name }}</dt>
+									<dd>{{ item_sub.description }}</dd>
 								</dl>
 							</a>
                             <div id="wrapper-part-info">
                             	<div class="part-info-image"></div>
-                            	<div id="part-info">{{ product.name }}</div>
+                            	<div id="part-info">{{ item_sub.name }}</div>
 							</div>
                         </figure>
                         {% endfor %}
@@ -150,11 +150,11 @@
 		<div class="container-footer">
 
             <div id="row-1f">
-            	<div class="text-row-1f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">What is Platz</span><br>Platz is a blog showcasing hand-picked free themes, design stuff, free fonts and other resources for web designers.</div>
+            	<div class="text-row-1f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">What is ProConDuck</span><br>ProConDuck is a community of consumers and companies.</div>
             </div>
 
             <div id="row-2f">
-            	<div class="text-row-2f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">How does it work</span><br>Platz offers you all the latest freebies found all over the fourth corners without to pay.</div>
+            	<div class="text-row-2f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">How does it work</span><br>ProConDuck offers you all the latest freebies found all over the fourth corners without to pay.</div>
             </div>
 
             <div id="row-3f">
@@ -162,7 +162,7 @@
             </div>
 
             <div id="row-4f">
-            	<div class="text-row-4f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">Newsletter</span><br>You will be informed monthly about the latest content avalaible.</div>
+            	<div class="text-row-4f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">Newsletter</span><br>You will be informed monthly about the latest content available.</div>
 
 				<div id="main_tip_newsletter">
 					<form>
