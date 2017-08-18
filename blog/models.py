@@ -57,7 +57,7 @@ class Product(models.Model):
                                  default=0)
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    score = models.FloatField(default=0) #, editable=False)
+    score = models.FloatField(default=0)  # , editable=False)
     link = models.URLField()
     image = ThumbnailerImageField(upload_to="images", storage=s3)
     description = models.TextField(default="Default description")
@@ -73,7 +73,10 @@ class Product(models.Model):
         if delete_instance:
             reviews = reviews.exclude(pk=delete_instance.id)
 
-        self.score = reviews.aggregate(Avg('score'))['score__avg']
+        if len(reviews) > 0:
+            self.score = reviews.aggregate(Avg('score'))['score__avg']
+        else:
+            self.score = 0
 
         self.save()
 
