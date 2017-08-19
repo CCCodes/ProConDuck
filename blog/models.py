@@ -139,7 +139,7 @@ class Review(models.Model):
             self.created = timezone.now()
         self.modified = timezone.now()  # will change if views gets updated
 
-        if self.image:
+        if self.image and self.image != self.product.image:
             img = Img.open(BytesIO(self.image.read()))
             if img.mode != 'RGB':
                 img = img.convert('RGB')
