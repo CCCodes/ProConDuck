@@ -1,6 +1,6 @@
 import datetime
 from PIL import Image as Img
-from io import StringIO
+from io import BytesIO, StringIO
 
 import django
 from django.contrib.postgres.fields import ArrayField
@@ -13,7 +13,6 @@ from django.utils import timezone
 from django.db import models
 
 from django_boto.s3.storage import S3Storage
-from easy_thumbnails.fields import ThumbnailerImageField
 
 from ProConDuck.settings import *
 
@@ -59,7 +58,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)
     score = models.FloatField(default=0)  # , editable=False)
     link = models.URLField()
-    image = ThumbnailerImageField(upload_to="images", storage=s3)
+    image = models.ImageField(upload_to="images", storage=s3)
     description = models.TextField(default="Default description")
 
     def __str__(self):
@@ -106,7 +105,7 @@ class Review(models.Model):
     reviewer = models.ForeignKey(Reviewer, default=1)
     # date = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=10)
-    image = ThumbnailerImageField(blank=True, upload_to="images", storage=s3)
+    image = models.ImageField(blank=True, upload_to="images", storage=s3)
     # image = models.CharField(max_length=100, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()
@@ -141,17 +140,17 @@ class Review(models.Model):
         self.modified = timezone.now()  # will change if views gets updated
 
         if self.image:
-            img = Img.open(StringIO(self.image.read()))
+            img = Img.open(BytesIO(self.image.read()))
             if img.mode != 'RGB':
                 img = img.convert('RGB')
             img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
                           Img.ANTIALIAS)
-            output = StringIO()
+            output = BytesIO()
             img.save(output, format='JPEG', quality=70)
             output.seek(0)
             self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
                                               self.image.name.split('.')[0],
-                                              'image/jpeg', output.len, None)
+                                              'image/jpeg', img.size, None)
         return super(Review, self).save(*args, **kwargs)
 
 
