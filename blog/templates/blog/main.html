@@ -22,11 +22,10 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                        <div class="single_iteam"><a href="#"> <img
-                                src="{{ review.image.url }}" alt=""></a>
+                        <div class="single_iteam">
                             <div class="slider_article">
                                 <h2><a class="slider_tittle"
-                                       href="{% url 'blog:review' review.id review.slug %}">No
+                                       href="#">No
                                     Reviews</a></h2>
                                 <p>We're sorry; there are no featured reviews
                                     available.</p>
@@ -72,6 +71,7 @@
                         <div class="single_post_content_left">
                             <ul class="business_catgnav  wow fadeInDown">
                                 <li>
+                                    {% if popular_review_list %}
                                     <figure class="bsbig_fig"><a
                                             href="{{ popular_review_list.0.id }}/{{ popular_review_list.0.slug }}"
                                             class="featured_img"> <img alt=""
@@ -84,6 +84,9 @@
                                         <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br/>
                                            {{ popular_review_list.0.review|truncatechars:200 }}</p>
                                     </figure>
+                                    {% else %}
+                                        No reviews available.
+                                    {% endif %}
                                 </li>
                             </ul>
                         </div>
@@ -113,6 +116,7 @@
                                 <h2><span>{{ categories.0.name }}</span></h2>
                                 <ul class="business_catgnav wow fadeInDown">
                                     <li>
+                                        {% if display_categories.0.0.0 %}
                                         <figure class="bsbig_fig"><a
                                                 href="{{ display_categories.0.0.0.id }}/{{ display_categories.0.0.0.slug }}"
                                                 class="featured_img"> <img
@@ -127,6 +131,9 @@
                                                 | {{ display_categories.0.0.0.created.date }}
                                                 <br/>{{ display_categories.0.0.0.review|truncatechars:130 }}</p>
                                         </figure>
+                                        {% else %}
+                                            No reviews available.
+                                        {% endif %}
                                     </li>
                                 </ul>
                                 <ul class="spost_nav">
@@ -154,6 +161,7 @@
                                 <h2><span>{{ categories.1.name }}</span></h2>
                                 <ul class="business_catgnav">
                                     <li>
+                                        {% if display_categories.1.0.0 %}
                                         <figure class="bsbig_fig wow fadeInDown">
                                             <a href="{{ display_categories.1.0.0.id }}/{{ display_categories.1.0.0.slug }}"
                                                class="featured_img"> <img
@@ -169,6 +177,9 @@
                                                 | {{ display_categories.1.0.0.created.date }}<br/>
                                                 {{ display_categories.1.0.0.review|truncatechars:130 }}</p>
                                         </figure>
+                                        {% else %}
+                                            No reviews available.
+                                        {% endif %}
                                     </li>
                                 </ul>
                                 <ul class="spost_nav">
@@ -199,6 +210,7 @@
                     <div class="single_sidebar">
                         <h2><span>Latest Reviews</span></h2>
                         <ul class="spost_nav">
+                        {% if latest_review_list %}
                             {% for review in latest_review_list %}
                                 <li>
                                     <div class="media wow fadeInDown"><a
@@ -214,6 +226,9 @@
                                     </div>
                                 </li>
                             {% endfor %}
+                        {% else %}
+                        No reviews available.
+                        {% endif %}
                         </ul>
                     </div>
                     <div class="single_sidebar wow fadeInDown">
