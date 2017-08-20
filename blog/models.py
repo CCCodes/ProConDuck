@@ -66,9 +66,6 @@ class Product(models.Model):
         return self.name
 
     def update_rating_avg(self, delete_instance=None):
-        #Product.objects.select_related().annotate(count_reviews=Count('review'))
-        #if 0 != Product[0].count_reviews:
-
         reviews = self.review_set.all()
         if delete_instance:
             reviews = reviews.exclude(pk=delete_instance.id)
