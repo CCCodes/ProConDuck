@@ -23,8 +23,7 @@
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
         </table>
-            <img class="" src="{{ review.image.url }}" alt="">
-            <p><br/>{{ review.review }}</p>
+            <p><br/>{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
             {% if review.pros %}
             <h3>Pros</h3>
             <ul>
@@ -41,9 +40,8 @@
             {% endfor %}
             </ul>
             {% endif %}
-        {% if review.video_link %}
-            <iframe width="500" height="350" style="margin-top: 20px"
-                    src="{{ review.video_link }}"></iframe>
+        {% if review.product.image.url != review.image.url %}
+            <img class="" src="{{ review.image.url }}" alt="">
         {% endif %}
         </div>
         <div class="social_link">
@@ -107,7 +105,7 @@
                 <img src="{{ related_reviews.0.image.url }}"
                      alt=""/></div>
         </a>
-    {% else %}
+    {% elif popular_review_list.0 and popular_review_list.0.id != display_review.id %}
         <a class="prev"
            href="{% url 'blog:review' popular_review_list.0.id popular_review_list.0.slug %}"><span
                 class="icon-wrap"><i
@@ -128,7 +126,7 @@
                 <img src="{{ related_reviews.1.image.url }}"
                      alt=""/></div>
         </a>
-        {% else %}
+        {% elif popular_review_list.1 and popular_review_list.1.id != display_review.id %}
             <a class="prev"
                href="{% url 'blog:review' popular_review_list.1.id popular_review_list.1.slug %}"><span
                     class="icon-wrap"><i class="fa fa-angle-right"></i></span>
@@ -155,6 +153,12 @@
             No categories yet.
         {% endif %}
     </div>
+    {% if review.video_link %}
+    <div class="single_sidebar wow fadeInDown">
+        <h2><span>Video</span></h2>
+        <iframe src="{{ review.video_link }}" width="100%"></iframe>
+    </div>
+    {% endif %}
     <div class="single_sidebar wow fadeInDown">
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}"><img

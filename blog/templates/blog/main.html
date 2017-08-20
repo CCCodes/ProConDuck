@@ -43,7 +43,7 @@
                         <ul class="latest_postnav">
                             {% for product in top_rated_products|slice:":5" %}
                                 <li>
-                                    <div class="media"><a href="{% url 'blog:detail' product.slug %}"
+                                    <div class="media"><a href="{% url 'blog:product' product.slug %}"
                                                           class="media-left">
                                         <img alt=""
                                              src="{{ product.image.url }}">
@@ -113,7 +113,7 @@
                     <div class="fashion_technology_area">
                         <div class="fashion">
                             <div class="single_post_content">
-                                <h2><span>{{ categories.0.name }}</span></h2>
+                                <h2><span>{{ display_categories_names.0.name }}</span></h2>
                                 <ul class="business_catgnav wow fadeInDown">
                                     <li>
                                         {% if display_categories.0.0.0 %}
@@ -158,7 +158,7 @@
                         </div>
                         <div class="technology">
                             <div class="single_post_content">
-                                <h2><span>{{ categories.1.name }}</span></h2>
+                                <h2><span>{{ display_categories_names.1.name }}</span></h2>
                                 <ul class="business_catgnav">
                                     <li>
                                         {% if display_categories.1.0.0 %}

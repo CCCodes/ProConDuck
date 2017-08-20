@@ -1,5 +1,5 @@
 from itertools import chain
-from random import randint
+from math import ceil
 from smtplib import SMTPAuthenticationError
 
 from django.core.mail import send_mail
@@ -16,6 +16,8 @@ def main(request):
     context = {
         'top_rated_products': Product.objects.order_by('-score'),
         'display_categories': display_categories(),
+        'display_categories_names': Category.objects.annotate(num_p=Count('product')).order_by(
+            '-num_p').values('name'),
         'featured_reviews': featured_reviews,
     }
 
@@ -66,11 +68,15 @@ def signup(request, success=None):
 
 def display_categories():
 
+    categories_product_sort = Category.objects.annotate(
+        num_p=Count('product')).order_by('-num_p')
     result = []
 
     for i in range(3):
-        products = Category.objects.get(number=i).product_set.order_by('-score')
-        result.append([product.review_set.order_by('-views') for product in products])
+        products = categories_product_sort[i].product_set.order_by(
+            '-score')
+        result.append([product_.review_set.order_by(
+            '-views') for product_ in products])
 
     return result
 
@@ -79,12 +85,14 @@ def review(request, slug, review_id):
     display_review = get_object_or_404(Review, pk=review_id)
     display_review.views += 1
     display_review.save()
-    related = Product.objects.get(pk=display_review.product_id).review_set.exclude(
-        pk=review_id)
-    for product in Category.objects.get(
+    related = Product.objects.get(pk=display_review.product_id
+                                  ).review_set.exclude(pk=review_id)
+
+    # get reviews in products in same category except for current review
+    for product_ in Category.objects.get(
             pk=display_review.product.category_id).product_set.exclude(
             pk=display_review.product_id):
-        related = list(chain(related, product.review_set.all()))
+        related = list(chain(related, product_.review_set.all()))
     context = {
         'review': display_review,
         'related_reviews': related,
@@ -97,16 +105,19 @@ def category(request, category_slug):
     context = {
         'item': get_object_or_404(Category, slug=category_slug),
     }
-    context['products'] = context['category'].product_set.annotate(num_r=Count('review')).order_by('-num_r')
-    return render(request, 'blog/list_items.html', context)
+    context['products'] = context['item'].product_set.annotate(num_r=Count(
+        'review')).order_by('-num_r')
+    return render(request, 'blog/category.html', context)
 
 
-def detail(request, product_slug):
+def product(request, product_slug):
     context = {
         'item': get_object_or_404(Product, slug=product_slug),
     }
-    context['item_subset'] = context['item'].review_set.order_by('-views')
-    return render(request, 'blog/list_items.html', context)
+    reviews = context['item'].review_set.order_by('-views')
+    context['reviews1'] = reviews[:ceil(len(reviews)/2)]
+    context['reviews2'] = reviews[ceil(len(reviews)/2):]
+    return render(request, 'blog/product.html', context)
 
 
 def tos(request):
@@ -137,7 +148,8 @@ def contact_submit(request):
         )
     except SMTPAuthenticationError as e:
         print(e)
-        return HttpResponseRedirect(reverse('blog:signup', kwargs={'success':'false'}))
+        return HttpResponseRedirect(reverse('blog:signup', kwargs={
+            'success':'false'}))
     return HttpResponseRedirect(reverse('blog:contact'))
 
 

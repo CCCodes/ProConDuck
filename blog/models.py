@@ -119,15 +119,17 @@ class Review(models.Model):
     image = models.ImageField(blank=True, upload_to="images", storage=s3)
     image_compressed = models.BooleanField(default=False, editable=False)
     video_link = models.URLField(blank=True)
-    review = models.TextField()
+    review = models.TextField()  # user uploaded can't have tags!!!
     views = models.IntegerField(default=0, editable=False)
 
     created = models.DateTimeField(editable=False,
                                    default=django.utils.timezone.now)
     modified = models.DateTimeField(blank=True, null=True, editable=False,
                                     default=django.utils.timezone.now)
-    pros = ArrayField(models.CharField(max_length=20, blank=True), null=True, size=10)
-    cons = ArrayField(models.CharField(max_length=20, blank=True), null=True, size=10)
+    pros = ArrayField(models.CharField(max_length=20, blank=True), null=True,
+                      size=10)
+    cons = ArrayField(models.CharField(max_length=20, blank=True), null=True,
+                      size=10)
 
     def __str__(self):
         return self.title
@@ -167,9 +169,12 @@ class Review(models.Model):
         return super(Review, self).save(*args, **kwargs)
 
 
-@receiver(models.signals.pre_delete, sender=Review)
-def review_pre_delete(sender, instance, *args, **kwargs):
-    instance.product.update_rating_avg(instance)
+@receiver(models.signals.pre_save, sender=Review)
+def review_pre_save(sender, instance, *args, **kwargs):
+    if instance.pk is None:  # new review
+
+        # display breaks on review page
+        instance.review = instance.review.replace("\r\n", "<br />")
 
 
 @receiver(models.signals.post_save, sender=Review)
@@ -178,6 +183,11 @@ def review_post_save(sender, instance, created, *args, **kwargs):
     if instance.image == "":
         instance.image = instance.product.image
         instance.save()
+
+
+@receiver(models.signals.pre_delete, sender=Review)
+def review_pre_delete(sender, instance, *args, **kwargs):
+    instance.product.update_rating_avg(instance)
 
 
 class AdSlot(models.Model):
