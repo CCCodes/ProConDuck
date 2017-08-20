@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% block title %}ProConDuck - Find Reviews from Fellow Consumers{% endblock %}
+{% block title %}ProConDuck | Find Reviews from Fellow Consumers{% endblock %}
 {% load staticfiles %} {% load static %}
 {% block content %}
 
@@ -237,7 +237,7 @@
                             <ul>
                                 {% for category in categories %}
                                     <li class="cat-item"><a
-                                            href="#">{{ category.name }}</a>
+                                            href="{% url 'blog:category' category.slug %}">{{ category.name }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>

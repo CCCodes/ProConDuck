@@ -165,9 +165,10 @@
             	<div class="text-row-4f"><span style="font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;">Newsletter</span><br>You will be informed monthly about the latest content available.</div>
 
 				<div id="main_tip_newsletter">
-					<form>
-						<input type="text" name="newsletter" id="tip_newsletter_input" list="newsletter" autocomplete=off required>
-						<input type="text" name="newsletter" id="tip_newsletter_input" list="newsletter" autocomplete=off required>
+					<form action="{% url 'blog:signup' %}" method="post">
+                        {% csrf_token %}
+						<input type="text" name="name" id="tip_newsletter_input" list="newsletter" autocomplete=off placeholder="First Name*" required>
+						<input type="text" name="email" id="tip_newsletter_input" list="newsletter" autocomplete=off placeholder="Email*" required>
 					</form>
 				</div>
             </div>

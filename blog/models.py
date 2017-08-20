@@ -59,6 +59,7 @@ class Product(models.Model):
     score = models.FloatField(default=0)  # , editable=False)
     link = models.URLField()
     image = models.ImageField(upload_to="images", storage=s3)
+    image_compressed = models.BooleanField(default=False, editable=False)
     description = models.TextField(default="Default description")
 
     def __str__(self):
@@ -81,6 +82,20 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        if self.image and not self.image_compressed:
+            img = Img.open(BytesIO(self.image.read()))
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
+                          Img.ANTIALIAS)
+            output = BytesIO()
+            img.save(output, format='JPEG', quality=70)
+            output.seek(0)
+            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
+                                              self.image.name.split('.')[0],
+                                              'image/jpeg', img.size, None)
+            self.image_compressed = True
+
         return super(Product, self).save(*args, **kwargs)
 
 
@@ -103,13 +118,12 @@ class Review(models.Model):
 
     title = models.CharField(max_length=100)
     reviewer = models.ForeignKey(Reviewer, default=1)
-    # date = models.DateField(auto_now_add=True)
-    score = models.IntegerField(default=10)
+    score = models.IntegerField(default=10, editable=False)
     image = models.ImageField(blank=True, upload_to="images", storage=s3)
-    # image = models.CharField(max_length=100, blank=True)
+    image_compressed = models.BooleanField(default=False, editable=False)
     video_link = models.URLField(blank=True)
     review = models.TextField()
-    views = models.IntegerField(default=0)  # editable=False)
+    views = models.IntegerField(default=0, editable=False)
 
     created = models.DateTimeField(editable=False,
                                    default=django.utils.timezone.now)
@@ -139,7 +153,8 @@ class Review(models.Model):
             self.created = timezone.now()
         self.modified = timezone.now()  # will change if views gets updated
 
-        if self.image and self.image != self.product.image:
+        if self.image and self.image != self.product.image and not \
+                self.image_compressed:
             img = Img.open(BytesIO(self.image.read()))
             if img.mode != 'RGB':
                 img = img.convert('RGB')
@@ -151,6 +166,7 @@ class Review(models.Model):
             self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
                                               self.image.name.split('.')[0],
                                               'image/jpeg', img.size, None)
+            self.image_compressed = True
         return super(Review, self).save(*args, **kwargs)
 
 
@@ -174,7 +190,9 @@ class AdSlot(models.Model):
     image_height = models.IntegerField()
 
     def __str__(self):
-        return "%d - %d x %d" % (self.number, self.image_width, self.image_height)
+        return "%d - %d x %d" % (self.number,
+                                 self.image_width,
+                                 self.image_height)
 
 
 class Advertisement(models.Model):

@@ -95,10 +95,10 @@ def review(request, slug, review_id):
 
 def category(request, category_slug):
     context = {
-        'category': get_object_or_404(Category, slug=category_slug),
+        'item': get_object_or_404(Category, slug=category_slug),
     }
     context['products'] = context['category'].product_set.annotate(num_r=Count('review')).order_by('-num_r')
-    return render(request, 'blog/category.html', context)
+    return render(request, 'blog/list_items.html', context)
 
 
 def detail(request, product_slug):
@@ -106,7 +106,7 @@ def detail(request, product_slug):
         'item': get_object_or_404(Product, slug=product_slug),
     }
     context['item_subset'] = context['item'].review_set.order_by('-views')
-    return render(request, 'blog/category.html', context)
+    return render(request, 'blog/list_items.html', context)
 
 
 def tos(request):
