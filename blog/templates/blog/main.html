@@ -48,7 +48,7 @@
                                         <img alt=""
                                              src="{{ product.image.url }}">
                                     </a>
-                                        <div class="media-body"><a href="#"
+                                        <div class="media-body"><a href="{% url 'blog:product' product.slug %}"
                                                                    class="catg_title"> {{ product.name }}</a>
                                         </div>
                                     </div>
