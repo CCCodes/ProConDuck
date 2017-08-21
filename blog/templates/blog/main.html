@@ -17,7 +17,7 @@
                                     <h2><a class="slider_tittle"
                                            href="{% url 'blog:review' review.slug %}">{{ review.title }}
                                         - {{ review.product }}</a></h2>
-                                    <p>{% autoescape on %}{{ review.review|truncatechars:290 }}{% endautoescape %}</p>
+                                    <p>{{ review.review|striptags|truncatechars:290 }}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -82,7 +82,7 @@
                                             - {{ popular_review_list.0.product }}</a>
                                         </figcaption>
                                         <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br/>
-                                           {{ popular_review_list.0.review|truncatechars:200 }}</p>
+                                           {{ popular_review_list.0.review|striptags|truncatechars:200 }}</p>
                                     </figure>
                                     {% else %}
                                         No reviews available.
@@ -129,7 +129,7 @@
                                             </figcaption>
                                             <p>{{ display_categories.0.0.0.reviewer }}
                                                 | {{ display_categories.0.0.0.created.date }}
-                                                <br/>{{ display_categories.0.0.0.review|truncatechars:130 }}</p>
+                                                <br/>{{ display_categories.0.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
                                             No reviews available.
@@ -175,7 +175,7 @@
                                             </figcaption>
                                             <p>{{ display_categories.1.0.0.reviewer }}
                                                 | {{ display_categories.1.0.0.created.date }}<br/>
-                                                {{ display_categories.1.0.0.review|truncatechars:130 }}</p>
+                                                {{ display_categories.1.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
                                             No reviews available.
