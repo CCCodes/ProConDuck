@@ -1,6 +1,9 @@
-{% extends "blog/list_items.html" %}
-{% block keywords %},{{ item.name }}{% endblock %}
-{% block list_items %}
+{% extends "blog/base.html" %}
+{% block keywords %},{{ category.name }}{% endblock %}
+{% block title %}{{ category.name }} - ProConDuck{% endblock %}
+{% block left_content %}
+<div class="single_post_content">
+<h2><span>{{ category.name }}</span></h2>
 {% if products %}
     <ul class="photograph_nav wow fadeInDown">
     {% for product in products %}
@@ -12,6 +15,16 @@
     {% endfor %}
     </ul>
 {% else %}
-    No products in {{ item.name }} category.
+    No products in {{ category.name }} category.
 {% endif %}
+</div>
+{% endblock %}
+{% block right_content %}
+    <aside>
+        <div class="single_sidebar wow fadeInDown">
+        <h2><span>Sponsor</span></h2>
+        <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
+                src="{{ ads.World.image.url }}"
+                alt=""></a></div>
+    </aside>
 {% endblock %}

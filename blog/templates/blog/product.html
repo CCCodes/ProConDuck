@@ -1,6 +1,18 @@
-{% extends "blog/list_items.html" %}
-{% block keywords %},{{ item.name }},{{ item.category }}{% endblock %}
-{% block list_items %}
+{% extends "blog/base.html" %}
+{% block keywords %},{{ product.name }},{{ product.category }}{% endblock %}
+{% block title %}{{ product.name }} - ProConDuck{% endblock %}
+{% block left_content %}
+<div class="single_post_content">
+<h2><span>{{ product.name }}</span></h2>
+<table class="table" style="margin-bottom: 0;">
+    <tr><th>Product</th><td>{{ product }}</td><td rowspan="2" style="width:1px; white-space: nowrap">
+    <img class="img-center" height="75" src="{{ product.image.url }}" alt="" />
+    </td></tr>
+    <tr><th>Company</th><td>{{ product.company }}</td></tr>
+</table>
+<form action="{{ product.link }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
+<p>{% autoescape off %}{{ product.description }}{% endautoescape %}
+</p>
 {% if reviews1 %}
     <div class="single_post_content_left">
         <ul class="spost_nav">
@@ -25,6 +37,24 @@
         </ul>
     </div>
 {% else %}
-    No reviews for {{ item.name }} product.
+    No reviews for {{ product.name }} product.
 {% endif %}
+</div>
+{% endblock %}
+{% block right_content %}
+    <aside>
+        <div class="single_sidebar wow fadeInDown">
+        <h2><span>Sponsor</span></h2>
+        <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
+                src="{{ ads.World.image.url }}"
+                alt=""></a></div>
+        <div class="single_sidebar wow fadeInDown">
+        <h2><span>Best Deals</span></h2>
+        <ul>
+            <li>
+                <a href="{{ product.link }}" target="_blank">Amazon</a>
+            </li>
+        </ul>
+        </div>
+    </aside>
 {% endblock %}

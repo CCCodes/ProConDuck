@@ -65,7 +65,7 @@ img:hover{opacity:0.75}
 .logo img:hover{opacity:1}
 .logo > span{ margin-left:-14px}
 .add_banner{float:right; width:728px; height:90px}
-.add_banner img{width:100%; height:100%}
+.add_banner img{width:100%; /*height:100%*/}
 #navArea{float:left; display:inline; width:100%; padding:0 30px; background-color:#fff}
 .navbar{border:medium none; border-radius:0}
 .navbar-inverse .navbar-nav > li > a{border-left:1px solid #383838; color:#ddd; font-family:'Oswald',sans-serif; display:inline-block; height:50px; line-height:50px; padding:0 14px; text-shadow:0 1px 1px #000; text-transform:uppercase; -webkit-transition:all 0.5s; -mz-transition:all 0.5s; -ms-transition:all 0.5s; -o-transition:all 0.5s; transition:all 0.5s}

@@ -96,6 +96,11 @@ class Product(models.Model):
         return super(Product, self).save(*args, **kwargs)
 
 
+@receiver(models.signals.pre_save, sender=Product)
+def product_pre_save(sender, instance, *args, **kwargs):
+    instance.description = instance.description.replace('\r\n', '<br />')
+
+
 class Reviewer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -141,23 +146,24 @@ class Review(models.Model):
         return now - datetime.timedelta(days=1) <= self.created <= now
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
         self.modified = timezone.now()  # will change if views gets updated
         if not self.id:
+            self.slug = slugify(self.title)
             self.created = timezone.now()
 
             if self.image and self.image != self.product.image:
                 img = Img.open(BytesIO(self.image.read()))
                 if img.mode != 'RGB':
                     img = img.convert('RGB')
-                img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
+                img.thumbnail((self.image.width / 1.5,
+                               self.image.height / 1.5),
                               Img.ANTIALIAS)
                 output = BytesIO()
                 img.save(output, format='JPEG', quality=70)
                 output.seek(0)
-                self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
-                                                  self.image.name.split('.')[0],
-                                                  'image/jpeg', img.size, None)
+                self.image = InMemoryUploadedFile(
+                    output, 'ImageField', "%s.jpg" % self.image.name.split(
+                        '.')[0], 'image/jpeg', img.size, None)
                 self.image_compressed = True
         return super(Review, self).save(*args, **kwargs)
 
@@ -166,11 +172,12 @@ class Review(models.Model):
 def review_pre_save(sender, instance, *args, **kwargs):
 
     # display breaks on review page
-    instance.review = instance.review.replace("\r\n", "<br />")
+    instance.review = instance.review.replace('\r\n', '<br />')
 
     # change yt link to embed if not already
     if '/embed/' not in instance.video_link:
-        instance.video_link = instance.video_link.replace('youtube.com', 'youtube.com/embed')
+        instance.video_link = instance.video_link.replace('youtube.com',
+                                                          'youtube.com/embed')
 
 
 @receiver(models.signals.post_save, sender=Review)

@@ -58,9 +58,11 @@ def signup(request, success=None):
                 [email],
                 fail_silently=False,
             )
-            return HttpResponseRedirect(reverse('blog:signup', kwargs={'success': 'true'}))
+            return HttpResponseRedirect(reverse('blog:signup',
+                                                kwargs={'success': 'true'}))
         else:
-            return HttpResponseRedirect(reverse('blog:signup', kwargs={'success': 'false'}))
+            return HttpResponseRedirect(reverse('blog:signup',
+                                                kwargs={'success': 'false'}))
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
@@ -103,18 +105,18 @@ def review(request, review_slug):
 
 def category(request, category_slug):
     context = {
-        'item': get_object_or_404(Category, slug=category_slug),
+        'category': get_object_or_404(Category, slug=category_slug),
     }
-    context['products'] = context['item'].product_set.annotate(num_r=Count(
+    context['products'] = context['category'].product_set.annotate(num_r=Count(
         'review')).order_by('-num_r')
     return render(request, 'blog/category.html', context)
 
 
 def product(request, product_slug):
     context = {
-        'item': get_object_or_404(Product, slug=product_slug),
+        'product': get_object_or_404(Product, slug=product_slug),
     }
-    reviews = context['item'].review_set.order_by('-views')
+    reviews = context['product'].review_set.order_by('-views')
     context['reviews1'] = reviews[:ceil(len(reviews)/2)]
     context['reviews2'] = reviews[ceil(len(reviews)/2):]
     return render(request, 'blog/product.html', context)
