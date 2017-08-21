@@ -161,7 +161,7 @@ img:hover{opacity:0.75}
 .photo_grid figure h2 span{font-weight:800}
 .photo_grid figure h2, .photo_grid figure a{margin:0}
 .photo_grid figcaption a{color:#fff; font-size:68.5%; letter-spacing:1px; display:block; margin-top:7px}
-figure.effect-layla img{height:390px}
+figure.effect-layla img{/*height:390px*/}
 figure.effect-layla figcaption{padding:1.5em}
 figure.effect-layla figcaption::before, figure.effect-layla figcaption::after{position:absolute; content:''; opacity:0}
 figure.effect-layla figcaption::before{top:20px; right:15px; bottom:20px; left:15px; border-top:1px solid #fff; border-bottom:1px solid #fff; -webkit-transform:scale(0,1); transform:scale(0,1); -webkit-transform-origin:0 0; transform-origin:0 0}

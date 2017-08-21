@@ -105,7 +105,7 @@
                 <img src="{{ related_reviews.0.image.url }}"
                      alt=""/></div>
         </a>
-    {% elif popular_review_list.0 and popular_review_list.0.id != display_review.id %}
+    {% elif popular_review_list.0 and popular_review_list.0.id != review.id %}
         <a class="prev"
            href="{% url 'blog:review' popular_review_list.0.id popular_review_list.0.slug %}"><span
                 class="icon-wrap"><i
@@ -126,7 +126,7 @@
                 <img src="{{ related_reviews.1.image.url }}"
                      alt=""/></div>
         </a>
-        {% elif popular_review_list.1 and popular_review_list.1.id != display_review.id %}
+        {% elif popular_review_list.1 and popular_review_list.1.id != review.id %}
             <a class="prev"
                href="{% url 'blog:review' popular_review_list.1.id popular_review_list.1.slug %}"><span
                     class="icon-wrap"><i class="fa fa-angle-right"></i></span>
