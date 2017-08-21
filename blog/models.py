@@ -36,7 +36,7 @@ class Category(models.Model):
 
     name = models.CharField(max_length=20)
     number = models.IntegerField(unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, editable=False)
 
     class Meta:
         verbose_name_plural = "categories"
@@ -175,6 +175,10 @@ def review_pre_save(sender, instance, *args, **kwargs):
 
         # display breaks on review page
         instance.review = instance.review.replace("\r\n", "<br />")
+
+        # change yt link to embed if not already
+        if '/embed/' not in instance.video_link:
+            instance.video_link = instance.video_link.replace('youtube.com', 'youtube.com/embed')
 
 
 @receiver(models.signals.post_save, sender=Review)
