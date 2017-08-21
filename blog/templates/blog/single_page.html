@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% block keywords %}{{ review.title }}{{ review.product.category.name }},{{ review.product.name }},{{ review.keywords }}{% endblock %}
 {% block title %}{{ review.title }} - Pro Con Duck{% endblock %}
 {% load staticfiles %} {% load static %}
 {% block left_content %}
@@ -77,12 +78,12 @@
                         <li>
                             <div class="media"><a
                                     class="media-left"
-                                    href="{% url 'blog:review' review.id review.slug %}">
+                                    href="{% url 'blog:review' review.slug %}">
                                 <img src="{{ review.image.url }}"
                                      alt=""> </a>
                                 <div class="media-body"><a
                                         class="catg_title"
-                                        href="{% url 'blog:review' review.id review.slug %}"> {{ review.title }}
+                                        href="{% url 'blog:review' review.slug %}"> {{ review.title }}
                                     - {{ review.product }}</a>
                                 </div>
                             </div>
@@ -98,7 +99,7 @@
 {% block nav %}
     <nav class="nav-slit"> {% if related_reviews.0 %}
         <a class="prev"
-           href="{% url 'blog:review' related_reviews.0.id related_reviews.0.slug %}">
+           href="{% url 'blog:review' related_reviews.0.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-left"></i></span>
             <div>
@@ -108,7 +109,7 @@
         </a>
     {% elif popular_review_list.0 and popular_review_list.0.id != review.id %}
         <a class="prev"
-           href="{% url 'blog:review' popular_review_list.0.id popular_review_list.0.slug %}"><span
+           href="{% url 'blog:review' popular_review_list.0.slug %}"><span
                 class="icon-wrap"><i
                 class="fa fa-angle-left"></i></span>
             <div>
@@ -119,7 +120,7 @@
         </a>
     {% endif %}
         {% if related_reviews.1 %}<a class="next"
-                                     href="{% url 'blog:review' related_reviews.1.id related_reviews.1.slug %}">
+                                     href="{% url 'blog:review' related_reviews.1.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-right"></i></span>
             <div>
@@ -129,7 +130,7 @@
         </a>
         {% elif popular_review_list.1 and popular_review_list.1.id != review.id %}
             <a class="prev"
-               href="{% url 'blog:review' popular_review_list.1.id popular_review_list.1.slug %}"><span
+               href="{% url 'blog:review' popular_review_list.1.slug %}"><span
                     class="icon-wrap"><i class="fa fa-angle-right"></i></span>
                 <div>
                     <h3>{{ popular_review_list.1.title }}</h3>

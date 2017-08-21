@@ -78,20 +78,20 @@ class Product(models.Model):
         self.save()
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        if self.image and not self.image_compressed:
-            img = Img.open(BytesIO(self.image.read()))
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
-                          Img.ANTIALIAS)
-            output = BytesIO()
-            img.save(output, format='JPEG', quality=70)
-            output.seek(0)
-            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
-                                              self.image.name.split('.')[0],
-                                              'image/jpeg', img.size, None)
-            self.image_compressed = True
+        if not self.id:
+            self.slug = slugify(self.name)
+            if self.image:
+                img = Img.open(BytesIO(self.image.read()))
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
+                              Img.ANTIALIAS)
+                output = BytesIO()
+                img.save(output, format='JPEG', quality=70)
+                output.seek(0)
+                self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
+                                                  self.image.name.split('.')[0],
+                                                  'image/jpeg', img.size, None)
 
         return super(Product, self).save(*args, **kwargs)
 
@@ -114,6 +114,7 @@ class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
 
     title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, editable=False, max_length=255)
     reviewer = models.ForeignKey(Reviewer, default=1)
     score = models.IntegerField(default=10, editable=False)
     image = models.ImageField(blank=True, upload_to="images", storage=s3)
@@ -130,55 +131,46 @@ class Review(models.Model):
                       size=10)
     cons = ArrayField(models.CharField(max_length=20, blank=True), null=True,
                       size=10)
+    keywords = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        return reverse('review', (), {
-            'slug': self.slug,
-            'id': self.id,
-        })
-
-    def slug(self):
-        return slugify(self.title)
 
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.created <= now
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        self.modified = timezone.now()  # will change if views gets updated
         if not self.id:
             self.created = timezone.now()
-        self.modified = timezone.now()  # will change if views gets updated
 
-        if self.image and self.image != self.product.image and not \
-                self.image_compressed:
-            img = Img.open(BytesIO(self.image.read()))
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
-                          Img.ANTIALIAS)
-            output = BytesIO()
-            img.save(output, format='JPEG', quality=70)
-            output.seek(0)
-            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
-                                              self.image.name.split('.')[0],
-                                              'image/jpeg', img.size, None)
-            self.image_compressed = True
+            if self.image and self.image != self.product.image:
+                img = Img.open(BytesIO(self.image.read()))
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
+                              Img.ANTIALIAS)
+                output = BytesIO()
+                img.save(output, format='JPEG', quality=70)
+                output.seek(0)
+                self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
+                                                  self.image.name.split('.')[0],
+                                                  'image/jpeg', img.size, None)
+                self.image_compressed = True
         return super(Review, self).save(*args, **kwargs)
 
 
 @receiver(models.signals.pre_save, sender=Review)
 def review_pre_save(sender, instance, *args, **kwargs):
-    if instance.pk is None:  # new review
 
-        # display breaks on review page
-        instance.review = instance.review.replace("\r\n", "<br />")
+    # display breaks on review page
+    instance.review = instance.review.replace("\r\n", "<br />")
 
-        # change yt link to embed if not already
-        if '/embed/' not in instance.video_link:
-            instance.video_link = instance.video_link.replace('youtube.com', 'youtube.com/embed')
+    # change yt link to embed if not already
+    if '/embed/' not in instance.video_link:
+        instance.video_link = instance.video_link.replace('youtube.com', 'youtube.com/embed')
 
 
 @receiver(models.signals.post_save, sender=Review)

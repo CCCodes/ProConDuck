@@ -33,6 +33,7 @@
     <meta name="msapplication-TileImage"
           content="{% static 'blog/images/favicon/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
+    <meta name="keywords" content="ProConDuck,reviews,honest{% block keywords %}{% endblock %}">
     <title>{% block title %}ProConDuck{% endblock %}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -177,12 +178,12 @@
                             {% for review in popular_review_list %}
                                 <li>
                                     <div class="media wow fadeInDown"><a
-                                            href="{% url 'blog:review' review.id review.slug %}"
+                                            href="{% url 'blog:review' review.slug %}"
                                             class="media-left"> <img alt=""
                                                                      src="{{ review.image.url }}">
                                     </a>
                                         <div class="media-body"><a
-                                                href="{% url 'blog:review' review.id review.slug %}"
+                                                href="{% url 'blog:review' review.slug %}"
                                                 class="catg_title"> {{ review.title }}</a>
                                         </div>
                                     </div>

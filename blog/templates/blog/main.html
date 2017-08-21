@@ -10,14 +10,14 @@
                     {% if featured_reviews %}
                         {% for review in featured_reviews %}
                             <div class="single_iteam"><a
-                                    href="{% url 'blog:review' review.id review.slug %}">
+                                    href="{% url 'blog:review' review.slug %}">
                                 <img src="{{ review.image.url }}"
                                      alt=""></a>
                                 <div class="slider_article">
                                     <h2><a class="slider_tittle"
-                                           href="{% url 'blog:review' review.id review.slug %}">{{ review.title }}
+                                           href="{% url 'blog:review' review.slug %}">{{ review.title }}
                                         - {{ review.product }}</a></h2>
-                                    <p>{{ review.review|truncatechars:290 }}</p>
+                                    <p>{% autoescape on %}{{ review.review|truncatechars:290 }}{% endautoescape %}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -95,12 +95,12 @@
                                 {% for review in popular_review_list|slice:"1:" %}
                                     <li>
                                         <div class="media wow fadeInDown"><a
-                                                href="{% url 'blog:review' review.id review.slug %}"
+                                                href="{% url 'blog:review' review.slug %}"
                                                 class="media-left"> <img alt=""
                                                                          src="{{ review.image.url }}">
                                         </a>
                                             <div class="media-body"><a
-                                                    href="{% url 'blog:review' review.id review.slug %}"
+                                                    href="{% url 'blog:review' review.slug %}"
                                                     class="catg_title">{{ review.title }}
                                                 - {{ review.product }}<br/>{{ review.created.date }}
                                             </a></div>
@@ -214,12 +214,12 @@
                             {% for review in latest_review_list %}
                                 <li>
                                     <div class="media wow fadeInDown"><a
-                                            href="{% url 'blog:review' review.id review.slug %}"
+                                            href="{% url 'blog:review' review.slug %}"
                                             class="media-left"> <img alt=""
                                                                      src="{{ review.image.url }}">
                                     </a>
                                         <div class="media-body"><a
-                                                href="{% url 'blog:review' review.id review.slug %}"
+                                                href="{% url 'blog:review' review.slug %}"
                                                 class="catg_title">{{ review.title }}
                                             - {{ review.product }}<br/>{{ review.created.date }}
                                         </a></div>

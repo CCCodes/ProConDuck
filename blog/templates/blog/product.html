@@ -1,12 +1,13 @@
 {% extends "blog/list_items.html" %}
+{% block keywords %},{{ item.name }},{{ item.category }}{% endblock %}
 {% block list_items %}
 {% if reviews1 %}
     <div class="single_post_content_left">
         <ul class="spost_nav">
             {% for review in reviews1 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.id review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
-                    <div class="media-body"> <a href="{% url 'blog:review' review.id review.slug %}" class="catg_title">{{ review.title }}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
+                    <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}</a> </div>
                   </div>
                 </li>
             {% endfor %}
@@ -16,8 +17,8 @@
         <ul class="spost_nav">
             {% for review in reviews2 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.id review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
-                    <div class="media-body"> <a href="{% url 'blog:review' review.id review.slug %}" class="catg_title">{{ review.title }}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
+                    <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}</a> </div>
                   </div>
                 </li>
             {% endfor %}

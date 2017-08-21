@@ -1,4 +1,5 @@
 {% extends "blog/list_items.html" %}
+{% block keywords %},{{ item.name }}{% endblock %}
 {% block list_items %}
 {% if products %}
     <ul class="photograph_nav wow fadeInDown">

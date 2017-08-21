@@ -81,12 +81,12 @@ def display_categories():
     return result
 
 
-def review(request, slug, review_id):
-    display_review = get_object_or_404(Review, pk=review_id)
+def review(request, review_slug):
+    display_review = get_object_or_404(Review, slug=review_slug)
     display_review.views += 1
     display_review.save()
     related = Product.objects.get(pk=display_review.product_id
-                                  ).review_set.exclude(pk=review_id)
+                                  ).review_set.exclude(slug=review_slug)
 
     # get reviews in products in same category except for current review
     for product_ in Category.objects.get(
