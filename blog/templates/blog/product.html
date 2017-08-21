@@ -5,7 +5,7 @@
 <div class="single_post_content">
 <h2><span>{{ product.name }}</span></h2>
 <table class="table" style="margin-bottom: 0;">
-    <tr><th>Product</th><td>{{ product }}</td><td rowspan="2" style="width:1px; white-space: nowrap">
+    <tr><th>Product</th><td><a href="{{ product.link }}" target="_blank">{{ product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
     <img class="img-center" height="75" src="{{ product.image.url }}" alt="" />
     </td></tr>
     <tr><th>Company</th><td>{{ product.company }}</td></tr>
@@ -19,7 +19,7 @@
             {% for review in reviews1 %}
                 <li>
                   <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
-                    <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}</a> </div>
+                    <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}<br/>{{ review.created.date }}</a> </div>
                   </div>
                 </li>
             {% endfor %}
@@ -29,8 +29,13 @@
         <ul class="spost_nav">
             {% for review in reviews2 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
-                    <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}</a> </div>
+                  <div class="media wow fadeInDown">
+                      {% if review.image.url != review.product.image.url %}
+                      <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
+                      {% endif %}
+                    <div class="media-body">
+                        <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}<br/>
+                        {{ review.created.date }}</a> </div>
                   </div>
                 </li>
             {% endfor %}

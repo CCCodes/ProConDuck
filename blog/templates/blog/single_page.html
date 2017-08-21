@@ -19,8 +19,8 @@
             </a></div>
         <div class="single_page_content">
         <table class="table">
-            <tr><th>Product</th><td>{{ review.product }}</td><td rowspan="2" style="width:1px; white-space: nowrap">
-            <img class="img-center" height="75" src="{{ review.product.image.url }}" alt="" />
+            <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
+            <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="75" src="{{ review.product.image.url }}" alt="" /></a>
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
         </table>
@@ -76,15 +76,14 @@
                 {% if related_reviews %}
                     {% for review in related_reviews|slice:":3" %}
                         <li>
-                            <div class="media"><a
+                            <div class="media"><a title="{{ review.product }}"
                                     class="media-left"
                                     href="{% url 'blog:review' review.slug %}">
                                 <img src="{{ review.image.url }}"
                                      alt=""> </a>
                                 <div class="media-body"><a
-                                        class="catg_title"
-                                        href="{% url 'blog:review' review.slug %}"> {{ review.title }}
-                                    - {{ review.product }}</a>
+                                        class="catg_title" title="{{ review.product }}"
+                                        href="{% url 'blog:review' review.slug %}"> {{ review.title }}<br/>{{ review.created.date }}</a>
                                 </div>
                             </div>
                         </li>
