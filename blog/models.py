@@ -81,17 +81,7 @@ class Product(models.Model):
         if not self.id:
             self.slug = slugify(self.name)
             if self.image:
-                img = Img.open(BytesIO(self.image.read()))
-                if img.mode != 'RGB':
-                    img = img.convert('RGB')
-                img.thumbnail((self.image.width / 1.5, self.image.height / 1.5),
-                              Img.ANTIALIAS)
-                output = BytesIO()
-                img.save(output, format='JPEG', quality=70)
-                output.seek(0)
-                self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
-                                                  self.image.name.split('.')[0],
-                                                  'image/jpeg', img.size, None)
+                self.image = compress(self.image)
 
         return super(Product, self).save(*args, **kwargs)
 
@@ -123,7 +113,6 @@ class Review(models.Model):
     reviewer = models.ForeignKey(Reviewer, default=1)
     score = models.IntegerField(default=10, editable=False)
     image = models.ImageField(blank=True, upload_to="images", storage=s3)
-    image_compressed = models.BooleanField(default=False, editable=False)
     video_link = models.URLField(blank=True)
     review = models.TextField()  # user uploaded can't have tags!!!
     views = models.IntegerField(default=0, editable=False)
@@ -152,19 +141,7 @@ class Review(models.Model):
             self.created = timezone.now()
 
             if self.image and self.image != self.product.image:
-                img = Img.open(BytesIO(self.image.read()))
-                if img.mode != 'RGB':
-                    img = img.convert('RGB')
-                img.thumbnail((self.image.width / 1.5,
-                               self.image.height / 1.5),
-                              Img.ANTIALIAS)
-                output = BytesIO()
-                img.save(output, format='JPEG', quality=70)
-                output.seek(0)
-                self.image = InMemoryUploadedFile(
-                    output, 'ImageField', "%s.jpg" % self.image.name.split(
-                        '.')[0], 'image/jpeg', img.size, None)
-                self.image_compressed = True
+                self.image = compress(self.image)
         return super(Review, self).save(*args, **kwargs)
 
 
@@ -216,6 +193,10 @@ class Advertisement(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.id and self.image:
+            self.image = compress(self.image)
+
 
 class Promotion(models.Model):
 
@@ -237,3 +218,17 @@ class NewsletterEmail(models.Model):
 
     def __str__(self):
         return self.email
+
+
+def compress(image, quality=65):
+    img = Img.open(BytesIO(image.read()))
+    if img.mode != 'RGB':
+        img = img.convert('RGB')
+    img.thumbnail((image.width / 1.5, image.height / 1.5
+                   ), Img.ANTIALIAS)
+    output = BytesIO()
+    img.save(output, format='JPEG', quality=quality)
+    output.seek(0)
+    return InMemoryUploadedFile(output, 'ImageField', "%s.jpg" %
+                                image.name.split('.')[0],
+                                'image/jpeg', img.size, None)
