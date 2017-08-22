@@ -112,7 +112,6 @@ class Review(models.Model):
     slug = models.SlugField(unique=True, editable=False, max_length=255)
     reviewer = models.ForeignKey(Reviewer, default=1)
     score = models.IntegerField(default=10, editable=False)
-    image = models.ImageField(blank=True, upload_to="images", storage=s3)
     video_link = models.URLField(blank=True)
     review = models.TextField()  # user uploaded can't have tags!!!
     views = models.IntegerField(default=0, editable=False)
@@ -139,9 +138,6 @@ class Review(models.Model):
         if not self.id:
             self.slug = slugify(self.title)
             self.created = timezone.now()
-
-            if self.image and self.image != self.product.image:
-                self.image = compress(self.image)
         return super(Review, self).save(*args, **kwargs)
 
 
@@ -168,6 +164,17 @@ def review_post_save(sender, instance, created, *args, **kwargs):
 @receiver(models.signals.pre_delete, sender=Review)
 def review_pre_delete(sender, instance, *args, **kwargs):
     instance.product.update_rating_avg(instance)
+
+
+class ReviewImage(models.Model):
+
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="images", storage=s3)
+
+    def save(self, *args, **kwargs):
+        if not self.id and self.image and self.image != \
+                self.review.product.image:
+            self.image = compress(self.image)
 
 
 class AdSlot(models.Model):

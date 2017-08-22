@@ -7,6 +7,7 @@ from .models import *
 admin.site.register(Company)
 admin.site.register(Product)
 admin.site.register(Review)
+admin.site.register(ReviewImage)
 admin.site.register(Advertisement)
 admin.site.register(AdSlot)
 admin.site.register(Category)
