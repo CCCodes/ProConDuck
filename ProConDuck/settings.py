@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import datetime
 import os
 import os.path
 import sys
@@ -208,4 +208,9 @@ THUMBNAIL_ALIASES = {
     '': {
         'small': {'size': (100, 75), 'crop': False}
     },
+}
+
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_OBJECT_PARAMETERS = {
+    'Cache-Control': 'max-age=86400',
 }
