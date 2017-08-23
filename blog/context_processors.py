@@ -1,4 +1,8 @@
+import urllib.request, io
+from PIL import Image
+
 from django.contrib.staticfiles import finders
+from django.http import HttpResponse
 
 from .models import *
 
@@ -27,7 +31,8 @@ def default(request):
         popular_review_list=Review.objects.order_by('-views')[:5],
         ads=ad_paths,
         date=get_date(),
-        categories=Category.objects.annotate(num_p=Count('product')).order_by('-num_p'),
+        categories=Category.objects.annotate(num_p=Count('product')).order_by(
+            '-num_p'),
         promotions=Promotion.objects.filter(current=True),
 
     )

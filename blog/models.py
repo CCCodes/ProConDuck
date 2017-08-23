@@ -112,6 +112,7 @@ class Review(models.Model):
     slug = models.SlugField(unique=True, editable=False, max_length=255)
     reviewer = models.ForeignKey(Reviewer, default=1)
     score = models.IntegerField(default=10, editable=False)
+    image_thumb_url = models.URLField(editable=False, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()  # user uploaded can't have tags!!!
     views = models.IntegerField(default=0, editable=False)
@@ -156,8 +157,8 @@ def review_pre_save(sender, instance, *args, **kwargs):
 @receiver(models.signals.post_save, sender=Review)
 def review_post_save(sender, instance, created, *args, **kwargs):
     instance.product.update_rating_avg()
-    if instance.image == "":
-        instance.image = instance.product.image
+    if instance.image_thumb_url == "":
+        instance.image_thumb_url = instance.product.image.url
         instance.save()
 
 
@@ -170,12 +171,30 @@ class ReviewImage(models.Model):
 
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="images", storage=s3)
-    order = models.IntegerField
+    name = models.CharField(max_length=50)
+    thumbnail = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
 
     def save(self, *args, **kwargs):
-        if not self.id and self.image and self.image != \
-                self.review.product.image:
-            self.image = compress(self.image)
+        if not self.id:
+            if self.image and self.image != self.review.product.image:
+                self.image = compress(self.image)
+
+        # if its the only image for the review
+        # whether its the first time saving or saved again (and unchecked)
+        # so that self.pk doesn't make the program crash
+        if self.id is not None and len(self.review.reviewimage_set.all()) == 0\
+                or len(self.review.reviewimage_set.exclude(pk=self.pk)) == 0:
+            self.thumbnail = True
+        elif self.thumbnail:
+            for img in self.review.reviewimage_set.exclude(pk=self.pk):
+                img.thumbnail = False
+                img.save()
+        if self.thumbnail and self.image.url != self.review.image_thumb_url:
+            self.review.image_thumb_url = self.image.url
+            self.review.save()
         return super(ReviewImage, self).save(*args, **kwargs)
 
 

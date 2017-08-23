@@ -1,6 +1,9 @@
 from itertools import chain
 from math import ceil
 from smtplib import SMTPAuthenticationError
+from PIL import Image
+from io import BytesIO, StringIO
+import urllib.request
 
 from django.core.mail import send_mail
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -98,7 +101,7 @@ def review(request, review_slug):
     context = {
         'review': display_review,
         'related_reviews': related,
-        'image_link': display_review.image.url.replace('%', '%25')
+        'image_link': display_review.image_thumb_url.replace('%', '%25')
     }
     return render(request, 'blog/single_page.html', context)
 
@@ -151,7 +154,7 @@ def contact_submit(request):
     except SMTPAuthenticationError as e:
         print(e)
         return HttpResponseRedirect(reverse('blog:signup', kwargs={
-            'success':'false'}))
+            'success': 'false'}))
     return HttpResponseRedirect(reverse('blog:contact'))
 
 

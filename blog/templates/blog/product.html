@@ -19,7 +19,7 @@
         <ul class="spost_nav">
             {% for review in reviews1 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
+                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image_thumb_url }}"> </a>
                     <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}<br/>{{ review.created.date }}</a> </div>
                   </div>
                 </li>
@@ -31,8 +31,8 @@
             {% for review in reviews2 %}
                 <li>
                   <div class="media wow fadeInDown">
-                      {% if review.image.url != review.product.image.url %}
-                      <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image.url }}"> </a>
+                      {% if review.image_thumb_url != review.product.image.url %}
+                      <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image_thumb_url }}"> </a>
                       {% endif %}
                     <div class="media-body">
                         <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}<br/>
