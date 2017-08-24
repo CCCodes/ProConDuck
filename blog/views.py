@@ -101,7 +101,8 @@ def review(request, review_slug):
     context = {
         'review': display_review,
         'related_reviews': related,
-        'image_link': display_review.image_thumb_url.replace('%', '%25')
+        'image_link': display_review.image_thumb_url.replace('%', '%25'),
+        'all_images': ReviewImage.objects.filter(review=display_review).all(),
     }
     return render(request, 'blog/single_page.html', context)
 

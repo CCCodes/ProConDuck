@@ -43,7 +43,15 @@
             {% endif %}
         {% if review.product.image.url != review.image_thumb_url %}
             <br/>
-            <img class="" src="{{ review.image_thumb_url }}" alt="">
+            <div class="slick_slider">
+                {% for image in all_images %}
+                    <div class="single_iteam">
+                        <a title="{{ image.image.name }}" href="#">
+                                    <img src="{{ image.image.url }}"
+                                         alt=""></a>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
         </div>
         <div class="social_link">
