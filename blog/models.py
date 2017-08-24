@@ -57,7 +57,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     score = models.FloatField(default=0)  # , editable=False)
-    link = models.URLField()
+    links = models.TextField()
     image = models.ImageField(upload_to="images", storage=s3)
     image_compressed = models.BooleanField(default=False, editable=False)
     description = models.TextField(default="Default description")

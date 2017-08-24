@@ -98,6 +98,7 @@ def review(request, review_slug):
             pk=display_review.product.category_id).product_set.exclude(
             pk=display_review.product_id):
         related = list(chain(related, product_.review_set.all()))
+
     context = {
         'review': display_review,
         'related_reviews': related,
@@ -123,6 +124,12 @@ def product(request, product_slug):
     reviews = context['product'].review_set.order_by('-views')
     context['reviews1'] = reviews[:ceil(len(reviews)/2)]
     context['reviews2'] = reviews[ceil(len(reviews)/2):]
+    links = []
+    for link in context['product'].links.split('\r\n'):
+        label = link.split('-')[0]
+        url = link.split('-')[1]
+        links.append((label, url))
+    context['links'] = links
     return render(request, 'blog/product.html', context)
 
 

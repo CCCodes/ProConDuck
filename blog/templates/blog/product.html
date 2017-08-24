@@ -5,12 +5,12 @@
 <div class="single_post_content">
 <h2><span>{{ product.name }}</span></h2>
 <table class="table" style="margin-bottom: 0;">
-    <tr><th>Product</th><td><a href="{{ product.link }}" target="_blank">{{ product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
+    <tr><th>Product</th><td><a href="{{ product.links.0.0 }}" target="_blank">{{ product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
     <img class="img-center" height="75" src="{{ product.image.url }}" alt="" />
     </td></tr>
     <tr><th>Company</th><td>{{ product.company }}</td></tr>
 </table>
-<form action="{{ product.link }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
+<form action="{{ product.links.0.0 }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
 <p>{% autoescape off %}{{ product.description }}{% endautoescape %}
 </p>
 <hr/>
@@ -57,9 +57,11 @@
         <div class="single_sidebar wow fadeInDown">
         <h2><span>Best Deals</span></h2>
         <ul>
+            {% for label, link in links %}
             <li>
-                <a href="{{ product.link }}" target="_blank">Amazon</a>
+                <a href="{{ link }}" target="_blank">{{ label }}</a>
             </li>
+            {% endfor %}
         </ul>
         </div>
     </aside>
