@@ -229,9 +229,10 @@ class Advertisement(models.Model):
 
 class Promotion(models.Model):
 
-    company = models.ForeignKey(Company, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
     link = models.URLField()
     title = models.CharField(max_length=20)
+    code = models.CharField(max_length=30)
     description = models.TextField()
     image = models.CharField(max_length=100)
     current = models.BooleanField(default=0)

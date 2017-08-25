@@ -126,7 +126,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="latest_newsarea">
-                    <div><span>Don't Miss Out!</span></div>
+                    <div><span><a href="{% url 'blog:promotions' %}">Don't Miss Out!</a></span></div>
                         <ul id="ticker01" class="news_sticker">
                             {% if promotions %}
                                 {% for promotion in promotions %}

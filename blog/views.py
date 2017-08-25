@@ -133,6 +133,16 @@ def product(request, product_slug):
     return render(request, 'blog/product.html', context)
 
 
+def promotions(request):
+    promos = Promotion.objects.all()
+
+    context = {
+        'promos1': promos[:ceil(len(promos)/2)],
+        'promos2': promos[ceil(len(promos)/2):],
+    }
+    return render(request, 'blog/promotions.html', context)
+
+
 def tos(request):
     return render(request, 'blog/tos.html', {})
 
