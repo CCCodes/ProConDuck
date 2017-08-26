@@ -136,9 +136,15 @@ def product(request, product_slug):
 def promotions(request):
     promos = Promotion.objects.all()
 
+    promo_links = []
+    for promo in promos:
+
+        # get the amazon link (should be first link)
+        promo_links.append((promo, promo.product.links.split('\r\n')[0].split('-')[1]))
+
     context = {
-        'promos1': promos[:ceil(len(promos)/2)],
-        'promos2': promos[ceil(len(promos)/2):],
+        'promos1': promo_links[:ceil(len(promos)/2)],
+        'promos2': promo_links[ceil(len(promos)/2):],
     }
     return render(request, 'blog/promotions.html', context)
 

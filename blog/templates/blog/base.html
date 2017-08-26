@@ -132,7 +132,7 @@
                                 {% for promotion in promotions %}
                                     {% if forloop.last %}
                                         <li>
-                                            <a href="{{ promotions.last.link }}">{{ promotions.last.title }}
+                                            <a href="{% url 'blog:promotions' %}">{{ promotions.last.title }}
                                             </a>
                                             {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
                                                 &emsp;
@@ -267,7 +267,7 @@
 
     ga('create', 'UA-97587291-2', 'auto');
     ga('send', 'pageview');
-
 </script>
+{% block more-script %}{% endblock %}
 </body>
 </html>

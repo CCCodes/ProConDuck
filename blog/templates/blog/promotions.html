@@ -3,21 +3,22 @@
 {% block left_content %}
     {% if promos1 %}
         <div class="single_post_content">
+        <h2><span>ProConDuck Deals</span></h2>
         <div class="single_post_content_left">
             <ul class="spost_nav">
                 {% for promo in promos1 %}
                     <li>
                         <div class="media wow fadeInDown"><a
-                                href="{% url 'blog:product' promo.product.slug %}"
+                                href="{% url 'blog:product' promo.0.product.slug %}"
                                 class="media-left"> <img alt=""
-                                                         src="{{ promo.product.image.url }}">
+                                                         src="{{ promo.0.product.image.url }}">
                         </a>
-                            <div class="media-body"><a
-                                    href="#" class="catg_title">
-                                {{ promo.title }}<br/>{{ promo.product }}
-                            </a>
-                                <button id="show-code" class="btn-theme" onclick="(function () {document.getElementById('show-code').style.display = 'none';document.getElementById('hidden-code').style.display = 'block';window.open('{{ promo.link }}');})()">See promo code</button>
-                                <div id="hidden-code" style="display:none;">Code: {{ promo.code }}</div>
+                            <div class="media-body">
+                                <strong>{{ promo.0.title }}</strong><br/>
+                                <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a>
+                                <br/>
+                                <button id="show-code" class="btn-theme" onclick="showCode()">See promo code</button>
+                                <div id="hidden-code" style="display:none;"><a href="{{ promo.1 }}" target="_blank">Code: {{ promo.0.code }}</a></div>
                             </div>
                         </div>
                     </li>
@@ -29,14 +30,15 @@
                 {% for promo in promos2 %}
                     <li>
                         <div class="media wow fadeInDown"><a
-                                href="{% url 'blog:product' promo.product.slug %}"
+                                href="{% url 'blog:product' promo.0.product.slug %}"
                                 class="media-left"> <img alt=""
-                                                         src="{{ promo.product.image.url }}">
+                                                         src="{{ promo.0.product.image.url }}">
                         </a>
-                            <div class="media-body"><a
-                                    href="{{ promo.link }}"
-                                    class="catg_title">{{ promo.title }}<br/>{{ promo.company }}
-                            </a></div>
+                            <div class="media-body"><strong>{{ promo.0.title }}</strong><br/>
+                                <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a>
+                                <br/>
+                                <button id="show-code" class="btn-theme" onclick="showCode()">See promo code</button>
+                                <div id="hidden-code" style="display:none;"><a href="{{ promo.1 }}" target="_blank">Code: {{ promo.0.code }}</a></div></div>
                         </div>
                     </li>
                 {% endfor %}
@@ -46,4 +48,12 @@
     {% else %}
         No promotions available at the moment.
     {% endif %}
+{% endblock %}
+{% block more-script %}
+<script>
+var showCode = function () {
+    document.getElementById('show-code').style.display = 'none';
+    document.getElementById('hidden-code').style.display = 'block';
+}
+</script>
 {% endblock %}
