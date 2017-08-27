@@ -18,7 +18,7 @@
                                 <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a>
                                 <br/>
                                 <button id="show-code" class="btn-theme" onclick="showCode()">See promo code</button>
-                                <div id="hidden-code" style="display:none;"><a href="{{ promo.1 }}" target="_blank">Code: {{ promo.0.code }}</a></div>
+                                <div id="hidden-code" style="display:none;">Code: {{ promo.0.code }} - <a href="{{ promo.1 }}" target="_blank">Use here</a></div>
                             </div>
                         </div>
                     </li>

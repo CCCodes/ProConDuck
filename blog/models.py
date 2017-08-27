@@ -56,7 +56,7 @@ class Product(models.Model):
                                  default=0)
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
-    score = models.FloatField(default=0)  # , editable=False)
+    score = models.FloatField(default=0, editable=False)
     links = models.TextField()
     image = models.ImageField(upload_to="images", storage=s3)
     image_compressed = models.BooleanField(default=False, editable=False)
@@ -111,7 +111,7 @@ class Review(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, editable=False, max_length=255)
     reviewer = models.ForeignKey(Reviewer, default=1)
-    score = models.FloatField(default=5, editable=False)
+    score = models.FloatField(default=5)
     image_thumb_url = models.URLField(editable=False, blank=True)
     video_link = models.URLField(blank=True)
     review = models.TextField()  # user uploaded can't have tags!!!

@@ -16,7 +16,20 @@
                                 <div class="slider_article">
                                     <h2><a class="slider_tittle" title="{{ review.product }}"
                                            href="{% url 'blog:review' review.slug %}">{{ review.title }}</a></h2>
-                                    <p>{{ review.review|striptags|truncatechars:290 }}</p>
+                                    <p>{{ review.reviewer }} | {{ review.created.date }}
+                                        {% if review.score|floatformat:"0" == "1" %}
+                                                    <span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "2" %}
+                                                    <span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "3" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "4" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "5" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% endif %}
+                                            / {{ review.score }}<br/>
+                                        {{ review.review|striptags|truncatechars:290 }}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -49,6 +62,18 @@
                                     </a>
                                         <div class="media-body"><a href="{% url 'blog:product' product.slug %}"
                                                                    class="catg_title"> {{ product.name }}</a>
+                                            <br/>{% if product.score|floatformat:"0" == "1" %}
+                                                    <span>☆</span>
+                                                {% elif product.score|floatformat:"0" == "2" %}
+                                                    <span>☆</span><span>☆</span>
+                                                {% elif product.score|floatformat:"0" == "3" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif product.score|floatformat:"0" == "4" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif product.score|floatformat:"0" == "5" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% endif %}
+                                            / {{ product.score }}
                                         </div>
                                     </div>
                                 </li>
@@ -80,9 +105,18 @@
                                                 href="{% url 'blog:review' popular_review_list.0.slug %}" title="{{ popular_review_list.0.product }}">{{ popular_review_list.0.title }}</a>
                                         </figcaption>
                                         <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}
-                                            <br/>
+                                            {% if popular_review_list.0.score|floatformat:"0" == "1" %}
+                                                <span>☆</span>
+                                            {% elif popular_review_list.0.score|floatformat:"0" == "2" %}
+                                                <span>☆</span><span>☆</span>
+                                            {% elif popular_review_list.0.score|floatformat:"0" == "3" %}
+                                                <span>☆</span><span>☆</span><span>☆</span>
+                                            {% elif popular_review_list.0.score|floatformat:"0" == "4" %}
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            {% elif popular_review_list.0.score|floatformat:"0" == "5" %}
+                                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                            {% endif %}
+                                        / {{ popular_review_list.0.score }}<br/>
                                            {{ popular_review_list.0.review|striptags|truncatechars:200 }}</p>
                                     </figure>
                                     {% else %}
@@ -101,10 +135,20 @@
                                             <img alt="" src="{{ review.image_thumb_url }}">
                                         </a>
                                             <div class="media-body"><a href="{% url 'blog:review' review.slug %}"
-                                                    class="catg_title" title="{{ review.product }}">{{ review.title }}<br/>{{ review.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}
-                                            </a></div>
+                                                    class="catg_title" title="{{ review.product }}">{{ review.title }}</a>
+                                            <br/>{{ review.created.date }}
+                                                {% if review.score|floatformat:"0" == "1" %}
+                                                    <span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "2" %}
+                                                    <span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "3" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "4" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "5" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% endif %}
+                                            / {{ review.score }}</div>
                                         </div>
                                     </li>
                                 {% endfor %}
@@ -128,8 +172,18 @@
                                             </figcaption>
                                             <p>{{ display_categories.0.0.0.reviewer }}
                                                 | {{ display_categories.0.0.0.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}
+                                                    {% if display_categories.0.0.0.score|floatformat:"0" == "1" %}
+                                                        <span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "2" %}
+                                                        <span>☆</span><span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "3" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "4" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "5" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% endif %}
+                                                / {{ display_categories.0.0.0.score }}
                                                 <br/>{{ display_categories.0.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
@@ -148,10 +202,20 @@
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
-                                                        class="catg_title"> {{ review.0.title }}<br/>{{ review.0.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}
-                                                </a></div>
+                                                        class="catg_title"> {{ review.0.title }}
+                                                </a><br/>{{ review.0.created.date }}
+                                                    {% if popular_review_list.0.score|floatformat:"0" == "1" %}
+                                                        <span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "2" %}
+                                                        <span>☆</span><span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "3" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "4" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "5" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% endif %}
+                                                / {{ popular_review_list.0.score }}</div>
                                             </div>
                                         </li>
                                     {% endfor %}
@@ -175,8 +239,18 @@
                                             </figcaption>
                                             <p>{{ display_categories.1.0.0.reviewer }}
                                                 | {{ display_categories.1.0.0.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}<br/>
+                                            {% if display_categories.0.0.0.score|floatformat:"0" == "1" %}
+                                                        <span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "2" %}
+                                                        <span>☆</span><span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "3" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "4" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif display_categories.0.0.0.score|floatformat:"0" == "5" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% endif %}
+                                                / {{ display_categories.0.0.0.score }}<br/>
                                                 {{ display_categories.1.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
@@ -194,10 +268,19 @@
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
-                                                        class="catg_title">{{ review.0.title }}<br/>{{ review.0.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}
-                                                </a></div>
+                                                        class="catg_title">{{ review.0.title }}</a><br/>{{ review.0.created.date }}
+                                                    {% if popular_review_list.0.score|floatformat:"0" == "1" %}
+                                                        <span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "2" %}
+                                                        <span>☆</span><span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "3" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "4" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% elif popular_review_list.0.score|floatformat:"0" == "5" %}
+                                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                    {% endif %}
+                                                / {{ popular_review_list.0.score }}</div>
                                             </div>
                                         </li>
                                     {% endfor %}
@@ -222,10 +305,21 @@
                                     </a>
                                         <div class="media-body"><a title="{{ review.product }}"
                                                 href="{% url 'blog:review' review.slug %}"
-                                                class="catg_title">{{ review.title }}<br/>{{ review.created.date }}
-                                            <span>☆</span>
-                                            {{ popular_review_list.0.score }}
-                                        </a></div>
+                                                class="catg_title">{{ review.title }}
+                                            </a><br/>{{ review.created.date }}
+                                                {% if review.score|floatformat:"0" == "1" %}
+                                                    <span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "2" %}
+                                                    <span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "3" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "4" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% elif review.score|floatformat:"0" == "5" %}
+                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                                {% endif %}
+                                            / {{ review.score }}
+                                        </div>
                                     </div>
                                 </li>
                             {% endfor %}
