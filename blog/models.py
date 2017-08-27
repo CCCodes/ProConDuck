@@ -4,6 +4,7 @@ from io import BytesIO, StringIO
 
 import django
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.sites.models import Site
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.urlresolvers import reverse
 from django.db.models import Avg, Count
@@ -61,6 +62,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to="images", storage=s3)
     image_compressed = models.BooleanField(default=False, editable=False)
     description = models.TextField(default="Default description")
+    modified = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.name
@@ -84,6 +86,9 @@ class Product(models.Model):
                 self.image = compress(self.image)
 
         return super(Product, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return '/blog/product/%s/' % self.slug
 
 
 @receiver(models.signals.pre_save, sender=Product)
@@ -142,7 +147,7 @@ class Review(models.Model):
         return super(Review, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return '/blog/review/' + self.slug
+        return '/blog/review/%s/' % self.slug
 
 
 @receiver(models.signals.pre_save, sender=Review)

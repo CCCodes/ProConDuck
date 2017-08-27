@@ -20,14 +20,18 @@ from django.views.generic.base import RedirectView
 from django.contrib.sitemaps.views import sitemap
 
 from . import settings
-from blog.models import Review
+from blog.views import ReviewSitemap, ProductSitemap
 
+sitemaps = {
+    'review': ReviewSitemap,
+    'product': ProductSitemap,
+}
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/blog', permanent=False)),
     url(r'^blog/', include('blog.urls'), name='blog'),
     url(r'^tittlejoy/', admin.site.urls),
-    url(r'^sitemap\.xml$', sitemap, name='django.contrib.sitemaps.views.sitemap')
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'blog.views.error404'

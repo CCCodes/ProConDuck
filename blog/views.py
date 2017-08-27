@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext, Context
 from django.shortcuts import render, get_object_or_404, render_to_response
+from django.contrib.sitemaps import Sitemap
 
 from .models import *
 
@@ -180,3 +181,25 @@ def contact_submit(request):
         return HttpResponseRedirect(reverse('blog:signup', kwargs={
             'success': 'false'}))
     return HttpResponseRedirect(reverse('blog:contact'))
+
+
+class ReviewSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 1.0
+
+    def items(self):
+        return Review.objects.all()
+
+    def lastmod(self, obj):
+        return obj.created
+
+
+class ProductSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.5
+
+    def items(self):
+        return Product.objects.all()
+
+    def lastmod(self, obj):
+        return obj.modified
