@@ -180,17 +180,3 @@ def contact_submit(request):
         return HttpResponseRedirect(reverse('blog:signup', kwargs={
             'success': 'false'}))
     return HttpResponseRedirect(reverse('blog:contact'))
-
-
-def error404(request):
-    # response = render_to_response('blog/404', {},
-    #                                context_instance=RequestContext(request))
-    # response.status_code = 404
-    context = {
-        'message': 'All: %s' % request,
-        }
-
-    # 3. Return Template for this view + Data
-    return HttpResponse(content=render(request, '404.html', context),
-                        status=404)
-

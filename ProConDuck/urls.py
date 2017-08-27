@@ -17,14 +17,17 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
+from django.contrib.sitemaps.views import sitemap
 
-from blog import views
 from . import settings
+from blog.models import Review
+
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/blog', permanent=False)),
     url(r'^blog/', include('blog.urls'), name='blog'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^tittlejoy/', admin.site.urls),
+    url(r'^sitemap\.xml$', sitemap, name='django.contrib.sitemaps.views.sitemap')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'blog.views.error404'

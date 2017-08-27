@@ -54,7 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'easy_thumbnails'
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -205,15 +207,9 @@ AWS_SECRET_ACCESS_KEY = config['AWS_SECRET_KEY']
 BOTO_S3_BUCKET = config['S3_BUCKET']
 BOTO_S3_HOST = config['AWS_HOST']
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-THUMBNAIL_ALIASES = {
-    '': {
-        'small': {'size': (100, 75), 'crop': False}
-    },
-}
-
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_OBJECT_PARAMETERS = {
     'Cache-Control': 'max-age=86400',
 }
+
+SITE_ID = 1

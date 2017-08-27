@@ -141,6 +141,9 @@ class Review(models.Model):
             self.created = timezone.now()
         return super(Review, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return '/blog/review/' + self.slug
+
 
 @receiver(models.signals.pre_save, sender=Review)
 def review_pre_save(sender, instance, *args, **kwargs):
