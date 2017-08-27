@@ -79,7 +79,10 @@
                                         <figcaption><a
                                                 href="{% url 'blog:review' popular_review_list.0.slug %}" title="{{ popular_review_list.0.product }}">{{ popular_review_list.0.title }}</a>
                                         </figcaption>
-                                        <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br/>
+                                        <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}
+                                            <br/>
                                            {{ popular_review_list.0.review|striptags|truncatechars:200 }}</p>
                                     </figure>
                                     {% else %}
@@ -99,6 +102,8 @@
                                         </a>
                                             <div class="media-body"><a href="{% url 'blog:review' review.slug %}"
                                                     class="catg_title" title="{{ review.product }}">{{ review.title }}<br/>{{ review.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}
                                             </a></div>
                                         </div>
                                     </li>
@@ -123,6 +128,8 @@
                                             </figcaption>
                                             <p>{{ display_categories.0.0.0.reviewer }}
                                                 | {{ display_categories.0.0.0.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}
                                                 <br/>{{ display_categories.0.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
@@ -142,6 +149,8 @@
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
                                                         class="catg_title"> {{ review.0.title }}<br/>{{ review.0.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}
                                                 </a></div>
                                             </div>
                                         </li>
@@ -165,7 +174,9 @@
                                                     href="{% url 'blog:review' display_categories.1.0.0.slug %}">{{ display_categories.1.0.0.title }}</a>
                                             </figcaption>
                                             <p>{{ display_categories.1.0.0.reviewer }}
-                                                | {{ display_categories.1.0.0.created.date }}<br/>
+                                                | {{ display_categories.1.0.0.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}<br/>
                                                 {{ display_categories.1.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
@@ -184,6 +195,8 @@
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
                                                         class="catg_title">{{ review.0.title }}<br/>{{ review.0.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}
                                                 </a></div>
                                             </div>
                                         </li>
@@ -210,6 +223,8 @@
                                         <div class="media-body"><a title="{{ review.product }}"
                                                 href="{% url 'blog:review' review.slug %}"
                                                 class="catg_title">{{ review.title }}<br/>{{ review.created.date }}
+                                            <span>☆</span>
+                                            {{ popular_review_list.0.score }}
                                         </a></div>
                                     </div>
                                 </li>

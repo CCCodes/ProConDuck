@@ -5,12 +5,12 @@
 <div class="single_post_content">
 <h2><span>{{ product.name }}</span></h2>
 <table class="table" style="margin-bottom: 0;">
-    <tr><th>Product</th><td><a href="{{ product.links.0.0 }}" target="_blank">{{ product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
+    <tr><th>Product</th><td><a href="{{ links.0.1 }}" target="_blank">{{ product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
     <img class="img-center" height="75" src="{{ product.image.url }}" alt="" />
     </td></tr>
     <tr><th>Company</th><td>{{ product.company }}</td></tr>
 </table>
-<form action="{{ product.links.0.0 }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
+<form action="{{ links.0.1 }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
 <p>{% autoescape off %}{{ product.description }}{% endautoescape %}
 </p>
 <hr/>
