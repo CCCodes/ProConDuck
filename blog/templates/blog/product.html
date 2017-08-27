@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block keywords %},{{ product.name }},{{ product.category }}{% endblock %}
+{% block meta-description %}Find honest reviews for {{ product.name }}.{% endblock %}
 {% block title %}{{ product.name }} - ProConDuck{% endblock %}
 {% block left_content %}
 <div class="single_post_content">
