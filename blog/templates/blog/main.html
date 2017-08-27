@@ -18,17 +18,17 @@
                                            href="{% url 'blog:review' review.slug %}">{{ review.title }}</a></h2>
                                     <p>{{ review.reviewer }} | {{ review.created.date }}
                                         {% if review.score|floatformat:"0" == "1" %}
-                                                    <span>☆</span>
-                                                {% elif review.score|floatformat:"0" == "2" %}
-                                                    <span>☆</span><span>☆</span>
-                                                {% elif review.score|floatformat:"0" == "3" %}
-                                                    <span>☆</span><span>☆</span><span>☆</span>
-                                                {% elif review.score|floatformat:"0" == "4" %}
-                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                                {% elif review.score|floatformat:"0" == "5" %}
-                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                                {% endif %}
-                                            / {{ review.score }}<br/>
+                                            <span>☆</span>
+                                        {% elif review.score|floatformat:"0" == "2" %}
+                                            <span>☆</span><span>☆</span>
+                                        {% elif review.score|floatformat:"0" == "3" %}
+                                            <span>☆</span><span>☆</span><span>☆</span>
+                                        {% elif review.score|floatformat:"0" == "4" %}
+                                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                        {% elif review.score|floatformat:"0" == "5" %}
+                                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                        {% endif %}
+                                    / {{ review.score }}<br/>
                                         {{ review.review|striptags|truncatechars:290 }}</p>
                                 </div>
                             </div>

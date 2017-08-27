@@ -18,13 +18,28 @@
                     class="fa fa-tags"></i>{{ review.product.category.name }}
             </a></div>
         <div class="single_page_content">
+
         <table class="table">
-            <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="2" style="width:1px; white-space: nowrap">
-            <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="75" src="{{ review.product.image.url }}" alt="" /></a>
+            <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="3" style="width:1px; white-space: nowrap">
+            <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="" /></a>
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
+            <tr><th>Average Rating</th><td>{{ review.product.score }}</td></tr>
         </table>
-            <p><br/>{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
+            {% if review.score|floatformat:"0" == "1" %}
+                <span>☆</span>
+            {% elif review.score|floatformat:"0" == "2" %}
+                <span>☆</span><span>☆</span>
+            {% elif review.score|floatformat:"0" == "3" %}
+                <span>☆</span><span>☆</span><span>☆</span>
+            {% elif review.score|floatformat:"0" == "4" %}
+                <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            {% elif review.score|floatformat:"0" == "5" %}
+                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            {% endif %}
+        / {{ review.score }}<br/>
+            <br/>
+            <p>{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
             {% if review.pros %}
             <h3>Pros</h3>
             <ul>
