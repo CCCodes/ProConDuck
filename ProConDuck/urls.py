@@ -35,3 +35,4 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'blog.views.error404'
+handler500 = 'blog.views.error500'

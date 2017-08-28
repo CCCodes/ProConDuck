@@ -203,3 +203,23 @@ class ProductSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.modified
+
+
+def error404(request):
+    context = {
+        'message': 'All: %s' % request,
+        }
+
+    # 3. Return Template for this view + Data
+    return HttpResponse(content=render(request, '404.html', context),
+                        status=404)
+
+
+def error500(request):
+    context = {
+        'message': 'All: %s' % request,
+        }
+
+    # 3. Return Template for this view + Data
+    return HttpResponse(content=render(request, '500.html', context),
+                        status=500)
