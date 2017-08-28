@@ -200,10 +200,14 @@ class ReviewImage(models.Model):
             for img in self.review.reviewimage_set.exclude(pk=self.pk):
                 img.thumbnail = False
                 img.save()
-        if self.thumbnail:
-            self.review.image_thumb_url = self.image.url
-            self.review.save()
         return super(ReviewImage, self).save(*args, **kwargs)
+
+
+@receiver(models.signals.post_save, sender=Review)
+def reviewimage_post_save(sender, instance, created, *args, **kwargs):
+    if instance.thumbnail and instance.image.url != instance.review.image_thumb_url:
+        instance.review.image_thumb_url = instance.image.url
+        instance.review.save()
 
 
 class AdSlot(models.Model):
