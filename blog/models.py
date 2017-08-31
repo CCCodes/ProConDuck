@@ -203,7 +203,7 @@ class ReviewImage(models.Model):
         return super(ReviewImage, self).save(*args, **kwargs)
 
 
-@receiver(models.signals.post_save, sender=Review)
+@receiver(models.signals.post_save, sender=ReviewImage)
 def reviewimage_post_save(sender, instance, created, *args, **kwargs):
     if instance.thumbnail and instance.image.url != instance.review.image_thumb_url:
         instance.review.image_thumb_url = instance.image.url
