@@ -263,7 +263,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .error_page > h1{font-size:110px}
 .error_page > p{font-size:15px; margin:0 auto; width:80%; margin-bottom:40px}
 .error_page > span{display:inline-block; height:2px; text-align:center; width:100px}
-.error_page > a{color:#fff; display:inline-block; padding:5px 10px}
+.error_page > a{color:#fff; display:inline-block; padding:5px 10px; margin-bottom: 25px;}
 .error_page > a:hover{opacity:0.75}
 .contact_area{float:left; display:inline; width:100%; margin-bottom:30px}
 .contact_area > h2{color:#fff; display:inline-block; font-size:20px; padding:7px 10px 5px; text-transform:uppercase; margin-bottom:30px}
