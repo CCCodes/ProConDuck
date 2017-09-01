@@ -9,6 +9,9 @@
             <li>
                 <a href="{% url 'blog:category' review.product.category.slug %}">{{ review.product.category.name }}</a>
             </li>
+            <li>
+                <a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a>
+            </li>
         </ol>
         <h1>{{ review.title }}</h1>
         <div class="post_commentbox"><a href="#"><i
