@@ -18,9 +18,11 @@ def main(request):
     featured_reviews = Review.objects.filter(featured=True)
 
     context = {
-        'top_rated_products': Product.objects.order_by('-score'),
+        'top_rated_products': Product.objects.exclude(score=0).order_by(
+            '-score'),
         'display_categories': display_categories(),
-        'display_categories_names': Category.objects.annotate(num_p=Count('product')).order_by(
+        'display_categories_names': Category.objects.annotate(num_p=Count(
+            'product')).order_by(
             '-num_p').values('name'),
         'featured_reviews': featured_reviews,
     }
