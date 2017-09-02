@@ -140,7 +140,7 @@
                                             {% endfor %}</li>
                                     {% else %}
                                         <li>
-                                            <a href="{{ promotions.link }}">{{ promotion.title }}
+                                            <a href="{% url 'blog:promotions' %}">{{ promotion.title }}
                                             </a></li>
                                     {% endif %}
                                 {% endfor %}
