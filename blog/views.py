@@ -80,7 +80,7 @@ def display_categories():
         num_p=Count('product')).order_by('-num_p')
     result = []
 
-    for i in range(2):
+    for i in range(3):
         products = categories_product_sort[i].product_set.order_by(
             '-score')
         result.append([product_.review_set.order_by(
