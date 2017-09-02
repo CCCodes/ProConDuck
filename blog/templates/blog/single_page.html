@@ -42,6 +42,18 @@
             {% endif %}
         {{ review.score }} / 5<br/>
             <br/>
+            {% if review.product.image.url != review.image_thumb_url %}
+            <br/>
+            <div class="slick_slider">
+                {% for image in all_images %}
+                    <div class="single_iteam">
+                        <a title="{{ image.image.name }}" href="#">
+                                    <img src="{{ image.image.url }}"
+                                         alt=""></a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
             <p>{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
             {% if review.pros %}
             <h3>Pros</h3>
@@ -59,18 +71,6 @@
             {% endfor %}
             </ul>
             {% endif %}
-        {% if review.product.image.url != review.image_thumb_url %}
-            <br/>
-            <div class="slick_slider">
-                {% for image in all_images %}
-                    <div class="single_iteam">
-                        <a title="{{ image.image.name }}" href="#">
-                                    <img src="{{ image.image.url }}"
-                                         alt=""></a>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
         </div>
         <div class="social_link">
             <ul class="sociallink_nav">
