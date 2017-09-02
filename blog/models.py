@@ -242,7 +242,7 @@ class Advertisement(models.Model):
 class Promotion(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=30)
     code = models.CharField(max_length=30)
     current = models.BooleanField(default=0)
 
