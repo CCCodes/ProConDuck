@@ -40,7 +40,7 @@
             {% elif review.score|floatformat:"0" == "5" %}
                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
             {% endif %}
-        / {{ review.score }}<br/>
+        {{ review.score }} / 5<br/>
             <br/>
             <p>{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
             {% if review.pros %}

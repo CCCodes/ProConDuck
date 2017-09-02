@@ -82,7 +82,7 @@ def display_categories():
         products = categories_product_sort[i].product_set.order_by(
             '-score')
         result.append([product_.review_set.order_by(
-            '-views') for product_ in products])
+            '-views') for product_ in products if len(product_.review_set.all()) != 0])
 
     return result
 

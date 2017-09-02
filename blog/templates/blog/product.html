@@ -22,6 +22,11 @@
 </table>
 </div>
 <form action="{{ links.0.1 }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
+{% if product.promotion_set %}
+    {% for promo in product.promotion_set %}
+        {{ promo.title }}
+    {% endfor %}
+{% endif %}
 <p>{% autoescape off %}{{ product.description }}{% endautoescape %}
 </p>
 <hr/>
@@ -43,7 +48,7 @@
                             {% elif review.score|floatformat:"0" == "5" %}
                                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                             {% endif %}
-                        / {{ review.score }}
+                        {{ review.score }} / 5
                       </div>
                   </div>
                 </li>
