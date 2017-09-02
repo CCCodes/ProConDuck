@@ -121,11 +121,32 @@ def category(request, category_slug):
 
 def product(request, product_slug):
     product_ = get_object_or_404(Product, slug=product_slug)
+    category_products = product_.category.product_set.all()
+    current_index = list(category_products).index(product_)
+
+    related_products = []
+    previous_index = current_index - 1
+    next_index = current_index + 1
+
+    if previous_index < 0:
+        if len(category_products) - 1 == next_index:
+            related_products.append(None)
+        else:
+            related_products.append(category_products[len(category_products) - 1])
+    else:
+        related_products.append(category_products[previous_index])
+
+    if next_index > len(category_products) - 1:
+        if previous_index == 0:
+            related_products.append(None)
+        else:
+            related_products.append(category_products[0])
+    else:
+        related_products.append(category_products[next_index])
     context = {
         'product': product_,
         'links': get_links(product_),
-        'related_products': Product.objects.filter(category=product_.category
-                                                   ).exclude(slug=product_slug)
+        'related_products': related_products
     }
     reviews = context['product'].review_set.order_by('-views')
     context['reviews1'] = reviews[:ceil(len(reviews)/2)]
