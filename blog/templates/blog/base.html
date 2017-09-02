@@ -134,10 +134,7 @@
                                     {% if forloop.last %}
                                         <li>
                                             <a href="{% url 'blog:promotions' %}">{{ promotions.last.title }}
-                                            </a>
-                                            {% for i in "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" %}
-                                                &emsp;
-                                            {% endfor %}</li>
+                                            </a></li>
                                     {% else %}
                                         <li>
                                             <a href="{% url 'blog:promotions' %}">{{ promotion.title }}
