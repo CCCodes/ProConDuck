@@ -120,14 +120,17 @@ def category(request, category_slug):
 
 
 def product(request, product_slug):
+    product_ = get_object_or_404(Product, slug=product_slug)
     context = {
-        'product': get_object_or_404(Product, slug=product_slug),
+        'product': product_,
+        'links': get_links(product_),
+        'related_products': Product.objects.filter(category=product_.category
+                                                   ).exclude(slug=product_slug)
     }
     reviews = context['product'].review_set.order_by('-views')
     context['reviews1'] = reviews[:ceil(len(reviews)/2)]
     context['reviews2'] = reviews[ceil(len(reviews)/2):]
 
-    context['links'] = get_links(context['product'])
     return render(request, 'blog/product.html', context)
 
 
