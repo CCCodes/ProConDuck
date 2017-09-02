@@ -17,8 +17,8 @@
                                 <strong>{{ promo.0.title }}</strong><br/>
                                 <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a>
                                 <br/>
-                                <button id="show-code" class="btn-theme" onclick="showCode()">See promo code</button>
-                                <div id="hidden-code" style="display:none;">Code: {{ promo.0.code }} - <a href="{{ promo.1 }}" target="_blank">Use here</a></div>
+                                <button id="show-code-1-{{ forloop.counter }}" class="btn-theme" onclick="showCode('1-' + {{ forloop.counter }})">See promo code</button>
+                                <div id="hidden-code-1-{{ forloop.counter }}" style="display:none;">Code: {{ promo.0.code }} - <a href="{{ promo.1 }}" target="_blank">Use here</a></div>
                             </div>
                         </div>
                     </li>
@@ -37,8 +37,8 @@
                             <div class="media-body"><strong>{{ promo.0.title }}</strong><br/>
                                 <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a>
                                 <br/>
-                                <button id="show-code" class="btn-theme" onclick="showCode()">See promo code</button>
-                                <div id="hidden-code" style="display:none;"><a href="{{ promo.1 }}" target="_blank">Code: {{ promo.0.code }}</a></div></div>
+                                <button id="show-code-2-{{ forloop.counter }}" class="btn-theme" onclick="showCode('2-' + {{ forloop.counter }})">See promo code</button>
+                                <div id="hidden-code-2-{{ forloop.counter }}" style="display:none;">Code: {{ promo.0.code }} - <a href="{{ promo.1 }}" target="_blank">Use here</a></div></div>
                         </div>
                     </li>
                 {% endfor %}
@@ -51,9 +51,9 @@
 {% endblock %}
 {% block more-script %}
 <script>
-var showCode = function () {
-    document.getElementById('show-code').style.display = 'none';
-    document.getElementById('hidden-code').style.display = 'block';
+var showCode = function (num) {
+    document.getElementById('show-code-'+num).style.display = 'none';
+    document.getElementById('hidden-code-'+num).style.display = 'block';
 }
 </script>
 {% endblock %}
