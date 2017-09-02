@@ -11,11 +11,11 @@
         method="post">
             {% csrf_token %}
             <input class="form-control" type="text" required
-                   placeholder="Name*" name="name">
+                   placeholder="Name" name="name">
             <input class="form-control" type="email" required
-                   placeholder="Email*" name="email">
+                   placeholder="Email" name="email">
             <textarea class="form-control" cols="30" rows="10" required
-                      placeholder="Message*" name="message"></textarea>
+                      placeholder="Message" name="message"></textarea>
             <input type="submit" value="Send Message">
         </form>
     </div>
