@@ -130,6 +130,7 @@ class Review(models.Model):
                       size=10)
     cons = ArrayField(models.CharField(max_length=20, blank=True), null=True,
                       size=10)
+    overall_verdict = models.TextField(blank=True)
     keywords = models.CharField(max_length=50, blank=True)
 
     def __str__(self):

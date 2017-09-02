@@ -105,6 +105,7 @@ def review(request, review_slug):
         'related_reviews': related,
         'image_link': display_review.image_thumb_url.replace('%', '%25'),
         'all_images': ReviewImage.objects.filter(review=display_review).all(),
+        'links': get_links(display_review.product)
     }
     return render(request, 'blog/single_page.html', context)
 
@@ -125,13 +126,18 @@ def product(request, product_slug):
     reviews = context['product'].review_set.order_by('-views')
     context['reviews1'] = reviews[:ceil(len(reviews)/2)]
     context['reviews2'] = reviews[ceil(len(reviews)/2):]
+
+    context['links'] = get_links(context['product'])
+    return render(request, 'blog/product.html', context)
+
+
+def get_links(prod):
     links = []
-    for link in context['product'].links.split('\r\n'):
+    for link in prod.links.split('\r\n'):
         label = link.split('-')[0]
         url = link.split('-')[1]
         links.append((label, url))
-    context['links'] = links
-    return render(request, 'blog/product.html', context)
+    return links
 
 
 def promotions(request):
