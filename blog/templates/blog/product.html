@@ -20,7 +20,7 @@
     <tr><th>Company</th><td>{{ product.company }}</td></tr>
     <tr><th>Average Rating</th><td>{{ product.score }} / 5</td></tr>
 </table>
-<form action="{{ links.0.1 }}" target="_blank"><label>Get the best deal from Amazon today</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
+<form action="{{ links.0.1 }}" target="_blank"><label>Get the best deal from Amazon</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
     {% if product.promotion_set %}
         {% for promo in product.promotion_set.all %}
             <label>Promotion:</label>
