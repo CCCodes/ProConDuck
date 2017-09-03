@@ -52,7 +52,7 @@
                                         <br/>
                                         {% if product.review_set.count != 0 %}
                                             {% include "blog/star_rating.html" with score=product.score size="12" %}
-                                        {{ product.score }}
+                                        {{ product.score }} ({{ product.review_set.count }})
                                         {% else %}
                                             No reviews available.
                                         {% endif %}
@@ -105,7 +105,7 @@
                                         </a>
                                             <div class="media-body"><a href="{% url 'blog:review' review.slug %}"
                                                     class="catg_title" title="{{ review.product }}">{{ review.title }}</a>
-                                            <br/>{{ review.created.date }}
+                                            <br/>{{ review.created.date }}<br />
                                             {% include "blog/star_rating.html" with score=review.score size="12" %}
                                             {{ review.score }}</div>
                                         </div>
@@ -151,7 +151,7 @@
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
                                                         class="catg_title"> {{ review.0.title }}
-                                                </a><br/>{{ review.0.created.date }}
+                                                </a><br/>{{ review.0.created.date }}<br />
                                                     {% include "blog/star_rating.html" with score=review.0.score size="12" %}
                                                 {{ popular_review_list.0.score }}</div>
                                             </div>
@@ -196,7 +196,7 @@
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
-                                                        class="catg_title">{{ review.0.title }}</a><br/>{{ review.0.created.date }}
+                                                        class="catg_title">{{ review.0.title }}</a><br/>{{ review.0.created.date }}<br />
                                                     {% include "blog/star_rating.html" with score=review.0.score size="12" %}
                                                     {{ popular_review_list.0.score }}</div>
                                             </div>
@@ -224,7 +224,7 @@
                                         <div class="media-body"><a title="{{ review.product }}"
                                                 href="{% url 'blog:review' review.slug %}"
                                                 class="catg_title">{{ review.title }}
-                                            </a><br/>{{ review.created.date }}
+                                            </a><br/>{{ review.created.date }}<br />
                                                 {% include "blog/star_rating.html" with score=review.score size="12" %}
                                             {{ review.score }}
                                         </div>
