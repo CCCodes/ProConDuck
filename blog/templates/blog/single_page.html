@@ -22,9 +22,9 @@
             </a></div>
         <div class="single_page_content">
         {{ review.reviewer.first_name }}'s Rating
-        <span style="font-size: 40px;">
+        <span style="font-size: 20px;">
         {% if review.score|floatformat:"0" == "1" %}
-            <span>☆</span>
+            <span class="glyphicon glyphicon-star"></span>
         {% elif review.score|floatformat:"0" == "2" %}
             <span>☆</span><span>☆</span>
         {% elif review.score|floatformat:"0" == "3" %}
@@ -32,13 +32,17 @@
         {% elif review.score|floatformat:"0" == "4" %}
             <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
         {% elif review.score|floatformat:"0" == "5" %}
-            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
         {% endif %}</span>{{ review.score }} / 5
         <a href="{% url 'blog:product' review.product.slug %}" class="btn btn-theme" style="float: right;">View Product</a>
         <a href="{{ links.0.1 }}" target="_blank" class="btn btn-theme" style="float: right;margin-right: 5px;">Buy On Amazon</a>
             {% if review.product.image.url != review.image_thumb_url or review.video_link %}
             <br/>
-            <div class="slick_slider" style="margin-bottom: 0;">
+            <div class="slick_slider" style="margin-bottom: 0;margin-top: 20px;">
                 {% for image in all_images %}
                     <div class="single_iteam">
                         <a title="{{ image.image.name }}" href="#">
