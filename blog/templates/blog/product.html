@@ -10,7 +10,7 @@
     </li>
 </ol>
 <div class="single_post_content">
-<h2><span>{{ product.company.name }} {{ product.name }}</span></h2>
+<h1>{{ product.company.name }} {{ product.name }}</h1>
 <div class="single_post_content_left">
 <img class="img img-responsive" src="{{ product.image.url }}" alt="" />
 </div>
@@ -18,7 +18,14 @@
 <table class="table" style="margin-bottom: 0;">
     <tr><th>Product</th><td><a href="{{ links.0.1 }}" target="_blank">{{ product }}</a></td></tr>
     <tr><th>Company</th><td>{{ product.company }}</td></tr>
-    <tr><th>Average Rating</th><td>{{ product.score }} / 5</td></tr>
+    <tr><th>Average Rating</th>
+        <td>
+            {% if product.review_set.count != 0 %}
+            {{ product.score }} / 5
+            {% else %}
+            No reviews yet.
+            {% endif %}
+        </td></tr>
 </table>
 <form action="{{ links.0.1 }}" target="_blank"><label>Get the best deal from Amazon</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
     {% if product.promotion_set %}
