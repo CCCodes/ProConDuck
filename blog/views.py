@@ -131,7 +131,7 @@ def product(request, product_slug):
     next_index = current_index + 1
 
     if previous_index < 0:
-        if len(category_products) - 1 == next_index:
+        if len(category_products) - 1 == current_index:
             related_products.append(None)
         else:
             related_products.append(category_products[len(category_products) - 1])
@@ -139,7 +139,7 @@ def product(request, product_slug):
         related_products.append(category_products[previous_index])
 
     if next_index > len(category_products) - 1:
-        if previous_index == 0:
+        if current_index == 0:
             related_products.append(None)
         else:
             related_products.append(category_products[0])
@@ -173,7 +173,8 @@ def promotions(request):
     for promo in promos:
 
         # get the amazon link (should be first link)
-        promo_links.append((promo, promo.product.links.split('\r\n')[0].split('-')[1]))
+        promo_links.append((promo, promo.product.links.split('\r\n')[0].split(
+            '-')[1]))
 
     context = {
         'promos1': promo_links[:ceil(len(promos)/2)],
