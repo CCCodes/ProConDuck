@@ -150,25 +150,27 @@
     </div>
 {% endblock %}
 {% block nav %}
-    <nav class="nav-slit"> {% if related_reviews.0 %}
-        <a class="prev"
-           href="{% url 'blog:review' related_reviews.0.slug %}">
-            <span class="icon-wrap"><i
-                    class="fa fa-angle-left"></i></span>
-            <div>
-                <h3>{{ related_reviews.0.title }}</h3>
-                <img src="{{ related_reviews.0.image_thumb_url }}"
-                     alt=""/></div>
-        </a>
-    {% endif %}
-        {% if related_reviews.1 %}<a class="next"
-                                     href="{% url 'blog:review' related_reviews.1.slug %}">
+    <nav class="nav-slit">
+        {% if related_reviews.0 %}
+            <a class="next"
+               href="{% url 'blog:review' related_reviews.0.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-right"></i></span>
-            <div>
+            <div style="background-color: #000000;">
+                <h3>{{ related_reviews.0.title }}</h3>
+                <img src="{{ related_reviews.0.image_thumb_url }}"
+                     alt="" style="left: 50%; margin-left: -86px;"/></div>
+        </a>
+        {% endif %}
+        {% if related_reviews.1 %}
+        <a class="prev"
+           href="{% url 'blog:review' related_reviews.1.slug %}">
+            <span class="icon-wrap"><i
+                    class="fa fa-angle-left"></i></span>
+            <div style="background-color: #000000;">
                 <h3>{{ related_reviews.1.title }}</h3>
                 <img src="{{ related_reviews.1.image_thumb_url }}"
-                     alt=""/></div>
+                     alt="" style=" left: 50%; margin-left: -86px;"/></div>
         </a>
         {% endif %} </nav>
 {% endblock %}
