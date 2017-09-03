@@ -80,6 +80,30 @@
 {% endblock %}
 {% block right_content %}
     <aside>
+        {% if product.review_set.count > 0 %}
+        <div class="single_sidebar wow fadeInDown">
+            <h2><span>Reviews</span></h2>
+            <ul class="spost_nav">
+            {% for review in product.review_set.all %}
+            <li>
+                <div class="media wow fadeInDown"><a
+                        href="{% url 'blog:review' review.slug %}"
+                        class="media-left"> <img alt=""
+                                                 src="{{ review.image_thumb_url }}">
+                </a>
+                    <div class="media-body"><a
+                            href="{% url 'blog:review' review.slug %}"
+                            class="catg_title">{{ review.title }}</a>
+                        <br/>
+                        {% include "blog/star_rating.html" with score=review.score size="12" %}{{ review.score }}
+                        <br/>{{ review.created.date }}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         <div class="single_sidebar wow fadeInDown">
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
