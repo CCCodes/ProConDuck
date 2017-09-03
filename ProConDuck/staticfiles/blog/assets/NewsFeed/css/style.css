@@ -257,7 +257,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 .nav-slit div{position:absolute; top:0; width:200px; height:100%; background-color: #ffffff; -webkit-transition:-webkit-transform 0.3s 0.3s; transition:transform 0.3s 0.3s; -webkit-perspective:1000px; perspective:1000px}
 .nav-slit a.prev div{left:0; -webkit-transform:translateX(-100%); transform:translateX(-100%)}
 .nav-slit a.next div{right:0; text-align:right; -webkit-transform:translateX(100%); transform:translateX(100%)}
-.nav-slit h3{position:absolute; top:100%; margin:0; padding:0 20px; height:30%; color:#fff; text-transform:uppercase; letter-spacing:1px; font-weight:500; font-size:0.75em; line-height:2.75; width:200px; text-align:left; overflow:hidden; padding-top:4px; -webkit-transition:-webkit-transform 0.3s; transition:transform 0.3s; -webkit-transform:rotateX(-90deg); transform:rotateX(-90deg); -webkit-transform-origin:50% 0; transform-origin:50% 0; -webki-backface-visibility:hidden; -webkit-backface-visibility:hidden; backface-visibility:hidden}
+.nav-slit h3{position:absolute; top:100%; margin:0; padding:0 20px; height:30%; color:#fff; text-transform:uppercase; letter-spacing:1px; font-weight:500; font-size:0.75em; line-height:1.5; width:200px; text-align:left; overflow:hidden; padding-top:4px; -webkit-transition:-webkit-transform 0.3s; transition:transform 0.3s; -webkit-transform:rotateX(-90deg); transform:rotateX(-90deg); -webkit-transform-origin:50% 0; transform-origin:50% 0; -webki-backface-visibility:hidden; -webkit-backface-visibility:hidden; backface-visibility:hidden}
 .nav-slit img{left:0; position:absolute; top:0; /*width:100%; width:200px;*/ height:130px}
 .nav-slit a:hover div{-webkit-transform:translateX(0); transform:translateX(0)}
 .nav-slit a:hover h3{-webkit-transition-delay:0.6s; transition-delay:0.6s; -webkit-transform:rotateX(0deg); transform:rotateX(0deg)}
@@ -306,8 +306,8 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     display: block;
 }
 body {
-padding-right:0 !important;
-margin-right:0 !important;
+    padding-right:0 !important;
+    margin-right:0 !important;
 }
 .modal {
   text-align: center;
@@ -320,7 +320,6 @@ margin-right:0 !important;
     height: 100%;
   }
 }
-
 .modal-dialog {
   display: inline-block;
   text-align: left;
