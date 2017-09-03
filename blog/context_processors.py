@@ -26,6 +26,15 @@ def default(request):
         }
     }
 
+    promos = Promotion.objects.all()
+
+    promo_links = []
+    for promo in promos:
+
+        # get the amazon link (should be first link)
+        promo_links.append((promo, promo.product.links.split('\r\n')[0].split(
+            '-')[1]))
+
     return dict(
         latest_review_list=Review.objects.order_by('-created')[:4],
         popular_review_list=Review.objects.order_by('-views')[:5],
@@ -33,7 +42,7 @@ def default(request):
         date=get_date(),
         categories=Category.objects.annotate(num_p=Count('product')).order_by(
             '-num_p'),
-        promotions=Promotion.objects.filter(current=True),
+        promotions=promo_links,
 
     )
 

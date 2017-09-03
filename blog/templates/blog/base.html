@@ -133,13 +133,36 @@
                                 {% for promotion in promotions %}
                                     {% if forloop.last %}
                                         <li>
-                                            <a href="{% url 'blog:promotions' %}">{{ promotions.last.title }}
+                                            <a href="{% url 'blog:promotions' %}">{{ promotions.last.0.title }}
                                             </a></li>
                                     {% else %}
                                         <li>
-                                            <a href="{% url 'blog:promotions' %}">{{ promotion.title }}
+                                            <a data-toggle="modal" data-target="#myModal{{ forloop.counter }}">{{ promotion.0.title }}
                                             </a></li>
                                     {% endif %}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal{{ forloop.counter }}" role="dialog">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                            data-dismiss="modal">&times;
+                                                    </button>
+                                                    <h4 class="modal-title">{{ promotion.0.title }}</h4>
+                                                </div>
+                                                <div class="modal-body" style="font-family: 'Signika', sans-serif; font-size: 14px; font-weight: normal;">
+                                                    <p>Code: {{ promotion.0.code }} - <a href="{{ promotion.1 }}" target="_blank" style="color: black;">Use on Amazon</a></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{% url 'blog:promotions' %}" style="display: inline;"><button class="btn btn-theme">All promotions</button></form>
+                                                    <button type="button"
+                                                            class="btn btn-default"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             {% else %}
                                 <li><a href="#">No promotions currently
