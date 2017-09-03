@@ -28,7 +28,7 @@
                                         {% elif review.score|floatformat:"0" == "5" %}
                                             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                                         {% endif %}
-                                    {{ review.score }} / 5<br/>
+                                    {{ review.score }}<br/>
                                         {{ review.review|striptags|truncatechars:200 }}</p>
                                 </div>
                             </div>

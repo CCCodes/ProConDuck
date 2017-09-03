@@ -1,0 +1,32 @@
+<span style="font-size: {{ size }}px; color: #ffca30;">
+{% if score|floatformat:"0" == "1" %}
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+{% elif score|floatformat:"0" == "2" %}
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+{% elif score|floatformat:"0" == "3" %}
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+{% elif score|floatformat:"0" == "4" %}
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star" style="color: #bdc3c7"></span>
+{% elif score|floatformat:"0" == "5" %}
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+    <span class="glyphicon glyphicon-star"></span>
+{% endif %}</span>
