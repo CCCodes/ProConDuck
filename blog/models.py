@@ -206,9 +206,20 @@ class ReviewImage(models.Model):
 
 @receiver(models.signals.post_save, sender=ReviewImage)
 def reviewimage_post_save(sender, instance, created, *args, **kwargs):
-    if instance.thumbnail and instance.image.url != instance.review.image_thumb_url:
+    if instance.thumbnail and instance.image.url != \
+            instance.review.image_thumb_url:
         instance.review.image_thumb_url = instance.image.url
         instance.review.save()
+
+
+@receiver(models.signals.pre_delete, sender=ReviewImage)
+def reviewimage_pre_delete(sender, instance, *args, **kwargs):
+    instance.image.delete(save=False)
+    if instance.thumbnail:
+        new_thumb_image = sender.objects.exclude(id=instance.id).filter(
+            review=instance.review_id)[0]
+        new_thumb_image.thumbnail = True
+        new_thumb_image.save()
 
 
 class AdSlot(models.Model):
