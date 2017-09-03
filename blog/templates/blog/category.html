@@ -9,7 +9,12 @@
     {% for product in products %}
         <li>
             <div class="photo_grid">
-                <figure class="effect-layla"><a class="fancybox-buttons" data-fancybox-group="button" href="{% url 'blog:product' product.slug %}" title="{{ product.name }}"> <img src="{{ product.image.url }}" alt=""/></a></figure>
+                <figure class="effect-layla">
+                    <a class="fancybox-buttons" data-fancybox-group="button" href="{% url 'blog:product' product.slug %}">
+                        <div class="product-overlay"><div>{{ product.name }}<br />
+                        {% include "blog/star_rating.html" with score=product.score size="15" %}
+                        </div></div>
+                        <img src="{{ product.image.url }}" alt=""/></a></figure>
             </div>
         </li>
     {% endfor %}
@@ -21,7 +26,7 @@
 {% endblock %}
 {% block right_content %}
     <aside>
-        <div class="single_sidebar wow fadeInDown">
+        <div class="single_sidebar">
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                 src="{{ ads.World.image.url }}"
