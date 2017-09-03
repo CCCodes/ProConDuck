@@ -21,12 +21,24 @@
                     class="fa fa-tags"></i>{{ review.product.category.name }}
             </a></div>
         <div class="single_page_content">
-
-        <a href="{% url 'blog:product' review.product.slug %}" class="btn btn-theme">View Product</a>
-        <a href="{{ links.0.1 }}" target="_blank" class="btn btn-theme">Buy On Amazon</a>
-            {% if review.product.image.url != review.image_thumb_url %}
+        {{ review.reviewer.first_name }}'s Rating
+        <span style="font-size: 40px;">
+        {% if review.score|floatformat:"0" == "1" %}
+            <span>☆</span>
+        {% elif review.score|floatformat:"0" == "2" %}
+            <span>☆</span><span>☆</span>
+        {% elif review.score|floatformat:"0" == "3" %}
+            <span>☆</span><span>☆</span><span>☆</span>
+        {% elif review.score|floatformat:"0" == "4" %}
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        {% elif review.score|floatformat:"0" == "5" %}
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        {% endif %}</span>{{ review.score }} / 5
+        <a href="{% url 'blog:product' review.product.slug %}" class="btn btn-theme" style="float: right;">View Product</a>
+        <a href="{{ links.0.1 }}" target="_blank" class="btn btn-theme" style="float: right;margin-right: 5px;">Buy On Amazon</a>
+            {% if review.product.image.url != review.image_thumb_url or review.video_link %}
             <br/>
-            <div class="slick_slider" style="margin-bottom: 50px;">
+            <div class="slick_slider" style="margin-bottom: 0;">
                 {% for image in all_images %}
                     <div class="single_iteam">
                         <a title="{{ image.image.name }}" href="#">
@@ -34,12 +46,20 @@
                                          alt=""></a>
                     </div>
                 {% endfor %}
+                {% if review.video_link %}
+                    <div class="single_iteam">
+                        <div style="position: relative; width: 100%; height: 0; padding-bottom: 56%;">
+                            <iframe src="{{ review.video_link }}" style="position: absolute; width: 100%;
+                            height: 100%; left: 0; top: 0;" frameborder="0" allowFullScreen></iframe>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
             {% endif %}
         <div class="single_post_content">
             <div class="single_post_content_left">
                 {% if review.pros %}
-                <h3>Pros</h3>
+                <h3><i class="fa fa-thumbs-o-up"></i> Pros</h3>
                 <ul>
                 {% for pro in review.pros %}
                     <li>{{ pro }}</li>
@@ -49,7 +69,7 @@
             </div>
             <div class="single_post_content_right">
                 {% if review.cons %}
-                <h3>Cons</h3>
+                    <h3><i class="fa fa-thumbs-o-down"></i> Cons</h3>
                 <ul>
                 {% for con in review.cons %}
                     <li>{{ con }}</li>
@@ -58,36 +78,19 @@
                 {% endif %}
             </div>
         </div>
+        {% if review.overall_verdict %}
         <div class="single_post_content">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" style="padding: 20px;">
                 <h3 style="margin: 0; text-align: center;">
-                    {% if review.overall_verdict %}
-                        Overall Verdict
-                    {% else %}
-                        {{ review.reviewer.first_name }}'s Rating
-                    {% endif %}
-                </h3></div>
-            <div class="panel-body">
-        <p style="margin: 0; text-align: center;">
-            {% if review.overall_verdict %}
+                    <i class="fa fa-check-circle-o"></i> Overall Verdict
+                </h3>
+        <p style="margin-top: 10px; margin-bottom: 0; text-align: center;">
                 {{ review.overall_verdict }}<br/>
-            {% endif %}
-            <span style="font-size: 40px;">
-            {% if review.score|floatformat:"0" == "1" %}
-                <span>☆</span>
-            {% elif review.score|floatformat:"0" == "2" %}
-                <span>☆</span><span>☆</span>
-            {% elif review.score|floatformat:"0" == "3" %}
-                <span>☆</span><span>☆</span><span>☆</span>
-            {% elif review.score|floatformat:"0" == "4" %}
-                <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            {% elif review.score|floatformat:"0" == "5" %}
-                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            {% endif %}</span>{{ review.score }} / 5
         </p></div>
         </div>
         </div>
+        {% endif %}
             <p>{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
         <table class="table">
             <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="3" style="width:1px; white-space: nowrap">
@@ -123,8 +126,7 @@
             </ul>
         </div>
         <div class="related_post">
-            <h2>Related Reviews <i
-                    class="fa fa-thumbs-o-up"></i></h2>
+            <h2>Related Reviews </h2>
             <ul class="spost_nav wow fadeInDown animated">
                 {% if related_reviews %}
                     {% for review in related_reviews|slice:":3" %}
@@ -192,7 +194,7 @@
     {% if review.video_link %}
     <div class="single_sidebar">
         <h2><span>Video</span></h2>
-        <div style="position: relative; width: 100%; height: 0; padding-bottom: 57%;">
+        <div style="position: relative; width: 100%; height: 0; padding-bottom: 56%;">
             <iframe src="{{ review.video_link }}" style="position: absolute; width: 100%;
             height: 100%; left: 0; top: 0;" frameborder="0" allowFullScreen></iframe>
         </div>

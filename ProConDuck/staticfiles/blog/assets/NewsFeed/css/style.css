@@ -115,6 +115,9 @@ img:hover{opacity:0.75}
 .slick-next{ background-image:url(images/slider_next.png); background-repeat:no-repeat; background-position:center; left:60px}
 .slick-prev, .slick-next{background-color:#000; top:10%; width:40px; height:40px}
 .slick-prev:hover, .slick-next:hover{opacity:0.5}
+.slick-dots {
+    bottom: 0;
+}
 .latest_post{float:left; display:inline; width:100%}
 .latest_post > h2{background:none repeat scroll 0 0 #151515; color:#fff; font-family:'Oswald',sans-serif; font-size:18px; margin-top:5px; font-weight:400; margin-bottom:10px; margin-left:0; padding:0; position:relative; text-align:center; text-transform:uppercase}
 .latest_post > h2 span{padding:4px 10px}
