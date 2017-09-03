@@ -17,17 +17,7 @@
                                     <h2><a class="slider_tittle" title="{{ review.product }}"
                                            href="{% url 'blog:review' review.slug %}">{{ review.title }}</a></h2>
                                     <p>{{ review.reviewer }} | {{ review.created.date }}
-                                        {% if review.score|floatformat:"0" == "1" %}
-                                            <span>☆</span>
-                                        {% elif review.score|floatformat:"0" == "2" %}
-                                            <span>☆</span><span>☆</span>
-                                        {% elif review.score|floatformat:"0" == "3" %}
-                                            <span>☆</span><span>☆</span><span>☆</span>
-                                        {% elif review.score|floatformat:"0" == "4" %}
-                                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                        {% elif review.score|floatformat:"0" == "5" %}
-                                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                        {% endif %}
+                                        {% include "blog/star_rating.html" with score=review.score size="15" %}
                                     {{ review.score }}<br/>
                                         {{ review.review|striptags|truncatechars:200 }}</p>
                                 </div>
@@ -64,18 +54,8 @@
                                                                    class="catg_title"> {{ product.name }}</a>
                                             <br/>
                                             {% if product.review_set.count != 0 %}
-                                                {% if product.score|floatformat:"0" == "1" %}
-                                                    <span>☆</span>
-                                                {% elif product.score|floatformat:"0" == "2" %}
-                                                    <span>☆</span><span>☆</span>
-                                                {% elif product.score|floatformat:"0" == "3" %}
-                                                    <span>☆</span><span>☆</span><span>☆</span>
-                                                {% elif product.score|floatformat:"0" == "4" %}
-                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                                {% elif product.score|floatformat:"0" == "5" %}
-                                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                                {% endif %}
-                                            {{ product.score }} / 5
+                                                {% include "blog/star_rating.html" with score=product.score size="12" %}
+                                            {{ product.score }}
                                             {% else %}
                                                 No reviews available.
                                             {% endif %}
