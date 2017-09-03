@@ -166,6 +166,23 @@
         </a>
         {% endif %} </nav>
 {% endblock %}
+{% block sidebar_before %}
+    <div class="single_sidebar wow fadeInDown">
+        <h2><span>Product</span></h2>
+        <div class="media wow fadeInDown"><a
+                href="{% url 'blog:product' review.product.slug %}"
+                class="media-left"> <img alt=""
+                                         src="{{ review.product.image.url }}">
+        </a>
+            <div class="media-body"><a
+                    href="{% url 'blog:review' review.product.slug %}"
+                    class="catg_title">{{ review.product.name }}</a>
+                <br/>
+                {% include "blog/star_rating.html" with score=review.score size="12" %}{{ review.product.score }} ({{ review.product.review_set.count }})
+            </div>
+        </div>
+    </div>
+{% endblock %}
 {% block category_sponsor %}
     <div class="single_sidebar wow fadeInDown">
         <h2><span>Categories</span></h2>
