@@ -216,10 +216,14 @@ def reviewimage_post_save(sender, instance, created, *args, **kwargs):
 def reviewimage_pre_delete(sender, instance, *args, **kwargs):
     instance.image.delete(save=False)
     if instance.thumbnail:
-        new_thumb_image = sender.objects.exclude(id=instance.id).filter(
-            review=instance.review_id)[0]
-        new_thumb_image.thumbnail = True
-        new_thumb_image.save()
+        if len(sender.objects.filter(review=instance.review)) != 1:
+            new_thumb_image = sender.objects.exclude(id=instance.id).filter(
+                review=instance.review_id)[0]
+            new_thumb_image.thumbnail = True
+            new_thumb_image.save()
+        else:
+            instance.review.image_thumb_url = instance.review.product.image.url
+            instance.review.save()
 
 
 class AdSlot(models.Model):
