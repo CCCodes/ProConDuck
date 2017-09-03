@@ -71,7 +71,7 @@
             <div class="panel-body">
         <p style="margin: 0; text-align: center;">
             {% if review.overall_verdict %}
-                {{ review.overall_verdict }}
+                <br/>{{ review.overall_verdict }}
             {% endif %}
             <span style="font-size: 40px;">
             {% if review.score|floatformat:"0" == "1" %}
