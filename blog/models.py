@@ -154,8 +154,10 @@ class Review(models.Model):
 @receiver(models.signals.pre_save, sender=Review)
 def review_pre_save(sender, instance, *args, **kwargs):
 
-    # display breaks on review page
-    instance.review = instance.review.replace('\r\n', '<br />')
+    if instance.id is None:
+        # display breaks on review page
+        instance.review = instance.review.replace('\r\n', '<br />')
+        instance.image_thumb_url = instance.product.image.url
 
     # change yt link to embed if not already
     if '/embed/' not in instance.video_link:
@@ -166,9 +168,6 @@ def review_pre_save(sender, instance, *args, **kwargs):
 @receiver(models.signals.post_save, sender=Review)
 def review_post_save(sender, instance, created, *args, **kwargs):
     instance.product.update_rating_avg()
-    if instance.image_thumb_url == "":
-        instance.image_thumb_url = instance.product.image.url
-        instance.save()
 
 
 @receiver(models.signals.pre_delete, sender=Review)

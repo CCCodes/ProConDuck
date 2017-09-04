@@ -26,7 +26,7 @@
         {% include "blog/star_rating.html" with score=review.score size="20" %}<br />
             {% if review.product.image.url != review.image_thumb_url or review.video_link %}
             <br/>
-            <div class="slick_slider" style="margin-bottom: 0;">
+            <div class="slick_slider" style="margin-bottom: 10px;">
                 {% for image in all_images %}
                     <div class="single_iteam">
                         <a title="{{ image.image.name }}" href="#">
@@ -174,7 +174,7 @@
                 class="media-left"> <img alt=""
                                          src="{{ review.product.image.url }}">
         </a>
-            <div class="media-body"><a
+            <div class="media-body">{{ review.product.company.name }}<br /><a
                     href="{% url 'blog:review' review.product.slug %}"
                     class="catg_title">{{ review.product.name }}</a>
                 <br/>
