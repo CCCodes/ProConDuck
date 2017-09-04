@@ -137,17 +137,11 @@
                         <ul id="ticker01" class="news_sticker">
                             {% if promotions %}
                                 {% for promotion in promotions %}
-                                    {% if forloop.last %}
-                                        <li>
-                                            <a href="{% url 'blog:promotions' %}">{{ promotions.last.0.title }}
-                                            </a></li>
-                                    {% else %}
-                                        <li>
-                                            <a data-toggle="modal" data-target="#myModal{{ forloop.counter }}">{{ promotion.0.title }}
-                                            </a></li>
-                                    {% endif %}
+                                    <li>
+                                        <a data-toggle="modal" data-target="#myModal{{ promotion.0.id }}">{{ promotion.0.title }}
+                                        </a></li>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="myModal{{ forloop.counter }}" role="dialog">
+                                    <div class="modal fade" id="myModal{{ promotion.0.id }}" role="dialog">
                                         <div class="modal-dialog modal-sm">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -160,7 +154,9 @@
                                                     <p>Code: {{ promotion.0.code }} - <a href="{{ promotion.1 }}" target="_blank" style="color: black;">Use on Amazon</a></p>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    {% if request.path != '/blog/promotions/' %}
                                                     <form action="{% url 'blog:promotions' %}" style="display: inline;"><button class="btn btn-theme">All promotions</button></form>
+                                                    {% endif %}
                                                     <button type="button"
                                                             class="btn btn-default"
                                                             data-dismiss="modal">Close

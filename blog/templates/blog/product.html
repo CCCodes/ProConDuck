@@ -31,7 +31,7 @@
     {% if product.promotion_set %}
         {% for promo in product.promotion_set.all %}
             <label>Promotion:</label>
-            <a href="{% url 'blog:promotions' %}">{{ promo.title }}</a>
+            <a data-toggle="modal" data-target="#myModal{{ promo.id }}">{{ promo.title }}</a>
         {% endfor %}
     {% endif %}
 </div>

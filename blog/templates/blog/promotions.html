@@ -17,33 +17,10 @@
                                 <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a><br/>
                                 {{ promo.0.title }}
                                 <br/>
-                                <button class="btn-theme" data-toggle="modal" data-target="#myModal1-{{ forloop.counter }}">See promo code</button>
+                                <button class="btn-theme" data-toggle="modal" data-target="#myModal{{ promo.0.id }}">See promo code</button>
                             </div>
                         </div>
                     </li>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal1-{{ forloop.counter }}" role="dialog">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close"
-                                            data-dismiss="modal">&times;
-                                    </button>
-                                    <h4 class="modal-title">{{ promo.0.title }}</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Code: {{ promo.0.code }} - <a href="{{ promo.1 }}" target="_blank">Use on Amazon</a></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button"
-                                            class="btn btn-default"
-                                            data-dismiss="modal">Close
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 {% endfor %}
             </ul>
         </div>
@@ -60,7 +37,7 @@
                                 <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a><br/>
                                 {{ promo.0.title }}
                                 <br/>
-                                <button class="btn-theme" data-toggle="modal" data-target="#myModal2-{{ forloop.counter }}">See promo code</button>
+                                <button class="btn-theme" data-toggle="modal" data-target="#myModal{{ promo.0.id }}">See promo code</button>
                             </div>
                         </div>
                     </li>
