@@ -115,7 +115,7 @@
                     <li class="active"><a href="{% url 'blog:main' %}"><span
                             class="fa fa-home desktop-home"></span><span
                             class="mobile-show">Home</span></a></li>
-                    <li class="dropdown"><a href="{% url 'blog:all_products' %}">Products</a>
+                    <li class="dropdown"><a href="{% url 'blog:all_products' %}">Products   <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             {% for category in categories %}
                                 <li><a href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews">{{ category.name }}</a></li>
@@ -266,7 +266,7 @@
         </div>
         <div class="footer_bottom">
             <p class="copyright">Copyright &copy; 2017 <a href="{% url 'blog:main' %}">ProConDuck</a></p>
-            <p class="developer"><a href="{% url 'blog:tos' %}">Terms of Service</a> | <a
+            <p class="developer"><a href="{% url 'blog:ethics' %}">Ethics</a> | <a href="{% url 'blog:tos' %}">Terms of Service</a> | <a
                     href="{% url 'blog:privacy' %}">Privacy Policy</a></p>
         </div>
     </footer>
