@@ -29,7 +29,7 @@
 {% endblock %}
 {% block sidebar_before %}
     <div class="single_sidebar">
-        <h2><span>Categories</span></h2>
+        <h2><span>Filter</span></h2>
         <form action="{% url 'blog:all_products' %}" method="GET">
             <select class="catgArchive" name="category">
                 {% for filter, slug in category_filter %}

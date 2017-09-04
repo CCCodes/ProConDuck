@@ -11,6 +11,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext, Context
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.contrib.sitemaps import Sitemap
+from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import *
 
@@ -120,15 +121,19 @@ def all_products(request):
         category_filter.append((category_.name, category_.slug))
     sort_products_ = ['Most reviews',
                       'Newest',
-                      'Oldest',
                       'Highest rated'
                       ]
     if request.GET:
-        category_filter.insert(0, category_filter.pop(
-            [tup[1] for tup in category_filter].index(
-                request.GET['category'])))
-        sort_products_.insert(0, sort_products_.pop(sort_products_.index(
-            request.GET['sort_by'])))
+        try:
+            category_filter.insert(0, category_filter.pop(
+                [tup[1] for tup in category_filter].index(
+                    request.GET['category'])))
+            sort_products_.insert(0, sort_products_.pop(sort_products_.index(
+                request.GET['sort_by'])))
+
+        # redirects bad get requests
+        except (ValueError, MultiValueDictKeyError):
+            return HttpResponseRedirect(reverse('blog:all_products'))
 
     products_sort = Product.objects.all()
 
@@ -141,8 +146,6 @@ def all_products(request):
             '-num_r')
     elif sort_products_[0] == 'Newest':
         products_sort = products_sort.order_by('-created')
-    elif sort_products_[0] == 'Oldest':
-        products_sort = products_sort.order_by('created')
     elif sort_products_[0] == 'Highest rated':
         products_sort = products_sort.order_by('-score')
 
