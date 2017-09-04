@@ -228,6 +228,10 @@ def privacy(request):
     return render(request, 'blog/privacy.html', {})
 
 
+def ethics(request):
+    return render(request, 'blog/ethics.html', {})
+
+
 def contact(request):
     return render(request, 'blog/contact.html', {})
 
