@@ -5,6 +5,7 @@ from PIL import Image
 from io import BytesIO, StringIO
 import urllib.request
 
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext, Context
@@ -121,6 +122,50 @@ def category(request, category_slug):
     return render(request, 'blog/category.html', context)
 
 
+def all_products(request):
+    category_filter = [('All products', 'all')]
+    for category_ in Category.objects.all():
+        category_filter.append((category_.name, category_.slug))
+    sort_products_ = ['Most reviews',
+                      'Newest',
+                      'Oldest',
+                      'Highest rated'
+                      ]
+    if request.GET:
+        category_filter.insert(0, category_filter.pop(
+            [tup[1] for tup in category_filter].index(
+                request.GET['category'])))
+        sort_products_.insert(0, sort_products_.pop(sort_products_.index(
+            request.GET['sort_by'])))
+
+    products_sort = Product.objects.all()
+
+    if category_filter[0][1] != 'all':
+        products_sort = Category.objects.get(slug=category_filter[0][1]
+                                             ).product_set.all()
+
+    if sort_products_[0] == 'Most reviews':
+        products_sort = products_sort.annotate(num_r=Count('review')).order_by(
+            '-num_r')
+    elif sort_products_[0] == 'Newest':
+        products_sort = products_sort.order_by('-created')
+    elif sort_products_[0] == 'Oldest':
+        products_sort = products_sort.order_by('created')
+    elif sort_products_[0] == 'Highest rated':
+        products_sort = products_sort.order_by('-score')
+
+    context = {
+        'products': products_sort,
+        'category_filter': category_filter,
+        'sort_products': sort_products_,
+    }
+    return render(request, 'blog/all_products.html', context)
+
+
+def sort_products(request):
+    messages.add_message(request, messages.INFO, )
+
+
 def product(request, product_slug):
     product_ = get_object_or_404(Product, slug=product_slug)
     category_products = product_.category.product_set.all()
@@ -235,7 +280,7 @@ class ProductSitemap(Sitemap):
         return Product.objects.all()
 
     def lastmod(self, obj):
-        return obj.modified
+        return obj.created
 
 
 def error404(request):

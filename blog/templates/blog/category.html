@@ -3,7 +3,7 @@
 {% block title %}{{ category.name }} - ProConDuck{% endblock %}
 {% block left_content %}
 <div class="single_post_content">
-<h2><span>{{ category.name }}</span></h2>
+<h2><span>{% block heading %}{{ category.name }}{% endblock %}</span></h2>
 {% if products %}
     <ul class="photograph_nav wow fadeInDown">
     {% for product in products %}
@@ -30,7 +30,25 @@
 {% endif %}
 </div>
 {% endblock %}
-{% block right_content %}
+{% block sidebar_before %}
+    <div class="single_sidebar">
+        <h2><span>Categories</span></h2>
+        <form action="{% url 'blog:all_products' %}" method="GET">
+            <select class="catgArchive" name="category">
+                {% for filter, slug in category_filter %}
+                    <option value="{{ slug }}">{{ filter }}</option>
+                {% endfor %}
+            </select>
+            <select class="catgArchive" name="sort_by">
+                {% for sort in sort_products %}
+                    <option value="{{ sort }}">{{ sort }}</option>
+                {% endfor %}
+            </select>
+        <button class="btn btn-default" style="margin-top: 10px;">Update</button>
+        </form>
+    </div>
+{% endblock %}
+{% block category_sponsor %}
     <aside>
         <div class="single_sidebar">
         <h2><span>Sponsor</span></h2>

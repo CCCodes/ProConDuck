@@ -62,7 +62,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to="images", storage=s3)
     image_compressed = models.BooleanField(default=False, editable=False)
     description = models.TextField(default="Default description")
-    modified = models.DateField(default=datetime.date.today)
+    created = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.name
