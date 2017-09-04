@@ -182,8 +182,6 @@
             </div>
         </div>
     </div>
-{% endblock %}
-{% block category_sponsor %}
     <div class="single_sidebar wow fadeInDown">
         <h2><span>Categories</span></h2>
         {% if categories %}
@@ -197,6 +195,34 @@
         {% else %}
             No categories yet.
         {% endif %}
+    </div>
+{% endblock %}
+{% block category_sponsor %}
+    <div class="single_sidebar wow fadeInDown">
+        <h2><span>Top Rated Products</span></h2>
+        <ul class="spost_nav">
+            {% for product in top_rated_products|slice:":5" %}
+                <li>
+                    <div class="media"><a href="{% url 'blog:product' product.slug %}"
+                                          class="media-left">
+                        <img alt=""
+                             src="{{ product.image.url }}">
+                    </a>
+                        <div class="media-body">{{ product.company.name }}<br />
+                            <a href="{% url 'blog:product' product.slug %}"
+                                                   class="catg_title"> {{ product.name }}</a>
+                            <br/>
+                            {% if product.review_set.count != 0 %}
+                                {% include "blog/star_rating.html" with score=product.score size="12" %}
+                            {{ product.score }} ({{ product.review_set.count }})
+                            {% else %}
+                                No reviews available.
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
     {% if review.video_link %}
     <div class="single_sidebar">

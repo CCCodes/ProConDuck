@@ -43,6 +43,7 @@ def default(request):
         categories=Category.objects.annotate(num_p=Count('product')).order_by(
             '-num_p'),
         promotions=promo_links,
+        top_rated_products=Product.objects.exclude(score=0).order_by('-score'),
 
     )
 
