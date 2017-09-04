@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block title %}FAQ - ProConDuck{% endblock %}
+{% block left_content %}
+    <div class="single_page_content" style="padding-top: 0;">
+        <h1>FAQ</h1>
+        <h3>What is ProConDuck about?</h3>
+        <p>ProConDuck is a website designed around the idea of centralizing
+            the best product deals and reviews to simplify your shopping
+            experience. Read more about ProConDuck
+            <a href="{% url 'blog:about' %}">here</a>.</p>
+        <h3>How do I search for products?</h3>
+        <p>To search for products, click on the products section in the header.
+        From that page, you can filter the products shown by category and sort
+        them based on your preferences. Click on a product that interests you
+        to find reviews, deals, and other information about the product.</p>
+        <h3>Can I trust reviews posted on ProConDuck?</h3>
+        <p>Yes, you can definitely trust reviews posted on ProConDuck.
+        Reviewers are consumers just like you and have complete creative
+        control over the content of their posts. By filtering reviews and
+        products through administrators, we maintain the best quality content.
+        To learn more about the ethics of ProConDuck, see our
+            <a href="{% url 'blog:ethics' %}">Ethics Statement</a>.</p>
+        <h3>How can I become a reviewer?</h3>
+        <p>If you would like to be a reviewer, don't be shy to
+            <a href="{% url 'blog:contact' %}">contact us</a>. We are always
+            looking for skilled reviewers to contribute to the website.</p>
+        <h3>Where can I ask other questions?</h3>
+        <p>Send us your other questions <a href="{% url 'blog:contact' %}">here</a>.
+        We look forward to hearing from you and will get back to you in one to
+        three business days.</p>
+    </div>
+{% endblock %}

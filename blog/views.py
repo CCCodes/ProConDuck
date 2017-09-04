@@ -236,6 +236,10 @@ def contact(request):
     return render(request, 'blog/contact.html', {})
 
 
+def faq(request):
+    return render(request, 'blog/faq.html', {})
+
+
 def about(request):
     return render(request, 'blog/about.html', {})
 
