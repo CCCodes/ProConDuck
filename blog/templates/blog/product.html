@@ -21,7 +21,13 @@
     <tr><th>Average Rating</th>
         <td>
             {% if product.review_set.count != 0 %}
-            {{ product.score }} / 5
+            {{ product.score }} / 5 for {{ product.review_set.count }}
+                {% if product.review_set.count > 1 %}
+                reviews
+                {% else %}
+                review
+                {% endif %}
+                on ProConDuck
             {% else %}
             No reviews yet.
             {% endif %}
