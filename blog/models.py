@@ -124,8 +124,6 @@ class Review(models.Model):
 
     created = models.DateTimeField(editable=False,
                                    default=django.utils.timezone.now)
-    modified = models.DateTimeField(blank=True, null=True, editable=False,
-                                    default=django.utils.timezone.now)
     pros = ArrayField(models.CharField(max_length=20, blank=True), null=True,
                       size=10)
     cons = ArrayField(models.CharField(max_length=20, blank=True), null=True,
@@ -141,10 +139,9 @@ class Review(models.Model):
         return now - datetime.timedelta(days=1) <= self.created <= now
 
     def save(self, *args, **kwargs):
-        self.modified = timezone.now()  # will change if views gets updated
         if not self.id:
-            self.slug = slugify(self.title)
             self.created = timezone.now()
+        self.slug = slugify(self.title)
         return super(Review, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
