@@ -85,7 +85,8 @@ def display_categories():
         products = categories_product_sort[i].product_set.order_by(
             '-score')
         result.append([product_.review_set.order_by(
-            '-views') for product_ in products if len(product_.review_set.all()) != 0])
+            '-views') for product_ in products if len(product_.review_set.all()
+                                                      ) != 0])
 
     return result
 
@@ -166,7 +167,8 @@ def product(request, product_slug):
         if len(category_products) - 1 == current_index:
             related_products.append(None)
         else:
-            related_products.append(category_products[len(category_products) - 1])
+            related_products.append(category_products[len(category_products
+                                                          ) - 1])
     else:
         related_products.append(category_products[previous_index])
 
