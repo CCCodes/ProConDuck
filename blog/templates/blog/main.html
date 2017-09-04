@@ -47,7 +47,8 @@
                                     <img alt=""
                                          src="{{ product.image.url }}">
                                 </a>
-                                    <div class="media-body"><a href="{% url 'blog:product' product.slug %}"
+                                    <div class="media-body">{{ product.company.name }}<br />
+                                        <a href="{% url 'blog:product' product.slug %}"
                                                                class="catg_title"> {{ product.name }}</a>
                                         <br/>
                                         {% if product.review_set.count != 0 %}
