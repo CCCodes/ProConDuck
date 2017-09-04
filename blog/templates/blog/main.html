@@ -242,7 +242,7 @@
                             <ul>
                                 {% for category in categories %}
                                     <li class="cat-item"><a
-                                            href="{% url 'blog:category' category.slug %}">{{ category.name }}</a>
+                                            href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews">{{ category.name }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>

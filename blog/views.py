@@ -113,15 +113,6 @@ def review(request, review_slug):
     return render(request, 'blog/single_page.html', context)
 
 
-def category(request, category_slug):
-    context = {
-        'category': get_object_or_404(Category, slug=category_slug),
-    }
-    context['products'] = context['category'].product_set.annotate(num_r=Count(
-        'review')).order_by('-num_r')
-    return render(request, 'blog/category.html', context)
-
-
 def all_products(request):
     category_filter = [('All products', 'all')]
     for category_ in Category.objects.all():
@@ -159,11 +150,7 @@ def all_products(request):
         'category_filter': category_filter,
         'sort_products': sort_products_,
     }
-    return render(request, 'blog/all_products.html', context)
-
-
-def sort_products(request):
-    messages.add_message(request, messages.INFO, )
+    return render(request, 'blog/category.html', context)
 
 
 def product(request, product_slug):

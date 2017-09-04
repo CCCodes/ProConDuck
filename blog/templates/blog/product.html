@@ -6,7 +6,7 @@
 <ol class="breadcrumb">
     <li><a href="{% url 'blog:main' %}">Home</a></li>
     <li>
-        <a href="{% url 'blog:all_products' %}?category={{ product.category.slug }}&sort_by=Newest">{{ product.category.name }}</a>
+        <a href="{% url 'blog:all_products' %}?category={{ product.category.slug }}&sort_by=Most+reviews">{{ product.category.name }}</a>
     </li>
 </ol>
 <div class="single_post_content">

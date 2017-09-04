@@ -1,9 +1,8 @@
 {% extends "blog/base.html" %}
-{% block keywords %},{{ category.name }}{% endblock %}
-{% block title %}{{ category.name }} - ProConDuck{% endblock %}
+{% block title %}Product - ProConDuck{% endblock %}
 {% block left_content %}
 <div class="single_post_content">
-<h2><span>{% block heading %}{{ category.name }}{% endblock %}</span></h2>
+<h2><span>Products</span></h2>
 {% if products %}
     <ul class="photograph_nav wow fadeInDown">
     {% for product in products %}
@@ -25,8 +24,6 @@
         </li>
     {% endfor %}
     </ul>
-{% else %}
-    No products in {{ category.name }} category.
 {% endif %}
 </div>
 {% endblock %}

@@ -15,8 +15,6 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     url(r'^signup/?(?P<success>[-\w\d]+)/?$', views.signup, name='signup'),
     url(r'^signup/$', views.signup, name='signup'),
-    url(r'^category/(?P<category_slug>[-\w\d]+)/$', views.category,
-        name='category'),
     url(r'^product/(?P<product_slug>[-\w\d]+)/$', views.product,
         name='product'),
     url(r'all-products/$', views.all_products, name='all_products'),

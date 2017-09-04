@@ -7,7 +7,7 @@
         <ol class="breadcrumb">
             <li><a href="{% url 'blog:main' %}">Home</a></li>
             <li>
-                <a href="{% url 'blog:category' review.product.category.slug %}">{{ review.product.category.name }}</a>
+                <a href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews">{{ review.product.category.name }}</a>
             </li>
             <li>
                 <a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a>
@@ -17,7 +17,7 @@
         <div class="post_commentbox"><a href="#"><i
                 class="fa fa-user"></i>{{ review.reviewer }}</a>
             <span><i class="fa fa-calendar"></i>{{ review.created }}</span>
-            <a href="{% url 'blog:category' review.product.category.slug %}"><i
+            <a href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews"><i
                     class="fa fa-tags"></i>{{ review.product.category.name }}
             </a></div>
         <div class="single_page_content">
@@ -190,7 +190,7 @@
             <ul>
                 {% for category in categories %}
                     <li class="cat-item"><a
-                            href="{% url 'blog:category' category.slug %}">{{ category.name }}</a>
+                            href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews">{{ category.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
