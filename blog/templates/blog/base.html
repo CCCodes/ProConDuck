@@ -115,10 +115,20 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav main_nav">
-                    <li class="active"><a href="{% url 'blog:main' %}"><span
+                {% if request.path == "/blog/" %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{% url 'blog:main' %}"><span
                             class="fa fa-home desktop-home"></span><span
                             class="mobile-show">Home</span></a></li>
-                    <li class="dropdown"><a href="{% url 'blog:all_products' %}">Products&nbsp;&nbsp;<i class="fa fa-angle-down"></i></a>
+                {% if request.path == "/blog/all-products/" %}
+                    <li class="dropdown active">
+                {% else %}
+                    <li class="dropdown">
+                {% endif %}
+                        <a href="{% url 'blog:all_products' %}">Products&nbsp;&nbsp;<i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             {% for category in categories %}
                                 <li><a href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews">{{ category.name }}</a></li>
@@ -126,9 +136,24 @@
                         </ul>
                     </li>
                     <li><a href="#">Reviews</a></li>
-                    <li><a href="{% url 'blog:promotions' %}">Deals</a></li>
-                    <li><a href="{% url 'blog:faq' %}">Faq</a></li>
-                    <li><a href="{% url 'blog:contact' %}">Contact Us</a></li>
+                {% if request.path == "/blog/promotions/" %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{% url 'blog:promotions' %}">Deals</a></li>
+                {% if request.path == "/blog/faq/" %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{% url 'blog:faq' %}">Faq</a></li>
+                {% if request.path == "/blog/contact-us/" %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{% url 'blog:contact' %}">Contact Us</a></li>
                 </ul>
             </div>
         </nav>
