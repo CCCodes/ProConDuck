@@ -142,8 +142,8 @@ img:hover{opacity:0.75}
 .right_content{float:left; display:inline; width:100%; min-height:300px}
 .spost_nav{}
 .spost_nav li{float:left; display:block; width:100%; margin-bottom:10px}
-.spost_nav .media-left{width:100px; height:80px}
-.media-left > img{height:70px; width:90px}
+.spost_nav .media-left{/width:100px; height:80px}
+.media-left > img{/*height:70px;*/ width:90px}
 .media-body{font-family: 'Signika', sans-serif;line-height: 130%;}
 .media-body > a{font-family:Oswald, arial, Georgia, serif; font-size: 14px;}
 .featured_img{position:relative}
