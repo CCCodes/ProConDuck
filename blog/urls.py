@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^product/(?P<product_slug>[-\w\d]+)/$', views.product,
         name='product'),
     url(r'all-products/$', views.all_products, name='all_products'),
+    url(r'all-reviews/$', views.all_reviews, name='all_reviews'),
     url(r'^promotions/$', views.promotions, name='promotions')
 ]

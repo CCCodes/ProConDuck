@@ -7,11 +7,9 @@
         <ol class="breadcrumb">
             <li><a href="{% url 'blog:main' %}">Home</a></li>
             <li>
-                <a href="{% url 'blog:all_products' %}?category={{ category.slug }}&sort_by=Most+reviews">{{ review.product.category.name }}</a>
+                <a href="{% url 'blog:all_reviews' %}?category={{ category.slug }}&sort_by=Most+viewed">Reviews</a>
             </li>
-            <li>
-                <a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a>
-            </li>
+            <li class="active">{{ review.product }}</li>
         </ol>
         <h1>{{ review.title }}</h1>
         <div class="post_commentbox"><a href="#"><i

@@ -155,6 +155,51 @@ def all_products(request):
     return render(request, 'blog/category.html', context)
 
 
+def all_reviews(request):
+    category_filter = [('All reviews', 'all')]
+    for category_ in Category.objects.all():
+        category_filter.append((category_.name, category_.slug))
+    sort_reviews_ = ['Most viewed',
+                     'Newest',
+                     'Most favorable',
+                     'Most critical',
+                     ]
+    if request.GET:
+        try:
+            category_filter.insert(0, category_filter.pop(
+                [tup[1] for tup in category_filter].index(
+                    request.GET['category'])))
+            sort_reviews_.insert(0, sort_reviews_.pop(sort_reviews_.index(
+                request.GET['sort_by'])))
+
+        # redirects bad get requests
+        except (ValueError, MultiValueDictKeyError):
+            return HttpResponseRedirect(reverse('blog:all_products'))
+
+    if category_filter[0][1] != 'all':
+        products_ = Category.objects.get(slug=category_filter[0][1]
+                                         ).product_set.all()
+        reviews_sort = Product.objects.filter(id__in=products_)
+    else:
+        reviews_sort = Review.objects.all()
+
+    if sort_reviews_[0] == 'Most viewed':
+        reviews_sort = reviews_sort.order_by('-views')
+    elif sort_reviews_[0] == 'Most favorable':
+        reviews_sort = reviews_sort.order_by('-score')
+    elif sort_reviews_[0] == 'Most critical':
+        reviews_sort = reviews_sort.order_by('score')
+    elif sort_reviews_[0] == 'Newest':
+        reviews_sort = reviews_sort.order_by('-created')
+
+    context = {
+        'reviews': reviews_sort,
+        'category_filter': category_filter,
+        'sort_products': sort_reviews_,
+    }
+    return render(request, 'blog/all_reviews.html', context)
+
+
 def product(request, product_slug):
     product_ = get_object_or_404(Product, slug=product_slug)
     category_products = product_.category.product_set.all()

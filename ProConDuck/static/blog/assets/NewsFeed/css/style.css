@@ -321,9 +321,28 @@ body {
   }
 }
 .modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+.clickable-div-span{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+    border: none;
+
+    z-index: 1;
+
+    /* fixes overlap error in IE7/8,
+     make sure you have an empty gif*/
+    background-image: url('https://commons.wikimedia.org/wiki/File%3ATransparent.gif');
+}
+.clickable-div-span:hover{
+    border: 2px solid black;
+    background-color: #70747d;
+    opacity: .15;
 }
 @media(max-width:1199px ){.logo_area{width:34%}.add_banner{width:580px}.nav-tabs > li{width:32.3%}.photograph_nav li{width:31.5%}}
 @media(max-width:991px ){.add_banner{display:none}.logo_area{width:100%}.nav > li > a{padding:8px 8px}.latest_post_container{height:380px;overflow:hidden}#next-button{bottom:-2px}.single_iteam{height:415px}.photograph_nav li{width:47.7%}.related_post .spost_nav li{width:100%}.nav-tabs > li{width:31.9%}.nav-tabs > li > a{font-size:13px;padding-left:0 !important;padding-right:0 !important;text-align:center}}

@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% block title %}Reviews - ProConDuck{% endblock %}
+{% block left_content %}
+<div class="single_post_content">
+<h2><span>Reviews</span></h2>
+{% if reviews %}
+    <ul class="spost-nav">
+        {% for review in reviews %}
+            <li>
+                <div class="media" style="position: relative;"><a href="{% url 'blog:review' review.slug %}"><span class="clickable-div-span"></span></a>
+                    <a href="{% url 'blog:review' review.slug %}"
+                                      class="media-left">
+                    <img alt="{{ review.title }}"
+                         src="{{ review.image_thumb_url }}">
+                </a>
+                    <div class="media-body">
+                        <a href="{% url 'blog:review' review.slug %}"
+                                               class="catg_title"> {{ review.title }}</a>
+                        <br/>{% include "blog/star_rating.html" with score=review.score size="12" %} {{ review.score }}
+                        | {{ review.reviewer }} | {{ review.created.date }}<br />{{ review.review|striptags|truncatechars:200 }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No reviews available.</p>
+{% endif %}
+</div>
+{% endblock %}
+{% block sidebar_before %}
+
+{% endblock %}

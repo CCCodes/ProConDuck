@@ -135,7 +135,12 @@
                             {% endfor %}
                         </ul>
                     </li>
-                    <li><a href="#">Reviews</a></li>
+                {% if request.path == "/blog/all-reviews/" %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{% url 'blog:all_reviews' %}">Reviews</a></li>
                 {% if request.path == "/blog/promotions/" %}
                     <li class="active">
                 {% else %}
