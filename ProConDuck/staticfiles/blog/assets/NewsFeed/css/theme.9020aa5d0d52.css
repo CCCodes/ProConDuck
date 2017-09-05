@@ -7,7 +7,7 @@
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{background-color:#d083cf}
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{background-color:#d083cf}
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus{background-color:#d083cf}
-.latest_newsarea span{background:none repeat scroll 0 0 #d083cf}
+.latest_newsarea span:not(.span-modal){background:none repeat scroll 0 0 #d083cf}
 .latest_post > h2 span{background:none repeat scroll 0 0 #d083cf}
 #prev-button{color:#d083cf}
 #next-button{color:#d083cf}

@@ -183,13 +183,11 @@
                                                     <p>Code: {{ promotion.0.code }} - <a href="{{ promotion.1 }}" target="_blank" style="color: black;">Use on Amazon</a></p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    {% if request.path != '/blog/promotions/' %}
-                                                    <form action="{% url 'blog:promotions' %}" style="display: inline;"><button class="btn btn-theme">All promotions</button></form>
-                                                    {% endif %}
-                                                    <button type="button"
-                                                            class="btn btn-default"
-                                                            data-dismiss="modal">Close
-                                                    </button>
+                                                {% if request.path != '/blog/promotions/' %}
+                                                    <a href="{% url 'blog:promotions' %}" class="btn btn-theme a-modal" style="margin-bottom: 0;">All deals</a>
+                                                {% endif %}
+                                                <a href="{% url 'blog:product' promotion.0.product.slug %}" class="btn btn-default a-modal">Product</a>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -205,6 +203,7 @@
                         </ul>
                     <div class="social_area">
                         <ul class="social_nav">
+                            <li class="facebook"><a href="https://www.facebook.com/ProConDuck/" target="_blank"></a></li>
                             <li class="youtube"><a href="https://www.youtube.com/channel/UCp7ll6UKy6w1pZGtv8-3lnw" target="_blank"></a></li>
                             <li class="mail"><a href="mailto:support@proconduck.com"></a></li>
                         </ul>
