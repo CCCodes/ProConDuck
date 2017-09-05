@@ -12,7 +12,7 @@
                             <div class="single_iteam"><a title="{{ review.product }}"
                                     href="{% url 'blog:review' review.slug %}">
                                 <img src="{{ review.image_thumb_url }}"
-                                     alt=""></a>
+                                     alt="{{ review.product.name }}"></a>
                                 <div class="slider_article">
                                     <h2><a class="slider_tittle" title="{{ review.product }}"
                                            href="{% url 'blog:review' review.slug %}">{{ review.title }}</a></h2>
@@ -44,7 +44,7 @@
                             <li>
                                 <div class="media"><a href="{% url 'blog:product' product.slug %}"
                                                       class="media-left">
-                                    <img alt=""
+                                    <img alt="{{ product.name }}"
                                          src="{{ product.image.url }}">
                                 </a>
                                     <div class="media-body">{{ product.company.name }}<br />
@@ -79,7 +79,7 @@
                                     <figure class="bsbig_fig"><a
                                             href="{% url 'blog:review' popular_review_list.0.slug %}"
                                             class="featured_img" title="{{ popular_review_list.0.product }}">
-                                        <img alt="" src="{{ popular_review_list.0.image_thumb_url }}">
+                                        <img alt="{{ popular_review_list.0.product.name }}" src="{{ popular_review_list.0.image_thumb_url }}">
                                         <span class="overlay"></span> </a>
                                         <figcaption><a
                                                 href="{% url 'blog:review' popular_review_list.0.slug %}" title="{{ popular_review_list.0.product }}">{{ popular_review_list.0.title }}</a>
@@ -102,7 +102,7 @@
                                         <div class="media wow fadeInDown"><a
                                                 href="{% url 'blog:review' review.slug %}"
                                                 class="media-left" title="{{ review.product }}">
-                                            <img alt="" src="{{ review.image_thumb_url }}">
+                                            <img alt="{{ review.product.name }}" src="{{ review.image_thumb_url }}">
                                         </a>
                                             <div class="media-body"><a href="{% url 'blog:review' review.slug %}"
                                                     class="catg_title" title="{{ review.product }}">{{ review.title }}</a>
@@ -124,8 +124,8 @@
                                         {% if display_categories.0.0.0 %}
                                         <figure class="bsbig_fig"><a
                                                 href="{% url 'blog:review' display_categories.0.0.0.slug %}"
-                                                class="featured_img" title="{{ display_categories.0.0.0.product }}">
-                                            <img alt="" src="{{ display_categories.0.0.0.image_thumb_url }}">
+                                                class="featured_img" title="{{ display_categories.0.0.0.product.name }}">
+                                            <img alt="{{ display_categories.0.0.0.product.name }}" src="{{ display_categories.0.0.0.image_thumb_url }}">
                                             <span class="overlay"></span> </a>
                                             <figcaption><a
                                                     href="{% url 'blog:review' display_categories.0.0.0.slug %}" title="{{ display_categories.0.0.0.product }}">{{ display_categories.0.0.0.title }}</a>
@@ -146,7 +146,7 @@
                                             <div class="media wow fadeInDown">
                                                 <a href="{% url 'blog:review' review.0.slug %}"
                                                    class="media-left"> <img
-                                                        alt=""
+                                                        alt="{{ review.0.product.name }}"
                                                         src="{{ review.0.image_thumb_url }}">
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
@@ -170,7 +170,7 @@
                                         <figure class="bsbig_fig wow fadeInDown">
                                             <a href="{% url 'blog:review' display_categories.1.0.0.slug %}"
                                                class="featured_img" title="{{ display_categories.1.0.0.product }}">
-                                                <img alt="" src="{{ display_categories.1.0.0.image_thumb_url }}">
+                                                <img alt="{{ display_categories.1.0.0.product.name }}" src="{{ display_categories.1.0.0.image_thumb_url }}">
                                                 <span class="overlay"></span>
                                             </a>
                                             <figcaption><a title="{{ display_categories.1.0.0.product }}"
@@ -192,8 +192,8 @@
                                         <li>
                                             <div class="media wow fadeInDown">
                                                 <a href="{% url 'blog:review' review.0.slug %}"
-                                                   class="media-left" title="{{ review.0.product }}">
-                                                    <img alt="" src="{{ review.0.image_thumb_url }}">
+                                                   class="media-left" title="{{ review.0.product.name }}">
+                                                    <img alt="{{ review.0.product.name }}" src="{{ review.0.image_thumb_url }}">
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.slug %}"
@@ -219,7 +219,7 @@
                                 <li>
                                     <div class="media wow fadeInDown"><a title="{{ review.product }}"
                                             href="{% url 'blog:review' review.slug %}"
-                                            class="media-left"> <img alt=""
+                                            class="media-left"> <img alt="{{ review.product.name }}"
                                                                      src="{{ review.image_thumb_url }}">
                                     </a>
                                         <div class="media-body"><a title="{{ review.product }}"
@@ -255,7 +255,7 @@
                         <h2><span>Sponsor</span></h2>
                         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                                 src="{{ ads.World.image.url }}"
-                                alt=""></a></div>
+                                alt="ProConDuck Sponsor"></a></div>
                 </aside>
             </div>
         </div>

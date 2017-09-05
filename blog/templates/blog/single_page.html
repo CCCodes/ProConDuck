@@ -83,7 +83,7 @@
             <p style="line-height: 170%">{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
         <table class="table">
             <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="3" style="width:1px; white-space: nowrap">
-            <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="" /></a>
+            <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="{{ review.product.name }}" /></a>
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
             <tr><th>Average Rating</th><td>{% include "blog/star_rating.html" with score=review.product.score size="12" %}{{ review.product.score }}</td></tr>
@@ -124,7 +124,7 @@
                                     class="media-left"
                                     href="{% url 'blog:review' review.slug %}">
                                 <img src="{{ review.image_thumb_url }}"
-                                     alt=""> </a>
+                                     alt="{{ review.product.name }}"> </a>
                                 <div class="media-body"><a
                                         class="catg_title" title="{{ review.product }}"
                                         href="{% url 'blog:review' review.slug %}">
@@ -150,7 +150,7 @@
             <div style="background-color: #000000;">
                 <h3>{{ related_reviews.0.title }}</h3>
                 <img src="{{ related_reviews.0.image_thumb_url }}"
-                     alt="" style="left: 50%; margin-left: -86px;"/></div>
+                     alt="{{ related_reviews.0.product.name }}" style="left: 50%; margin-left: -86px;"/></div>
         </a>
         {% endif %}
         {% if related_reviews.1 %}
@@ -161,7 +161,7 @@
             <div style="background-color: #000000;">
                 <h3>{{ related_reviews.1.title }}</h3>
                 <img src="{{ related_reviews.1.image_thumb_url }}"
-                     alt="" style=" left: 50%; margin-left: -86px;"/></div>
+                     alt="{{ related_reviews.1.product.name }}" style=" left: 50%; margin-left: -86px;"/></div>
         </a>
         {% endif %} </nav>
 {% endblock %}
@@ -170,7 +170,7 @@
         <h2><span>Product</span></h2>
         <div class="media wow fadeInDown"><a
                 href="{% url 'blog:product' review.product.slug %}"
-                class="media-left"> <img alt=""
+                class="media-left"> <img alt="{{ review.product.name }}"
                                          src="{{ review.product.image.url }}">
         </a>
             <div class="media-body">{{ review.product.company.name }}<br /><a
@@ -204,7 +204,7 @@
                 <li>
                     <div class="media"><a href="{% url 'blog:product' product.slug %}"
                                           class="media-left">
-                        <img alt=""
+                        <img alt="{{ product.name }}"
                              src="{{ product.image.url }}">
                     </a>
                         <div class="media-body">{{ product.company.name }}<br />
@@ -236,5 +236,5 @@
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                 src="{{ ads.World.image.url }}"
-                alt=""></a></div>
+                alt="ProConDuck Sponsor"></a></div>
 {% endblock %}

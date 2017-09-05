@@ -12,7 +12,7 @@
 <div class="single_post_content">
 <h1>{{ product.company.name }} {{ product.name }}</h1>
 <div class="single_post_content_left">
-<img class="img img-responsive" src="{{ product.image.url }}" alt="" />
+<img class="img img-responsive" src="{{ product.image.url }}" alt="{{ product.name }}" />
 </div>
 <div class="single_post_content_right">
 <table class="table" style="margin-bottom: 0;">
@@ -53,7 +53,7 @@
         <ul class="spost_nav">
             {% for review in reviews1 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image_thumb_url }}"> </a>
+                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="{{ product.name }}" src="{{ review.image_thumb_url }}"> </a>
                       <div class="media-body"> <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}</a><br/>{{ review.created.date }}
                         <br />{% include "blog/star_rating.html" with score=review.score size="12" %}
                         {{ review.score }}
@@ -69,7 +69,7 @@
                 <li>
                   <div class="media wow fadeInDown">
                       {% if review.image_thumb_url != review.product.image.url %}
-                      <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="" src="{{ review.image_thumb_url }}"> </a>
+                      <a href="{% url 'blog:review' review.slug %}" class="media-left"> <img alt="{{ product.name }}" src="{{ review.image_thumb_url }}"> </a>
                       {% endif %}
                     <div class="media-body">
                         <a href="{% url 'blog:review' review.slug %}" class="catg_title">{{ review.title }}<br/>
@@ -93,7 +93,7 @@
         <li>
             <div class="media wow fadeInDown"><a
                     href="{% url 'blog:review' review.slug %}"
-                    class="media-left"> <img alt=""
+                    class="media-left"> <img alt="{{ product.name }}"
                                              src="{{ review.image_thumb_url }}">
             </a>
                 <div class="media-body"><a
@@ -116,7 +116,7 @@
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                 src="{{ ads.World.image.url }}"
-                alt=""></a></div>
+                alt="ProConDuck Sponsor"></a></div>
         <div class="single_sidebar wow fadeInDown">
         <h2><span>Best Deals</span></h2>
         <ul>
@@ -139,7 +139,7 @@
             <div>
                 <h3>{{ related_products.0.name }}</h3>
                 <img src="{{ related_products.0.image.url }}"
-                     alt=""/></div>
+                     alt="{{ related_products.0.name }}"/></div>
         </a>
     {% endif %}
         {% if related_products.1 %}
@@ -150,7 +150,7 @@
             <div>
                 <h3>{{ related_products.1.name }}</h3>
                 <img src="{{ related_products.1.image.url }}"
-                     alt="" style="position: relative;"/></div>
+                     alt="{{ related_products.1.name }}" style="position: relative;"/></div>
         </a>
         {% endif %} </nav>
 {% endblock %}
