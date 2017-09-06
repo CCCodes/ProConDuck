@@ -29,5 +29,5 @@
 </div>
 {% endblock %}
 {% block sidebar_before %}
-
+    {% include "blog/filter.html" with action="{% url 'blog:all_reviews' %}" %}
 {% endblock %}

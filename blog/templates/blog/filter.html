@@ -1,0 +1,16 @@
+<div class="single_sidebar">
+    <h2><span>Filter</span></h2>
+    <form action="{% url 'blog:all_products' %}" method="GET">
+        <select class="catgArchive" name="category">
+            {% for filter, slug in category_filter %}
+                <option value="{{ slug }}">{{ filter }}</option>
+            {% endfor %}
+        </select>
+        <select class="catgArchive" name="sort_by">
+            {% for sort in sort_products %}
+                <option value="{{ sort }}">{{ sort }}</option>
+            {% endfor %}
+        </select>
+    <button class="btn btn-default" style="margin-top: 10px;">Update</button>
+    </form>
+</div>

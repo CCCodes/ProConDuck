@@ -174,7 +174,7 @@ def all_reviews(request):
 
         # redirects bad get requests
         except (ValueError, MultiValueDictKeyError):
-            return HttpResponseRedirect(reverse('blog:all_products'))
+            return HttpResponseRedirect(reverse('blog:all_reviews'))
 
     if category_filter[0][1] != 'all':
         products_ = Category.objects.get(slug=category_filter[0][1]
