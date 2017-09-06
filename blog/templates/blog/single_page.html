@@ -172,7 +172,7 @@
                                          src="{{ review.product.image.url }}">
         </a>
             <div class="media-body">{{ review.product.company.name }}<br /><a
-                    href="{% url 'blog:review' review.product.slug %}"
+                    href="{% url 'blog:product' review.product.slug %}"
                     class="catg_title">{{ review.product.name }}</a>
                 <br/>
                 {% include "blog/star_rating.html" with score=review.score size="12" %}{{ review.product.score }} ({{ review.product.review_set.count }})
