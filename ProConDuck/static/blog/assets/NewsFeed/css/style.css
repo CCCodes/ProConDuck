@@ -17,7 +17,7 @@ a:focus{outline:none; text-decoration:none}
 h1, h2, h3, h4, h5, h6{font-family:'Oswald',sans-serif}
 h2{line-height:23px}
 img{border:none}
-img:hover{opacity:0.75}
+img:hover:not(.img-add){opacity:0.75}
 .img-center{display:block; margin-left:auto; margin-right:auto; text-align:center}
 .img-right{display:block; margin-left:auto}
 .img-left{display:block; margin-right:auto}
