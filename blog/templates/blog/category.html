@@ -28,7 +28,7 @@
 </div>
 {% endblock %}
 {% block sidebar_before %}
-    {% include "blog/filter.html" with action={% url 'blog:all_products' %} %}
+    {% include "blog/filter.html" with action='all_products' %}
 {% endblock %}
 {% block category_sponsor %}
     <aside>

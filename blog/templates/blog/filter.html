@@ -1,6 +1,8 @@
 <div class="single_sidebar">
     <h2><span>Filter</span></h2>
-    <form action="{% url 'blog:all_products' %}" method="GET">
+    {% with 'blog:'|add:action as url_action %}
+    <form action='{% url url_action %}' method="GET">
+    {% endwith %}
         <select class="catgArchive" name="category">
             {% for filter, slug in category_filter %}
                 <option value="{{ slug }}">{{ filter }}</option>

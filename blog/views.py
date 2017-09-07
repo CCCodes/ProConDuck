@@ -179,7 +179,7 @@ def all_reviews(request):
     if category_filter[0][1] != 'all':
         products_ = Category.objects.get(slug=category_filter[0][1]
                                          ).product_set.all()
-        reviews_sort = Product.objects.filter(id__in=products_)
+        reviews_sort = Review.objects.filter(product_id__in=products_)
     else:
         reviews_sort = Review.objects.all()
 
