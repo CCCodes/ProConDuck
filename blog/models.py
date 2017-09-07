@@ -158,8 +158,8 @@ def review_pre_save(sender, instance, *args, **kwargs):
 
     # change yt link to embed if not already
     if '/embed/' not in instance.video_link:
-        instance.video_link = instance.video_link.replace('youtube.com',
-                                                          'youtube.com/embed')
+        instance.video_link = instance.video_link.replace('youtube.com/watch?v=',
+                                                          'youtube.com/embed/')
 
 
 @receiver(models.signals.post_save, sender=Review)
