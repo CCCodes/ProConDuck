@@ -78,7 +78,7 @@
         </div>
         </div>
         {% endif %}
-            <p style="line-height: 170%">{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
+            <p style="line-height: 170%;">{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
         <table class="table">
             <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="3" style="width:1px; white-space: nowrap">
             <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="{{ review.product.name }}" /></a>
