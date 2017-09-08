@@ -136,11 +136,17 @@
                         </ul>
                     </li>
                 {% if request.path == "/blog/all-reviews/" %}
-                    <li class="active">
+                    <li class="dropdown active">
                 {% else %}
-                    <li>
+                    <li class="dropdown">
                 {% endif %}
-                    <a href="{% url 'blog:all_reviews' %}">Reviews</a></li>
+                    <a href="{% url 'blog:all_reviews' %}">Reviews&nbsp;&nbsp;<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                            {% for category in categories %}
+                                <li><a href="{% url 'blog:all_reviews' %}?category={{ category.slug }}&sort_by=Most+viewed">{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
                 {% if request.path == "/blog/promotions/" %}
                     <li class="active">
                 {% else %}
