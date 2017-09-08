@@ -7,7 +7,7 @@
     <ul class="spost-nav">
         {% for review in reviews %}
             <li>
-                <div class="media" style="position: relative;"><a href="{% url 'blog:review' review.slug %}"><span class="clickable-div-span"></span></a>
+                <div class="media review-list" style="position: relative;"><a href="{% url 'blog:review' review.slug %}"><span class="clickable-div-span"></span></a>
                     <a href="{% url 'blog:review' review.slug %}"
                                       class="media-left">
                     <img alt="{{ review.title }}"

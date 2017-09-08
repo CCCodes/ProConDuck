@@ -313,6 +313,9 @@ body {
 .modal {
   text-align: center;
 }
+.review-list {
+    padding: 5px 0 5px 0;
+}
 @media screen and (min-width: 768px) {
   .modal:before {
     display: inline-block;
