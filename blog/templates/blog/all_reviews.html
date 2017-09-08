@@ -7,14 +7,14 @@
     <ul class="spost-nav">
         {% for review in reviews %}
             <li>
-                <div class="media review-list" style="position: relative;"><a href="{% url 'blog:review' review.slug %}"><span class="clickable-div-span"></span></a>
-                    <a href="{% url 'blog:review' review.slug %}"
+                <div class="media review-list" style="position: relative;"><a href="{% url 'blog:review' review.id review.slug %}"><span class="clickable-div-span"></span></a>
+                    <a href="{% url 'blog:review' review.id review.slug %}"
                                       class="media-left">
                     <img alt="{{ review.title }}"
                          src="{{ review.image_thumb_url }}">
                 </a>
                     <div class="media-body">
-                        <a href="{% url 'blog:review' review.slug %}"
+                        <a href="{% url 'blog:review' review.id review.slug %}"
                                                class="catg_title"> {{ review.title }}</a>
                         <br/>{% include "blog/star_rating.html" with score=review.score size="12" %} {{ review.score }}
                         | {{ review.reviewer }} | {{ review.created.date }}<br />{{ review.review|striptags|truncatechars:200 }}

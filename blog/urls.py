@@ -6,8 +6,8 @@ app_name = "blog"
 
 urlpatterns = [
     url(r'^$', views.main, name='main'),
-    url(r'^review/(?P<review_slug>[-\w\d]+)/$', views.review,
-        name='review'),
+    url(r'^review/(?P<review_id>[0-9]+)/(?P<review_slug>[-\w\d]+)/$',
+        views.review, name='review'),
     url(r'^contact-us/$', views.contact, name='contact'),
     url(r'^contact-us/submit/$', views.contact_submit, name='contact_submit'),
     url(r'^terms-of-service/$', views.tos, name='tos'),

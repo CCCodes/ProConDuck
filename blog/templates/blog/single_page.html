@@ -120,12 +120,12 @@
                         <li>
                             <div class="media"><a title="{{ review.product }}"
                                     class="media-left"
-                                    href="{% url 'blog:review' review.slug %}">
+                                    href="{% url 'blog:review' review.id review.slug %}">
                                 <img src="{{ review.image_thumb_url }}"
                                      alt="{{ review.product.name }}"> </a>
                                 <div class="media-body"><a
                                         class="catg_title" title="{{ review.product }}"
-                                        href="{% url 'blog:review' review.slug %}">
+                                        href="{% url 'blog:review' review.id review.slug %}">
                                     {{ review.title }}</a>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
     <nav class="nav-slit">
         {% if related_reviews.0 %}
             <a class="next"
-               href="{% url 'blog:review' related_reviews.0.slug %}">
+               href="{% url 'blog:review' related_reviews.0.id related_reviews.0.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-right"></i></span>
             <div style="background-color: #000000;">
@@ -153,7 +153,7 @@
         {% endif %}
         {% if related_reviews.1 %}
         <a class="prev"
-           href="{% url 'blog:review' related_reviews.1.slug %}">
+           href="{% url 'blog:review' related_reviews.1.id related_reviews.1.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-left"></i></span>
             <div style="background-color: #000000;">

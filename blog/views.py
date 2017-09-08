@@ -90,8 +90,8 @@ def display_categories():
     return result
 
 
-def review(request, review_slug):
-    display_review = get_object_or_404(Review, slug=review_slug)
+def review(request, review_id, review_slug):
+    display_review = get_object_or_404(Review, id=review_id)
     display_review.views += 1
     display_review.save()
     related = Product.objects.get(pk=display_review.product_id

@@ -10,12 +10,12 @@
                     {% if featured_reviews %}
                         {% for review in featured_reviews %}
                             <div class="single_iteam"><a title="{{ review.product }}"
-                                    href="{% url 'blog:review' review.slug %}">
+                                    href="{% url 'blog:review' review.id  review.slug %}">
                                 <img src="{{ review.image_thumb_url }}"
                                      alt="{{ review.product.name }}"></a>
                                 <div class="slider_article">
                                     <h2><a class="slider_tittle" title="{{ review.product }}"
-                                           href="{% url 'blog:review' review.slug %}">{{ review.title }}</a></h2>
+                                           href="{% url 'blog:review' review.id review.slug %}">{{ review.title }}</a></h2>
                                     <p>{{ review.reviewer }} | {{ review.created.date }}
                                         {% include "blog/star_rating.html" with score=review.score size="15" %}
                                     {{ review.score }}<br/>
@@ -77,12 +77,12 @@
                                 <li>
                                     {% if popular_review_list %}
                                     <figure class="bsbig_fig"><a
-                                            href="{% url 'blog:review' popular_review_list.0.slug %}"
+                                            href="{% url 'blog:review' popular_review_list.0.id popular_review_list.0.slug %}"
                                             class="featured_img" title="{{ popular_review_list.0.product }}">
                                         <img alt="{{ popular_review_list.0.product.name }}" src="{{ popular_review_list.0.image_thumb_url }}">
                                         <span class="overlay"></span> </a>
                                         <figcaption><a
-                                                href="{% url 'blog:review' popular_review_list.0.slug %}" title="{{ popular_review_list.0.product }}">{{ popular_review_list.0.title }}</a>
+                                                href="{% url 'blog:review' popular_review_list.0.id popular_review_list.0.slug %}" title="{{ popular_review_list.0.product }}">{{ popular_review_list.0.title }}</a>
                                         </figcaption>
                                         <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br />
                                             {% include "blog/star_rating.html" with score=popular_review_list.0.score size="12" %}
@@ -100,11 +100,11 @@
                                 {% for review in popular_review_list|slice:"1:" %}
                                     <li>
                                         <div class="media wow fadeInDown"><a
-                                                href="{% url 'blog:review' review.slug %}"
+                                                href="{% url 'blog:review' review.id review.slug %}"
                                                 class="media-left" title="{{ review.product }}">
                                             <img alt="{{ review.product.name }}" src="{{ review.image_thumb_url }}">
                                         </a>
-                                            <div class="media-body"><a href="{% url 'blog:review' review.slug %}"
+                                            <div class="media-body"><a href="{% url 'blog:review' review.id review.slug %}"
                                                     class="catg_title" title="{{ review.product }}">{{ review.title }}</a>
                                             <br/>{{ review.created.date }}<br />
                                             {% include "blog/star_rating.html" with score=review.score size="12" %}
@@ -123,12 +123,12 @@
                                     <li>
                                         {% if display_categories.0.0.0 %}
                                         <figure class="bsbig_fig"><a
-                                                href="{% url 'blog:review' display_categories.0.0.0.slug %}"
+                                                href="{% url 'blog:review' display_categories.0.0.0.id display_categories.0.0.0.slug %}"
                                                 class="featured_img" title="{{ display_categories.0.0.0.product.name }}">
                                             <img alt="{{ display_categories.0.0.0.product.name }}" src="{{ display_categories.0.0.0.image_thumb_url }}">
                                             <span class="overlay"></span> </a>
                                             <figcaption><a
-                                                    href="{% url 'blog:review' display_categories.0.0.0.slug %}" title="{{ display_categories.0.0.0.product }}">{{ display_categories.0.0.0.title }}</a>
+                                                    href="{% url 'blog:review' display_categories.0.0.0.id display_categories.0.0.0.slug %}" title="{{ display_categories.0.0.0.product }}">{{ display_categories.0.0.0.title }}</a>
                                             </figcaption>
                                             <p>{{ display_categories.0.0.0.reviewer }}
                                                 | {{ display_categories.0.0.0.created.date }}
@@ -144,13 +144,13 @@
                                     {% for review in display_categories.0|slice:"1:" %}
                                         <li>
                                             <div class="media wow fadeInDown">
-                                                <a href="{% url 'blog:review' review.0.slug %}"
+                                                <a href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                    class="media-left"> <img
                                                         alt="{{ review.0.product.name }}"
                                                         src="{{ review.0.image_thumb_url }}">
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
-                                                        href="{% url 'blog:review' review.0.slug %}"
+                                                        href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                         class="catg_title"> {{ review.0.title }}
                                                 </a><br/>{{ review.0.created.date }}<br />
                                                     {% include "blog/star_rating.html" with score=review.0.score size="12" %}
@@ -168,13 +168,13 @@
                                     <li>
                                         {% if display_categories.1.0.0 %}
                                         <figure class="bsbig_fig wow fadeInDown">
-                                            <a href="{% url 'blog:review' display_categories.1.0.0.slug %}"
+                                            <a href="{% url 'blog:review' display_categories.1.0.0.id display_categories.1.0.0.slug %}"
                                                class="featured_img" title="{{ display_categories.1.0.0.product }}">
                                                 <img alt="{{ display_categories.1.0.0.product.name }}" src="{{ display_categories.1.0.0.image_thumb_url }}">
                                                 <span class="overlay"></span>
                                             </a>
                                             <figcaption><a title="{{ display_categories.1.0.0.product }}"
-                                                    href="{% url 'blog:review' display_categories.1.0.0.slug %}">{{ display_categories.1.0.0.title }}</a>
+                                                    href="{% url 'blog:review' display_categories.1.0.0.id display_categories.1.0.0.slug %}">{{ display_categories.1.0.0.title }}</a>
                                             </figcaption>
                                             <p>{{ display_categories.1.0.0.reviewer }}
                                                 | {{ display_categories.1.0.0.created.date }}<br/>
@@ -191,12 +191,12 @@
                                     {% for review in display_categories.1|slice:"1:" %}
                                         <li>
                                             <div class="media wow fadeInDown">
-                                                <a href="{% url 'blog:review' review.0.slug %}"
+                                                <a href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                    class="media-left" title="{{ review.0.product.name }}">
                                                     <img alt="{{ review.0.product.name }}" src="{{ review.0.image_thumb_url }}">
                                                 </a>
                                                 <div class="media-body"><a title="{{ review.0.product }}"
-                                                        href="{% url 'blog:review' review.0.slug %}"
+                                                        href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                         class="catg_title">{{ review.0.title }}</a><br/>{{ review.0.created.date }}<br />
                                                     {% include "blog/star_rating.html" with score=review.0.score size="12" %}
                                                     {{ popular_review_list.0.score }}</div>
@@ -218,12 +218,12 @@
                             {% for review in latest_review_list %}
                                 <li>
                                     <div class="media wow fadeInDown"><a title="{{ review.product }}"
-                                            href="{% url 'blog:review' review.slug %}"
+                                            href="{% url 'blog:review' review.id review.slug %}"
                                             class="media-left"> <img alt="{{ review.product.name }}"
                                                                      src="{{ review.image_thumb_url }}">
                                     </a>
                                         <div class="media-body"><a title="{{ review.product }}"
-                                                href="{% url 'blog:review' review.slug %}"
+                                                href="{% url 'blog:review' review.id review.slug %}"
                                                 class="catg_title">{{ review.title }}
                                             </a><br/>{{ review.created.date }}<br />
                                                 {% include "blog/star_rating.html" with score=review.score size="12" %}
