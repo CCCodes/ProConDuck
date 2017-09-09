@@ -62,6 +62,7 @@ class Product(models.Model):
     links = models.TextField()
     image = models.ImageField(upload_to="images", storage=s3)
     video = models.URLField(blank=True)
+    image_compressed = models.BooleanField(default=False, editable=False)
     description = models.TextField(default="Default description")
     created = models.DateField(default=datetime.date.today)
 
