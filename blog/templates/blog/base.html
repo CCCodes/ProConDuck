@@ -239,9 +239,9 @@
                     <div class="single_sidebar">
                         <h2><span>Popular Reviews</span></h2>
                         <ul class="spost_nav">
-                            {% for review in popular_review_list %}
+                            {% for review in popular_review_list|slice:":5" %}
                                 <li>
-                                    <div class="media wow fadeInDown"><a
+                                    <div class="media"><a
                                             href="{% url 'blog:review' review.id review.slug%}"
                                             class="media-left"> <img alt="{{ review.product.name }}"
                                                                      src="{{ review.image_thumb_url }}">
@@ -269,7 +269,7 @@
         <div class="footer_top">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInLeftBig">
+                    <div class="footer_widget">
                         <h2>Never miss an exclusive discount</h2>
                         <form action="{% url 'blog:signup' %}" method="post"
                               class="contact_form">
@@ -283,7 +283,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInDown">
+                    <div class="footer_widget">
                         <h2>Become a Reviewer</h2>
                         <p class="reviewerseller">Try the latest technology and
                             get awesome perks! Email us at <a
@@ -292,7 +292,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInRightBig">
+                    <div class="footer_widget">
                         <h2>Join as a Seller</h2>
                         <p class="reviewerseller">Feel like your products
                             aren't getting the attention they deserve? We'll

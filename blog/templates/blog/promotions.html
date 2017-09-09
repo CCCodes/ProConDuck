@@ -8,7 +8,7 @@
             <ul class="spost_nav">
                 {% for promo in promos1 %}
                     <li>
-                        <div class="media wow fadeInDown"><a
+                        <div class="media"><a
                                 href="{% url 'blog:product' promo.0.product.slug %}"
                                 class="media-left"> <img alt="{{ promo.0.product.name }}"
                                                          src="{{ promo.0.product.image.url }}">
@@ -28,7 +28,7 @@
             <ul class="spost_nav">
                 {% for promo in promos2 %}
                     <li>
-                        <div class="media wow fadeInDown"><a
+                        <div class="media"><a
                                 href="{% url 'blog:product' promo.0.product.slug %}"
                                 class="media-left"> <img alt="{{ promo.0.product.name }}"
                                                          src="{{ promo.0.product.image.url }}">

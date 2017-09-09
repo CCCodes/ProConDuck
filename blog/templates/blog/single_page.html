@@ -164,7 +164,7 @@
         {% endif %} </nav>
 {% endblock %}
 {% block sidebar_before %}
-    <div class="single_sidebar wow fadeInDown">
+    <div class="single_sidebar">
         <h2><span>Product</span></h2>
         <div class="media wow fadeInDown"><a
                 href="{% url 'blog:product' review.product.slug %}"
@@ -179,7 +179,7 @@
             </div>
         </div>
     </div>
-    <div class="single_sidebar wow fadeInDown">
+    <div class="single_sidebar">
         <h2><span>Categories</span></h2>
         {% if categories %}
             <ul>
@@ -195,7 +195,7 @@
     </div>
 {% endblock %}
 {% block category_sponsor %}
-    <div class="single_sidebar wow fadeInDown">
+    <div class="single_sidebar">
         <h2><span>Top Rated Products</span></h2>
         <ul class="spost_nav">
             {% for product in top_rated_products|slice:":5" %}
@@ -230,7 +230,7 @@
         </div>
     </div>
     {% endif %}
-    <div class="single_sidebar wow fadeInDown">
+    <div class="single_sidebar">
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                 src="{{ ads.World.image.url }}" class="img-add"

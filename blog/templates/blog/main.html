@@ -73,7 +73,7 @@
                     <div class="single_post_content">
                         <h2><span>Popular Reviews</span></h2>
                         <div class="single_post_content_left">
-                            <ul class="business_catgnav  wow fadeInDown">
+                            <ul class="business_catgnav">
                                 <li>
                                     {% if popular_review_list %}
                                     <figure class="bsbig_fig"><a
@@ -99,7 +99,7 @@
                             <ul class="spost_nav">
                                 {% for review in popular_review_list|slice:"1:" %}
                                     <li>
-                                        <div class="media wow fadeInDown"><a
+                                        <div class="media"><a
                                                 href="{% url 'blog:review' review.id review.slug %}"
                                                 class="media-left" title="{{ review.product }}">
                                             <img alt="{{ review.product.name }}" src="{{ review.image_thumb_url }}">
@@ -119,7 +119,7 @@
                         <div class="fashion">
                             <div class="single_post_content">
                                 <h2><span>{{ display_categories_names.0.name }}</span></h2>
-                                <ul class="business_catgnav wow fadeInDown">
+                                <ul class="business_catgnav">
                                     <li>
                                         {% if display_categories.0.0.0 %}
                                         <figure class="bsbig_fig"><a
@@ -143,7 +143,7 @@
                                 <ul class="spost_nav">
                                     {% for review in display_categories.0|slice:"1:" %}
                                         <li>
-                                            <div class="media wow fadeInDown">
+                                            <div class="media">
                                                 <a href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                    class="media-left"> <img
                                                         alt="{{ review.0.product.name }}"
@@ -167,7 +167,7 @@
                                 <ul class="business_catgnav">
                                     <li>
                                         {% if display_categories.1.0.0 %}
-                                        <figure class="bsbig_fig wow fadeInDown">
+                                        <figure class="bsbig_fig">
                                             <a href="{% url 'blog:review' display_categories.1.0.0.id display_categories.1.0.0.slug %}"
                                                class="featured_img" title="{{ display_categories.1.0.0.product }}">
                                                 <img alt="{{ display_categories.1.0.0.product.name }}" src="{{ display_categories.1.0.0.image_thumb_url }}">
@@ -190,7 +190,7 @@
                                 <ul class="spost_nav">
                                     {% for review in display_categories.1|slice:"1:" %}
                                         <li>
-                                            <div class="media wow fadeInDown">
+                                            <div class="media">
                                                 <a href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                    class="media-left" title="{{ review.0.product.name }}">
                                                     <img alt="{{ review.0.product.name }}" src="{{ review.0.image_thumb_url }}">
@@ -217,7 +217,7 @@
                         {% if latest_review_list %}
                             {% for review in latest_review_list %}
                                 <li>
-                                    <div class="media wow fadeInDown"><a title="{{ review.product }}"
+                                    <div class="media"><a title="{{ review.product }}"
                                             href="{% url 'blog:review' review.id review.slug %}"
                                             class="media-left"> <img alt="{{ review.product.name }}"
                                                                      src="{{ review.image_thumb_url }}">
@@ -237,7 +237,7 @@
                         {% endif %}
                         </ul>
                     </div>
-                    <div class="single_sidebar wow fadeInDown">
+                    <div class="single_sidebar">
                         <h2><span>Categories</span></h2>
                         {% if categories %}
                             <ul>
@@ -251,7 +251,7 @@
                             No categories yet.
                         {% endif %}
                     </div>
-                    <div class="single_sidebar wow fadeInDown">
+                    <div class="single_sidebar">
                         <h2><span>Sponsor</span></h2>
                         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                                 src="{{ ads.World.image.url }}" class="img-add"

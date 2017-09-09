@@ -57,7 +57,7 @@
         <ul class="spost_nav">
             {% for review in reviews1 %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'blog:review' review.id review.slug %}" class="media-left"> <img alt="{{ product.name }}" src="{{ review.image_thumb_url }}"> </a>
+                  <div class="media"> <a href="{% url 'blog:review' review.id review.slug %}" class="media-left"> <img alt="{{ product.name }}" src="{{ review.image_thumb_url }}"> </a>
                       <div class="media-body"> <a href="{% url 'blog:review' review.id review.slug %}" class="catg_title">{{ review.title }}</a><br/>{{ review.created.date }}
                         <br />{% include "blog/star_rating.html" with score=review.score size="12" %}
                         {{ review.score }}
@@ -71,7 +71,7 @@
         <ul class="spost_nav">
             {% for review in reviews2 %}
                 <li>
-                  <div class="media wow fadeInDown">
+                  <div class="media">
                       {% if review.image_thumb_url != review.product.image.url %}
                       <a href="{% url 'blog:review' review.id review.slug %}" class="media-left"> <img alt="{{ product.name }}" src="{{ review.image_thumb_url }}"> </a>
                       {% endif %}
@@ -90,12 +90,12 @@
 {% endblock %}
 {% block sidebar_before %}
     {% if product.review_set.count > 0 %}
-    <div class="single_sidebar wow fadeInDown">
+    <div class="single_sidebar">
         <h2><span>Reviews</span></h2>
         <ul class="spost_nav">
         {% for review in product.review_set.all %}
         <li>
-            <div class="media wow fadeInDown"><a
+            <div class="media"><a
                     href="{% url 'blog:review' review.id review.slug %}"
                     class="media-left"> <img alt="{{ product.name }}"
                                              src="{{ review.image_thumb_url }}">
@@ -116,12 +116,12 @@
 {% endblock %}
 {% block category_sponsor %}
     <aside>
-        <div class="single_sidebar wow fadeInDown">
+        <div class="single_sidebar">
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                 src="{{ ads.World.image.url }}" class="img-add"
                 alt="ProConDuck Sponsor"></a></div>
-        <div class="single_sidebar wow fadeInDown">
+        <div class="single_sidebar">
         <h2><span>Best Deals</span></h2>
         <ul>
             {% for label, link in links %}

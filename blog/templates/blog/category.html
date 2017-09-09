@@ -4,7 +4,7 @@
 <div class="single_post_content">
 <h2><span>Products</span></h2>
 {% if products %}
-    <ul class="photograph_nav wow fadeInDown">
+    <ul class="photograph_nav">
     {% for product in products %}
         <li>
             <div class="photo_grid">
@@ -32,7 +32,7 @@
 {% endblock %}
 {% block category_sponsor %}
     <aside>
-        <div class="single_sidebar wow fadeInDown">
+        <div class="single_sidebar">
         <h2><span>Sponsor</span></h2>
         <a class="sideAdd" href="{{ ads.World.link }}" target="_blank"><img
                 src="{{ ads.World.image.url }}" class="img-add"
