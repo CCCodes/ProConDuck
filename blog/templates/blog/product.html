@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
-{% block keywords %},discount,coupon,{{ product.name }},{{ product.category.name }},{{ product.company.name }},{{ product.company.name }} {{ product.name }}{% endblock %}
+{% block keywords %},discount,coupon,{{ product.name }},{{ product.category.name }},{{ product.company.name }},{{ product.company.name }} {{ product.name }}{% if product.amazon_name %}, {{ product.amazon_name }}{% endif %}
+{% endblock %}
 {% block meta-description %}Find honest reviews for {{ product.name }} from {{ product.company.name }}.{% endblock %}
 {% block title %}{{ product.company.name }} {{ product.name }} Deals and Reviews - ProConDuck{% endblock %}
 {% block left_content %}
@@ -9,8 +10,8 @@
         <a href="{% url 'blog:all_products' %}?category={{ product.category.slug }}&sort_by=Most+reviews">{{ product.category.name }}</a>
     </li>
 </ol>
-<div class="single_post_content">
 <h1>{{ product.company.name }} {{ product.name }}</h1>
+<div class="single_post_content">
 <div class="single_post_content_left">
 <img class="img img-responsive" src="{{ product.image.url }}" alt="{{ product.name }}" />
 </div>
@@ -32,17 +33,20 @@
             No reviews yet.
             {% endif %}
         </td></tr>
-</table>
-<form action="{{ links.0.1 }}" target="_blank"><label>Get the best deal from Amazon</label><button class="btn btn-theme" style="margin-left: 10px;">Buy Here</button></form>
     {% if product.promotion_set %}
-        {% for promo in product.promotion_set.all %}
-            <label>Promotion:</label>
-            <a data-toggle="modal" data-target="#myModal{{ promo.id }}">{{ promo.title }}</a>
-        {% endfor %}
+        <tr>
+            <th>Promotion</th>
+            <td><a data-toggle="modal" data-target="#myModal{{ product.promotion_set.all.id }}">{{ product.promotion_set.all.0.title }}</a></td>
+        </tr>
     {% endif %}
+</table>
+<form action="{{ links.0.1 }}" target="_blank"><button class="btn btn-theme" style="margin-left: 10px;">Buy on Amazon</button></form>
 </div>
 </div>
 <div class="single_post_content">
+{% if product.amazon_name %}
+<strong>{{ product.amazon_name }}</strong><br  /><br />
+{% endif %}
 <p>{% autoescape off %}{{ product.description }}{% endautoescape %}
 </p>
 </div>
