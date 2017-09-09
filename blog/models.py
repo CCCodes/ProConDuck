@@ -56,11 +56,12 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT,
                                  default=0)
     name = models.CharField(max_length=100)
+    amazon_name = models.CharField(max_length=200, blank=True)
     slug = models.SlugField(unique=True)
     score = models.FloatField(default=0, editable=False)
     links = models.TextField()
     image = models.ImageField(upload_to="images", storage=s3)
-    image_compressed = models.BooleanField(default=False, editable=False)
+    video = models.URLField(blank=True)
     description = models.TextField(default="Default description")
     created = models.DateField(default=datetime.date.today)
 
