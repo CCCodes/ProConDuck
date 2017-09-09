@@ -37,7 +37,7 @@ def default(request):
 
     return dict(
         latest_review_list=Review.objects.order_by('-created')[:4],
-        popular_review_list=Review.objects.order_by('-views')[:5],
+        popular_review_list=Review.objects.order_by('-views')[:6],
         ads=ad_paths,
         date=get_date(),
         categories=Category.objects.annotate(num_p=Count('product')).order_by(
