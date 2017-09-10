@@ -9,12 +9,12 @@
                 {% for promo in promos1 %}
                     <li>
                         <div class="media"><a
-                                href="{% url 'blog:product' promo.0.product.slug %}"
+                                href="{% url 'blog:product' promo.0.product.id promo.0.product.slug %}"
                                 class="media-left"> <img alt="{{ promo.0.product.name }}"
                                                          src="{{ promo.0.product.image.url }}">
                         </a>
                             <div class="media-body">
-                                <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a><br/>
+                                <a href="{% url 'blog:product' promo.0.product.id promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a><br/>
                                 {{ promo.0.title }}
                                 <br/>
                                 <button class="btn-theme" data-toggle="modal" data-target="#myModal{{ promo.0.id }}">See promo code</button>
@@ -29,12 +29,12 @@
                 {% for promo in promos2 %}
                     <li>
                         <div class="media"><a
-                                href="{% url 'blog:product' promo.0.product.slug %}"
+                                href="{% url 'blog:product' promo.0.product.id promo.0.product.slug %}"
                                 class="media-left"> <img alt="{{ promo.0.product.name }}"
                                                          src="{{ promo.0.product.image.url }}">
                         </a>
                             <div class="media-body">
-                                <a href="{% url 'blog:product' promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a><br/>
+                                <a href="{% url 'blog:product' promo.0.product.id promo.0.product.slug %}" class="catg_title">{{ promo.0.product }}</a><br/>
                                 {{ promo.0.title }}
                                 <br/>
                                 <button class="btn-theme" data-toggle="modal" data-target="#myModal{{ promo.0.id }}">See promo code</button>

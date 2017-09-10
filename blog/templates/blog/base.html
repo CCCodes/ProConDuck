@@ -197,7 +197,7 @@
                                                 {% if request.path != '/blog/promotions/' %}
                                                     <a href="{% url 'blog:promotions' %}" class="btn btn-theme a-modal" style="margin-bottom: 0;">All deals</a>
                                                 {% endif %}
-                                                <a href="{% url 'blog:product' promotion.0.product.slug %}" class="btn btn-default a-modal">Product</a>
+                                                <a href="{% url 'blog:product' promotion.0.product.id promotion.0.product.slug %}" class="btn btn-default a-modal">Product</a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>

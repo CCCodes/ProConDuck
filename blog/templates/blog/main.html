@@ -42,13 +42,13 @@
                     <ul class="spost_nav">
                         {% for product in top_rated_products|slice:":5" %}
                             <li>
-                                <div class="media"><a href="{% url 'blog:product' product.slug %}"
+                                <div class="media"><a href="{% url 'blog:product' product.id product.slug %}"
                                                       class="media-left">
                                     <img alt="{{ product.name }}"
                                          src="{{ product.image.url }}">
                                 </a>
                                     <div class="media-body">{{ product.company.name }}<br />
-                                        <a href="{% url 'blog:product' product.slug %}"
+                                        <a href="{% url 'blog:product' product.id product.slug %}"
                                                                class="catg_title"> {{ product.name }}</a>
                                         <br/>
                                         {% if product.review_set.count != 0 %}

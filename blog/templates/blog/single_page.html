@@ -41,7 +41,7 @@
                     </div>
                 {% endif %}
             </div>
-        <a href="{% url 'blog:product' review.product.slug %}" class="btn btn-theme">View Product</a>
+        <a href="{% url 'blog:product' review.product.id review.product.slug %}" class="btn btn-theme">View Product</a>
         <a href="{{ links.0.1 }}" target="_blank" class="btn btn-theme">Buy On Amazon</a>
         <div class="single_post_content">
             <div class="single_post_content_left">
@@ -80,13 +80,13 @@
         {% endif %}
             <p style="line-height: 170%;">{% autoescape off %}{{ review.review }}{% endautoescape %}</p>
         <table class="table">
-            <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.slug %}">{{ review.product }}</a></td><td rowspan="3" style="width:1px; white-space: nowrap">
-            <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="{{ review.product.name }}" /></a>
+            <tr><th>Product</th><td><a href="{% url 'blog:product' review.product.id review.product.slug %}">{{ review.product }}</a></td><td rowspan="3" style="width:1px; white-space: nowrap">
+            <a href="{% url 'blog:product' review.product.id review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="{{ review.product.name }}" /></a>
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
             <tr><th>Average Rating</th><td>{% include "blog/include/star_rating.html" with score=review.product.score size="12" %}{{ review.product.score }}</td></tr>
         </table>
-            <a href="{% url 'blog:product' review.product.slug %}" class="btn btn-theme">View Product</a>
+            <a href="{% url 'blog:product' review.product.id review.product.slug %}" class="btn btn-theme">View Product</a>
             <a href="{{ links.0.1 }}" target="_blank" class="btn btn-theme">Buy On Amazon</a>
         </div>
         <div class="social_link">
@@ -167,12 +167,12 @@
     <div class="single_sidebar">
         <h2><span>Product</span></h2>
         <div class="media"><a
-                href="{% url 'blog:product' review.product.slug %}"
+                href="{% url 'blog:product' review.product.id review.product.slug %}"
                 class="media-left"> <img alt="{{ review.product.name }}"
                                          src="{{ review.product.image.url }}">
         </a>
             <div class="media-body">{{ review.product.company.name }}<br /><a
-                    href="{% url 'blog:product' review.product.slug %}"
+                    href="{% url 'blog:product' review.product.id review.product.slug %}"
                     class="catg_title">{{ review.product.name }}</a>
                 <br/>
                 {% include "blog/include/star_rating.html" with score=review.score size="12" %}{{ review.product.score }} ({{ review.product.review_set.count }})

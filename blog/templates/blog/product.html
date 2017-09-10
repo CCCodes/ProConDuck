@@ -137,7 +137,7 @@
     <nav class="nav-slit">
     {% if related_products.0 %}
         <a class="prev"
-           href="{% url 'blog:product' related_products.0.slug %}">
+           href="{% url 'blog:product' related_products.0.id related_products.0.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-left"></i></span>
             <div>
@@ -148,7 +148,7 @@
     {% endif %}
         {% if related_products.1 %}
             <a class="next"
-               href="{% url 'blog:product' related_products.1.slug %}">
+               href="{% url 'blog:product' related_products.1.id related_products.1.slug %}">
             <span class="icon-wrap"><i
                     class="fa fa-angle-right"></i></span>
             <div>

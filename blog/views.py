@@ -200,7 +200,7 @@ def all_reviews(request):
     return render(request, 'blog/all_reviews.html', context)
 
 
-def product(request, product_slug):
+def product(request, product_id, product_slug):
     product_ = get_object_or_404(Product, slug=product_slug)
     category_products = product_.category.product_set.all()
     current_index = list(category_products).index(product_)

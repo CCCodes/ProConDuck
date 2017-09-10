@@ -9,7 +9,7 @@
         <li>
             <div class="photo_grid">
                 <figure class="effect-layla">
-                    <a class="fancybox-buttons" data-fancybox-group="button" href="{% url 'blog:product' product.slug %}">
+                    <a class="fancybox-buttons" data-fancybox-group="button" href="{% url 'blog:product' product.id product.slug %}">
                         <div class="product-overlay"><div>{{ product.name }}<br />
                         {% if product.review_set.count > 0 %}
                         {% include "blog/include/star_rating.html" with score=product.score size="15" %}
