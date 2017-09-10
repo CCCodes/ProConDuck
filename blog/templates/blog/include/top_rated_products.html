@@ -1,0 +1,26 @@
+<div class="single_sidebar">
+    <h2><span>Top Rated Products</span></h2>
+    <ul class="spost_nav">
+        {% for product in top_rated_products|slice:":5" %}
+            <li>
+                <div class="media"><a href="{% url 'blog:product' product.slug %}"
+                                      class="media-left">
+                    <img alt="{{ product.name }}"
+                         src="{{ product.image.url }}">
+                </a>
+                    <div class="media-body">{{ product.company.name }}<br />
+                        <a href="{% url 'blog:product' product.slug %}"
+                                               class="catg_title"> {{ product.name }}</a>
+                        <br/>
+                        {% if product.review_set.count != 0 %}
+                            {% include "blog/include/star_rating.html" with score=product.score size="12" %}
+                        {{ product.score }} ({{ product.review_set.count }})
+                        {% else %}
+                            No reviews available.
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

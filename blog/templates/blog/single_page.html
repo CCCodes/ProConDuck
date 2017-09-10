@@ -21,7 +21,7 @@
         <div class="single_page_content">
             <h5 style="display: inline; text-transform: uppercase; color: #9CA3AC; font-size: 14px;">{{ review.reviewer.first_name }}'s Rating:</h5>
         <h4 style="display: inline;">{{ review.score }}</h4>
-        {% include "blog/star_rating.html" with score=review.score size="20" %}<br />
+        {% include "blog/include/star_rating.html" with score=review.score size="20" %}<br />
             <br/>
             <div class="slick_slider" style="margin-bottom: 10px;">
                 {% for image in all_images %}
@@ -84,7 +84,7 @@
             <a href="{% url 'blog:product' review.product.slug %}"><img class="img-center" height="100" src="{{ review.product.image.url }}" alt="{{ review.product.name }}" /></a>
             </td></tr>
             <tr><th>Company</th><td>{{ review.product.company }}</td></tr>
-            <tr><th>Average Rating</th><td>{% include "blog/star_rating.html" with score=review.product.score size="12" %}{{ review.product.score }}</td></tr>
+            <tr><th>Average Rating</th><td>{% include "blog/include/star_rating.html" with score=review.product.score size="12" %}{{ review.product.score }}</td></tr>
         </table>
             <a href="{% url 'blog:product' review.product.slug %}" class="btn btn-theme">View Product</a>
             <a href="{{ links.0.1 }}" target="_blank" class="btn btn-theme">Buy On Amazon</a>
@@ -175,7 +175,7 @@
                     href="{% url 'blog:product' review.product.slug %}"
                     class="catg_title">{{ review.product.name }}</a>
                 <br/>
-                {% include "blog/star_rating.html" with score=review.score size="12" %}{{ review.product.score }} ({{ review.product.review_set.count }})
+                {% include "blog/include/star_rating.html" with score=review.score size="12" %}{{ review.product.score }} ({{ review.product.review_set.count }})
             </div>
         </div>
     </div>
@@ -195,32 +195,7 @@
     </div>
 {% endblock %}
 {% block category_sponsor %}
-    <div class="single_sidebar">
-        <h2><span>Top Rated Products</span></h2>
-        <ul class="spost_nav">
-            {% for product in top_rated_products|slice:":5" %}
-                <li>
-                    <div class="media"><a href="{% url 'blog:product' product.slug %}"
-                                          class="media-left">
-                        <img alt="{{ product.name }}"
-                             src="{{ product.image.url }}">
-                    </a>
-                        <div class="media-body">{{ product.company.name }}<br />
-                            <a href="{% url 'blog:product' product.slug %}"
-                                                   class="catg_title"> {{ product.name }}</a>
-                            <br/>
-                            {% if product.review_set.count != 0 %}
-                                {% include "blog/star_rating.html" with score=product.score size="12" %}
-                            {{ product.score }} ({{ product.review_set.count }})
-                            {% else %}
-                                No reviews available.
-                            {% endif %}
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% include "blog/include/top_rated_products.html" %}
     {% if review.video_link %}
     <div class="single_sidebar">
         <h2><span>Video</span></h2>

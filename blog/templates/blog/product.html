@@ -59,7 +59,7 @@
                 <li>
                   <div class="media"> <a href="{% url 'blog:review' review.id review.slug %}" class="media-left"> <img alt="{{ product.name }}" src="{{ review.image_thumb_url }}"> </a>
                       <div class="media-body"> <a href="{% url 'blog:review' review.id review.slug %}" class="catg_title">{{ review.title }}</a><br/>{{ review.created.date }}
-                        <br />{% include "blog/star_rating.html" with score=review.score size="12" %}
+                        <br />{% include "blog/include/star_rating.html" with score=review.score size="12" %}
                         {{ review.score }}
                       </div>
                   </div>
@@ -104,7 +104,7 @@
                         href="{% url 'blog:review' review.id review.slug %}"
                         class="catg_title">{{ review.title }}</a>
                     <br/>
-                    {% include "blog/star_rating.html" with score=review.score size="12" %}{{ review.score }}
+                    {% include "blog/include/star_rating.html" with score=review.score size="12" %}{{ review.score }}
                     <br/>{{ review.created.date }}
                 </div>
             </div>

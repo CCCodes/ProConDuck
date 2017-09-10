@@ -17,7 +17,7 @@
                                     <h2><a class="slider_tittle" title="{{ review.product }}"
                                            href="{% url 'blog:review' review.id review.slug %}">{{ review.title }}</a></h2>
                                     <p>{{ review.reviewer }} | {{ review.created.date }}
-                                        {% include "blog/star_rating.html" with score=review.score size="15" %}
+                                        {% include "blog/include/star_rating.html" with score=review.score size="15" %}
                                     {{ review.score }}<br/>
                                         {{ review.review|striptags|truncatechars:200 }}</p>
                                 </div>
@@ -52,7 +52,7 @@
                                                                class="catg_title"> {{ product.name }}</a>
                                         <br/>
                                         {% if product.review_set.count != 0 %}
-                                            {% include "blog/star_rating.html" with score=product.score size="12" %}
+                                            {% include "blog/include/star_rating.html" with score=product.score size="12" %}
                                         {{ product.score }} ({{ product.review_set.count }})
                                         {% else %}
                                             No reviews available.
@@ -85,7 +85,7 @@
                                                 href="{% url 'blog:review' popular_review_list.0.id popular_review_list.0.slug %}" title="{{ popular_review_list.0.product }}">{{ popular_review_list.0.title }}</a>
                                         </figcaption>
                                         <p>{{ popular_review_list.0.reviewer }} | {{ popular_review_list.0.created.date }}<br />
-                                            {% include "blog/star_rating.html" with score=popular_review_list.0.score size="12" %}
+                                            {% include "blog/include/star_rating.html" with score=popular_review_list.0.score size="12" %}
                                         {{ popular_review_list.0.score }}<br/>
                                            {{ popular_review_list.0.review|striptags|truncatechars:200 }}</p>
                                     </figure>
@@ -107,7 +107,7 @@
                                             <div class="media-body"><a href="{% url 'blog:review' review.id review.slug %}"
                                                     class="catg_title" title="{{ review.product }}">{{ review.title }}</a>
                                             <br/>{{ review.created.date }}<br />
-                                            {% include "blog/star_rating.html" with score=review.score size="12" %}
+                                            {% include "blog/include/star_rating.html" with score=review.score size="12" %}
                                             {{ review.score }}</div>
                                         </div>
                                     </li>
@@ -132,7 +132,7 @@
                                             </figcaption>
                                             <p>{{ display_categories.0.0.0.reviewer }}
                                                 | {{ display_categories.0.0.0.created.date }}
-                                                <br/>{% include "blog/star_rating.html" with score=display_categories.0.0.0.score size="12" %}
+                                                <br/>{% include "blog/include/star_rating.html" with score=display_categories.0.0.0.score size="12" %}
                                                 {{ display_categories.0.0.0.score }}<br/>{{ display_categories.0.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
                                         {% else %}
@@ -153,7 +153,7 @@
                                                         href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                         class="catg_title"> {{ review.0.title }}
                                                 </a><br/>{{ review.0.created.date }}<br />
-                                                    {% include "blog/star_rating.html" with score=review.0.score size="12" %}
+                                                    {% include "blog/include/star_rating.html" with score=review.0.score size="12" %}
                                                 {{ popular_review_list.0.score }}</div>
                                             </div>
                                         </li>
@@ -178,7 +178,7 @@
                                             </figcaption>
                                             <p>{{ display_categories.1.0.0.reviewer }}
                                                 | {{ display_categories.1.0.0.created.date }}<br/>
-                                                {% include "blog/star_rating.html" with score=display_categories.1.0.0.score size="12" %}
+                                                {% include "blog/include/star_rating.html" with score=display_categories.1.0.0.score size="12" %}
                                                 {{ display_categories.0.0.0.score }}<br />
                                                 {{ display_categories.1.0.0.review|striptags|truncatechars:130 }}</p>
                                         </figure>
@@ -198,7 +198,7 @@
                                                 <div class="media-body"><a title="{{ review.0.product }}"
                                                         href="{% url 'blog:review' review.0.id review.0.slug %}"
                                                         class="catg_title">{{ review.0.title }}</a><br/>{{ review.0.created.date }}<br />
-                                                    {% include "blog/star_rating.html" with score=review.0.score size="12" %}
+                                                    {% include "blog/include/star_rating.html" with score=review.0.score size="12" %}
                                                     {{ popular_review_list.0.score }}</div>
                                             </div>
                                         </li>
@@ -226,7 +226,7 @@
                                                 href="{% url 'blog:review' review.id review.slug %}"
                                                 class="catg_title">{{ review.title }}
                                             </a><br/>{{ review.created.date }}<br />
-                                                {% include "blog/star_rating.html" with score=review.score size="12" %}
+                                                {% include "blog/include/star_rating.html" with score=review.score size="12" %}
                                             {{ review.score }}
                                         </div>
                                     </div>

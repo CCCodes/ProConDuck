@@ -12,7 +12,7 @@
                     <a class="fancybox-buttons" data-fancybox-group="button" href="{% url 'blog:product' product.slug %}">
                         <div class="product-overlay"><div>{{ product.name }}<br />
                         {% if product.review_set.count > 0 %}
-                        {% include "blog/star_rating.html" with score=product.score size="15" %}
+                        {% include "blog/include/star_rating.html" with score=product.score size="15" %}
                             {% if product.review_set.count > 5 %}
                                 ({{ product.review_set.count }})
                             {% endif %}<br />
@@ -28,7 +28,7 @@
 </div>
 {% endblock %}
 {% block sidebar_before %}
-    {% include "blog/filter.html" with action='all_products' %}
+    {% include "blog/include/filter.html" with action='all_products' %}
 {% endblock %}
 {% block category_sponsor %}
     <aside>

@@ -16,7 +16,7 @@
                     <div class="media-body">
                         <a href="{% url 'blog:review' review.id review.slug %}"
                                                class="catg_title"> {{ review.title }}</a>
-                        <br/>{% include "blog/star_rating.html" with score=review.score size="12" %} {{ review.score }}
+                        <br/>{% include "blog/include/star_rating.html" with score=review.score size="12" %} {{ review.score }}
                         | {{ review.reviewer }} | {{ review.created.date }}<br />{{ review.review|striptags|truncatechars:200 }}
                     </div>
                 </div>
@@ -28,6 +28,7 @@
 {% endif %}
 </div>
 {% endblock %}
-{% block sidebar_before %}
-    {% include "blog/filter.html" with action="all_reviews" %}
+{% block right_content %}
+    {% include "blog/include/filter.html" with action="all_reviews" %}
+    {% include "blog/include/top_rated_products.html" %}
 {% endblock %}
