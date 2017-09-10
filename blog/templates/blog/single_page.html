@@ -114,7 +114,7 @@
         </div>
         <div class="related_post">
             <h2>Related Reviews </h2>
-            <ul class="spost_nav wow fadeInDown animated">
+            <ul class="spost_nav">
                 {% if related_reviews %}
                     {% for review in related_reviews|slice:":3" %}
                         <li>
@@ -166,7 +166,7 @@
 {% block sidebar_before %}
     <div class="single_sidebar">
         <h2><span>Product</span></h2>
-        <div class="media wow fadeInDown"><a
+        <div class="media"><a
                 href="{% url 'blog:product' review.product.slug %}"
                 class="media-left"> <img alt="{{ review.product.name }}"
                                          src="{{ review.product.image.url }}">
