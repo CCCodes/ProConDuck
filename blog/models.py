@@ -57,13 +57,13 @@ class Product(models.Model):
                                  default=0)
     name = models.CharField(max_length=100)
     amazon_name = models.CharField(max_length=200, blank=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, editable=False, max_length=255)
     score = models.FloatField(default=0, editable=False)
     links = models.TextField()
     image = models.ImageField(upload_to="images", storage=s3)
     video = models.URLField(blank=True)
     image_compressed = models.BooleanField(default=False, editable=False)
-    description = models.TextField(default="Default description")
+    description = models.TextField()
     created = models.DateField(default=datetime.date.today)
 
     def __str__(self):
@@ -83,7 +83,6 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = slugify(self.name)
             if self.image:
                 self.image = compress(self.image)
 
@@ -96,6 +95,7 @@ class Product(models.Model):
 @receiver(models.signals.pre_save, sender=Product)
 def product_pre_save(sender, instance, *args, **kwargs):
     instance.description = instance.description.replace('\r\n', '<br />')
+    instance.slug = slugify(instance.name)
 
 
 class Reviewer(models.Model):
@@ -124,8 +124,7 @@ class Review(models.Model):
     review = models.TextField()  # user uploaded can't have tags!!!
     views = models.IntegerField(default=0, editable=False)
 
-    created = models.DateTimeField(editable=False,
-                                   default=django.utils.timezone.now)
+    created = models.DateTimeField(default=django.utils.timezone.now)
     pros = ArrayField(models.CharField(max_length=20, blank=True), null=True,
                       size=10)
     cons = ArrayField(models.CharField(max_length=20, blank=True), null=True,
