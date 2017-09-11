@@ -140,7 +140,7 @@
                                     </li>
                                 </ul>
                                 <ul class="spost_nav">
-                                    {% for review in display_categories.0|slice:"1:" %}
+                                    {% for review in display_categories.0|slice:"1:3" %}
                                         <li>
                                             <div class="media">
                                                 <a href="{% url 'blog:review' review.0.id review.0.slug %}"
@@ -187,7 +187,7 @@
                                     </li>
                                 </ul>
                                 <ul class="spost_nav">
-                                    {% for review in display_categories.1|slice:"1:" %}
+                                    {% for review in display_categories.1|slice:"1:3" %}
                                         <li>
                                             <div class="media">
                                                 <a href="{% url 'blog:review' review.0.id review.0.slug %}"
