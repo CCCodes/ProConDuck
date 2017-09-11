@@ -23,8 +23,7 @@
             </li>
         {% endfor %}
     </ul>
-    <a data-toggle="collapse" data-target="#show-more" class="btn btn-theme">Show More</a>
-    <ul class="spost_nav" id="show-more">
+    <ul class="spost_nav" id="show-more" style="display: none;">
         {% for review in reviews|slice:"8:" %}
             <li>
                 <div class="media review-list" style="position: relative;"><a href="{% url 'blog:review' review.id review.slug %}"><span class="clickable-div-span"></span></a>
@@ -43,6 +42,16 @@
             </li>
         {% endfor %}
     </ul>
+    <a id="toggle-show-more" onclick="(function () {
+    var x = document.getElementById('show-more');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+        document.getElementById('toggle-show-more').innerHTML = 'Show Less';
+    } else {
+        x.style.display = 'none';
+        document.getElementById('toggle-show-more').innerHTML = 'Show More';
+    }
+})()" class="btn btn-theme">Show More</a>
 {% else %}
     <p>No reviews available.</p>
 {% endif %}
