@@ -125,9 +125,9 @@ class Review(models.Model):
     views = models.IntegerField(default=0, editable=False)
 
     created = models.DateTimeField(default=django.utils.timezone.now)
-    pros = ArrayField(models.CharField(max_length=20, blank=True), null=True,
+    pros = ArrayField(models.CharField(max_length=50, blank=True), null=True,
                       size=10)
-    cons = ArrayField(models.CharField(max_length=20, blank=True), null=True,
+    cons = ArrayField(models.CharField(max_length=50, blank=True), null=True,
                       size=10)
     overall_verdict = models.TextField(blank=True)
     keywords = models.CharField(max_length=50, blank=True)
