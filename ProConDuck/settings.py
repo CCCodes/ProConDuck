@@ -8,7 +8,6 @@ import sys
 import requests
 from dotenv import load_dotenv
 
-import heroku3
 from django.core.mail.backends import smtp
 
 
