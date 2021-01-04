@@ -18,7 +18,7 @@ import requests
 import heroku3
 from django.core.mail.backends import smtp
 
-heroku_con = heroku3.from_key("0b842569-4c90-4c25-a67c-66b155a3b724")
+heroku_con = heroku3.from_key(os.environ['NEW_SECRET_KEY'])
 app = heroku_con.apps()['quiet-beyond-56572']
 config = app.config().data
 
