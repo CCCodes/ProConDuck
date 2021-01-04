@@ -1,8 +1,4 @@
-.idea/dataSources.local.xml
-.idea/dataSources/
-.idea/inspectionProfiles/
-.idea/workspace.xml
-.idea/ProConDuck.iml
+.idea
 ProConDuck/Lib/
 ProConDuck/__pycache__/
 ProConDuck/tcl/
