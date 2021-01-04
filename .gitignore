@@ -5,3 +5,6 @@ ProConDuck/tcl/
 blog/__pycache__/
 venv/
 /db.sqlite3
+ProConDuck/static/blog/assets/NewsFeed/css/materialize/
+blog/migrations/__pycache__/
+__pycache__/
