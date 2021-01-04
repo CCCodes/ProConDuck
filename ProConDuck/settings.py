@@ -6,17 +6,17 @@ import os
 import os.path
 import sys
 import requests
+from dotenv import load_dotenv
 
 import heroku3
 from django.core.mail.backends import smtp
 
-heroku_con = heroku3.from_key(os.environ['API_KEY'])
-app = heroku_con.apps()['quiet-beyond-56572']
-config = app.config()
+
+load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = config['NEW_SECRET_KEY']
+SECRET_KEY = os.getenv('NEW_SECRET_KEY')
 
 DEBUG = THUMBNAIL_DEBUG = False
 
@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'ProConDuck.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config['DB_NAME'],
-        'USER': config['USER'],
-        'PASSWORD': config['DB_PASS'],
-        'HOST': config['DB_HOST'],
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
+        'HOST': os.getenv('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -153,8 +153,8 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = 'https://s3-%s.amazonaws.com/%s/media/' % (config['AWS_REGION'],
-                                                       config['S3_BUCKET'])
+MEDIA_URL = 'https://s3-%s.amazonaws.com/%s/media/' % (os.getenv('AWS_REGION'),
+                                                       os.getenv('S3_BUCKET'))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # DEFAULT_FILE_STORAGE = 'blog.customstorages.MediaStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
@@ -183,14 +183,14 @@ LOGGING = {
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = config['EMAIL_PASS']
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')
 EMAIL_HOST_USER = 'proconduck@gmail.com'
 EMAIL_PORT = 587
 
-AWS_ACCESS_KEY_ID = config['AWS_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = config['AWS_SECRET_KEY']
-BOTO_S3_BUCKET = config['S3_BUCKET']
-BOTO_S3_HOST = config['AWS_HOST']
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_KEY')
+BOTO_S3_BUCKET = os.getenv('S3_BUCKET')
+BOTO_S3_HOST = os.getenv('AWS_HOST')
 
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_OBJECT_PARAMETERS = {

@@ -1,4 +1,5 @@
 .idea
+.env
 ProConDuck/Lib/
 ProConDuck/__pycache__/
 ProConDuck/tcl/
