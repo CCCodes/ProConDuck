@@ -1,4 +1,3 @@
-import datetime
 from PIL import Image as Img
 from io import BytesIO, StringIO
 
@@ -6,7 +5,6 @@ import django
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.sites.models import Site
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.core.urlresolvers import reverse
 from django.db.models import Avg, Count
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
@@ -117,7 +115,7 @@ class Review(models.Model):
 
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, editable=False, max_length=255)
-    reviewer = models.ForeignKey(Reviewer, default=1)
+    reviewer = models.ForeignKey(Reviewer, default=1, on_delete=models.PROTECT)
     score = models.FloatField(default=5)
     image_thumb_url = models.URLField(editable=False, blank=True)
     video_link = models.URLField(blank=True)

@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% block keywords %},{{ review.title }},{{ review.product.category.name }},{{ review.product.name }},{{ review.product.name }} review,{{ review.keywords }}{% endblock %}
 {% block title %}{{ review.title }} - ProConDuck{% endblock %}
-{% load staticfiles %} {% load static %}
+{% load static %}
 {% block left_content %}
     <div class="single_page">
         <ol class="breadcrumb">

@@ -1,16 +1,12 @@
 from itertools import chain
 from math import ceil
 from smtplib import SMTPAuthenticationError
-from PIL import Image
-from io import BytesIO, StringIO
-import urllib.request
 
-from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.template import loader, RequestContext, Context
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404
 from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import *
@@ -326,7 +322,7 @@ class ProductSitemap(Sitemap):
         return obj.created
 
 
-def error404(request):
+def error404(request, exception):
     context = {
         'message': 'All: %s' % request,
         }
