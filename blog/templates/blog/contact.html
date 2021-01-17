@@ -5,9 +5,10 @@
 {% block left_content %}
     <div class="contact_area">
         <h2>Contact Us</h2>
-        <p>Have a question? Contact us here. We will get back to you within one
-            to three business days.</p>
-        <form action="{% url 'blog:contact_submit' %}" class="contact_form"
+        <p>Have a question?<br />
+            Contact us at <a href="mailto:proconduck@gmail.com">proconduck@gmail.com</a>.<br />
+            We will get back to you within one to three business days.</p>
+{% comment %}        <form action="{% url 'blog:contact_submit' %}" class="contact_form"
         method="post">
             {% csrf_token %}
             <input class="form-control" type="text" required
@@ -17,6 +18,6 @@
             <textarea class="form-control" cols="30" rows="10" required
                       placeholder="Message" name="message"></textarea>
             <input type="submit" value="Send Message">
-        </form>
+        </form>{% endcomment %}
     </div>
 {% endblock %}
