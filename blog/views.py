@@ -289,8 +289,8 @@ def contact_submit(request):
             'Site Contact from ' + request.POST['email'],
             'Name: ' + request.POST['name'] + '\nEmail: ' +
             request.POST['email'] + '\nMessage: ' + request.POST['message'],
-            'proconduck@support.com',
-            ['support@proconduck.com'],
+            'proconduck@gmail.com',
+            ['proconduck@gmail.com'],
             fail_silently=False
         )
     except SMTPAuthenticationError as e:
